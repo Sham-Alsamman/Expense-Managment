@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "895864679165",
+    "project_id": "expense-management21",
+    "storage_bucket": "expense-management21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895864679165:android:b7b376d665610416e4ec94",
+        "android_client_info": {
+          "package_name": "com.example.scanningreceiptstest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895864679165-9mgosgq3trrbei86tmt7dti67t23bd8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-8-qHErAC95Vpf9zpL7uh0z06_AEbePA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895864679165-9mgosgq3trrbei86tmt7dti67t23bd8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
