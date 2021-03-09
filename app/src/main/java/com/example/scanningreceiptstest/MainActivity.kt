@@ -1,5 +1,6 @@
 package com.example.scanningreceiptstest
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -32,8 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         // Set buttons click listeners:
         binding.authButton.setOnClickListener{ startPhoneNumberVerification(binding.phoneNumberEdit.text.toString()) }
-        binding.verifyButton.setOnClickListener{ verifyPhoneNumberWithCode(storedVerificationId, binding.verificationCodeEdit.text.toString()) }
+        binding.verifyButton.setOnClickListener{ verifyPhoneNumberWithCode(storedVerificationId, binding.verificationCodeEdit.text.toString())}
 
+        /*******JUST FOR TESTING******/
+        binding.nextButton.setOnClickListener { val intent = Intent(this, TestActivity::class.java)
+                startActivity(intent)}
 
         // Initialize Firebase auth
         auth = Firebase.auth

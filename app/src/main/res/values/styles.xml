@@ -7,4 +7,41 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="inner_panel_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">44dp</item>
+        <item name="android:layout_marginEnd">44dp</item>
+        <item name="android:background">@drawable/rounded_panel</item>
+        <item name="android:padding">20dp</item>
+    </style>
+
+    <style name="title_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:textColor">#072B4F</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="edit_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">#5367F0</item>
+    </style>
+
+    <style name="light_button_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">#100F0F</item>
+    </style>
+
 </resources>
