@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomePage">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="326dp"
+        android:layout_height="316dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shutterstock_1624414612_scaled" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="333dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp"
+        android:gravity="center"
+        android:text="Welcome to
+        Wallet Manager"
+        android:textColor="#5367F0"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/SignINbutton"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/background1"
+        android:onClick="SignInOnClick"
+        android:text="Sign-in"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#5367F0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/signUPbutton"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginBottom="164dp"
+        android:background="@drawable/background1"
+        android:onClick="SignUpOnClick"
+        android:text="Sign-UP"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#5367F0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
