@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menu_group1">
+        <item
+            android:icon="@drawable/wallet_icon"
+            android:title="Wallets" />
+        <item
+            android:icon="@drawable/report_icon"
+            android:title="Report" />
+        <item
+            android:icon="@drawable/ic_history"
+            android:title="Transaction" />
+        <item
+            android:icon="@drawable/invite_icon"
+            android:title="Invite a partner" />
+        <item
+            android:icon="@drawable/about_icon"
+            android:title="About" />
+    </group>
+
+    <group android:id="@+id/menu_group2">
+        <item android:title="Settings" />
+        <item android:title="Log out" />
+    </group>
+</menu>

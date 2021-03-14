@@ -15,7 +15,8 @@
         android:backgroundTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_history" />
+        app:srcCompat="@drawable/ic_history"
+        app:tint="#000000" />
 
     <TextView
         android:id="@+id/textView13"
