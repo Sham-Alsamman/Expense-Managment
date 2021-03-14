@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Phone number authentication test</string>
+    <string name="true_tick">\u2713</string>
 </resources>
