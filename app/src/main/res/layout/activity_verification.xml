@@ -95,13 +95,10 @@
         android:layout_height="140dp"
 
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="137dp"
         android:background="@drawable/verfictiondigitback"
         android:gravity="center"
-        android:orientation="horizontal"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,16 +109,14 @@
         <com.chaos.view.PinView
             android:id="@+id/PinVew"
             style="@style/PinWidget.PinView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:cursorVisible="true"
             android:inputType="number"
             android:keyboardNavigationCluster="true"
             android:textSize="25dp"
             app:cursorColor="@color/Black"
             app:itemCount="6" />
-
-
 
 
     </LinearLayout>
