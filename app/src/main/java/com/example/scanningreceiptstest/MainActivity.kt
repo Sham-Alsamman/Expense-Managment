@@ -1,17 +1,28 @@
 package com.example.scanningreceiptstest
 
+import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.scanningreceiptstest.databinding.ActivityMainBinding
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.filter.*
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -89,6 +100,38 @@ class MainActivity : AppCompatActivity() {
                 updateUI(STATE_CODE_SENT)
             }
         }
+
+        val arraySpinner = arrayOf(
+            "1", "2", "3", "4", "5", "6", "7"
+        )
+        val s = findViewById<View>(R.id.spinner) as Spinner
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item, arraySpinner
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        s.adapter = adapter
+
+
+        var pieChart : PieChart = findViewById(R.id.piechart);
+        pieChart.setUsePercentValues(true);
+        var value = ArrayList<PieEntry>();
+        value.add(PieEntry(40f, "Jan"));
+        value.add(PieEntry(60f, "Feb"));
+
+        var dataset = PieDataSet(value,".");
+
+        var pd = PieData(dataset);
+        pieChart.setData(pd);
+
+        dataset.setColors( Color.CYAN, Color.LTGRAY, Color.BLUE)
+        dataset.valueTextSize = 20f
+        pd.setValueTextSize(20f)
+
+
+
+        pieChart.getDescription().setText(""); //the text which will be displayed.
+
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
@@ -204,5 +247,24 @@ class MainActivity : AppCompatActivity() {
         private const val STATE_VERIFY_SUCCESS = 4
         private const val STATE_SIGNIN_FAILED = 5
         private const val STATE_SIGNIN_SUCCESS = 6
+    }
+    fun clickDataPicker(view: View) {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                textView6.setText("$dayOfMonth - ${monthOfYear + 1} - $year")
+
+            },
+            year,
+            month,
+            day
+        )
+        dpd.show()
     }
 }

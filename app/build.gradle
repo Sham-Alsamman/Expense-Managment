@@ -70,6 +70,9 @@ dependencies {
 
     //kapt 'groupId:artifactId:version'
 
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+
     //pin view immport
     implementation 'com.chaos.view:pinview:1.4.4'
     //implementation 'com.github.GoodieBag:Pinview:v1.4'
