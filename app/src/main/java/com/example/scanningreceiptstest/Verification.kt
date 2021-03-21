@@ -23,7 +23,7 @@ class Verification : AppCompatActivity() {
 
         val string: String = getString(R.string.true_tick)
         val OTP = pinView!!.text.toString()
-        if (OTP == "123456") {
+        if (OTP == "654321") {
             PinVew.setLineColor(Color.GREEN)
             textView10.setText(string+" OTP Verified")
             textView10.setTextColor(Color.GREEN)
