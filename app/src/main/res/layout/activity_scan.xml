@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/back"
     android:layout_height="match_parent"
-    tools:context=".Scan">
+    >
 
     <Button
         android:id="@+id/button2"
