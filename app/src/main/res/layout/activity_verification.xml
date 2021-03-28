@@ -15,7 +15,7 @@
         android:gravity="center"
         android:onClick="VerificationOnClick"
         android:text="Verify"
-        android:background="@drawable/whiteBackground"
+        android:background="@drawable/background1"
         style="@style/light_button_style"
         app:backgroundTint="#5366F0"
         android:textColor="#FFFFFF"
