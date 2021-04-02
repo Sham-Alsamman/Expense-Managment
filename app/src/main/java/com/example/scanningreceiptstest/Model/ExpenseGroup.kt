@@ -1,3 +1,5 @@
+package com.example.scanningreceiptstest.Model
+
 class ExpenseGroup {
 
     // here i want to declare list of person

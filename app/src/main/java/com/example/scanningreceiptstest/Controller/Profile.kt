@@ -1,16 +1,12 @@
-package com.example.gp2
+package com.example.scanningreceiptstest.Controller
 
-import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.scanningreceiptstest.R
 
-class Home : AppCompatActivity() {
+class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.profile_activity)
     }
-
-
-
 }

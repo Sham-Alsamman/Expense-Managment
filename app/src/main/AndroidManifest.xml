@@ -10,15 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Verification"></activity>
-        <activity android:name=".WelcomePage" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".welcomPage2" />
+        <activity android:name=".Controller.Verification" />
+        <activity android:name=".Controller.WelcomePage" />
+        <activity android:name=".Controller.MainActivity" />
+        <activity android:name=".Controller.welcomPage2" />
 
-        <activity android:name=".TestActivity" />
-        <activity android:name=".SignUo">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".TestActivity">
+        <activity android:name=".Controller.SignUp"/>
+        <activity android:name=".Controller.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

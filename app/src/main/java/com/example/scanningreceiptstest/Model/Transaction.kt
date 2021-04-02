@@ -1,6 +1,5 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Model
 
-import java.text.SimpleDateFormat
 import java.util.*
 
 public abstract class Transaction(date: Date,amount: Double,notes: String,id : String,category:String) {
@@ -10,7 +9,7 @@ public abstract class Transaction(date: Date,amount: Double,notes: String,id : S
     var id : String=id
     var category: String=category
 
- fun Add (T:Transaction)
+ fun Add (T: Transaction)
     {
 
     }

@@ -1,8 +1,9 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.scanningreceiptstest.R
 
 
 class WelcomePage : AppCompatActivity() {

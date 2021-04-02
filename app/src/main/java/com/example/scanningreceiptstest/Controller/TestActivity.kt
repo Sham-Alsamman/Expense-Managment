@@ -1,12 +1,11 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
+import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.main_menu_test.*
 
 class TestActivity : AppCompatActivity() {
@@ -19,7 +18,10 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.main_menu_test)
 
         setSupportActionBar(toolbar)
-        val drawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name)
+        val drawerToggle = ActionBarDrawerToggle(this, drawerLayout,
+            R.string.app_name,
+            R.string.app_name
+        )
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 

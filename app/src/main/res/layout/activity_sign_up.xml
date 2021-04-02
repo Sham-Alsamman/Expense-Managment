@@ -5,7 +5,7 @@
     style="@style/main_layout_2_style"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUo">
+    tools:context=".Controller.SignUp">
 
 
     <TextView

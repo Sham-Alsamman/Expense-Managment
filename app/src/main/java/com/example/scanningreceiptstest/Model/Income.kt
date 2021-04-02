@@ -1,6 +1,5 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Model
 
-import java.text.SimpleDateFormat
 import java.util.*
 
 public class Income(

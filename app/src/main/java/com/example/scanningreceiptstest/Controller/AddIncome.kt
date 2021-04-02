@@ -1,17 +1,13 @@
-package com.example.gp2
+package com.example.scanningreceiptstest.Controller
 
 import android.app.DatePickerDialog
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import com.example.scanningreceiptstest.Income
+import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.activity_add_income.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddIncome : AppCompatActivity() {

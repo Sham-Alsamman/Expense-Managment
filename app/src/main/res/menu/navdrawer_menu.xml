@@ -3,7 +3,7 @@
 
     <group android:id="@+id/menu_group1">
         <item
-            android:icon="@drawable/ic_report4"
+            android:icon="@drawable/ic_wallet4"
             android:title="Wallets"/>
         <item
             android:icon="@drawable/ic_report"

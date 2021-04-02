@@ -1,4 +1,4 @@
-package com.example.scanningreceiptstest.entityclasses
+package com.example.scanningreceiptstest.Model
 
 class Person(userName: String, phoneNum: String) {
     var name: String = userName

@@ -1,28 +1,25 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.ImageView
-import kotlinx.android.synthetic.main.activity_login1.*
+import com.example.scanningreceiptstest.R
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login1)
+        setContentView(R.layout.activity_login)
 
 
     }
 
     fun SignUpTextView(view: View) {
-        val i = Intent(applicationContext, SignUo::class.java)
+        val i = Intent(applicationContext, SignUp::class.java)
         startActivity(i)
 
     }
-
+/* CHECK THE NAMES OF THE VIEWS!! (causing error)
     fun ShowHidePass(view: View) {
 
         if(view.getId()==R.id.ShowPassword){
@@ -42,5 +39,5 @@ class Login : AppCompatActivity() {
         }
 
 
-    }
+    }*/
 }

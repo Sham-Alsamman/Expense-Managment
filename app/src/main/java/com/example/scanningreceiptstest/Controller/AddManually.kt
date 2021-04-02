@@ -1,4 +1,4 @@
-package com.example.gp2
+package com.example.scanningreceiptstest.Controller
 
 import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity

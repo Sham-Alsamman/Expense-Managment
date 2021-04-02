@@ -32,7 +32,7 @@
                 android:background="@color/gray"
                 android:padding="10dp"
                 android:text="Edit Your Name"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -81,7 +81,7 @@
                 android:background="@color/gray"
                 android:padding="10dp"
                 android:text="Change Phone Number "
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/filledTextField3"
@@ -111,7 +111,7 @@
                 android:background="@color/gray"
                 android:padding="10dp"
                 android:text="Change Password"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/filledTextField4"
@@ -143,9 +143,9 @@
         android:background="@color/gray"
         android:padding="10dp"
         android:text="Log Out"
-        android:textAlignment="center"
+        android:gravity="center_horizontal"
         android:textColor="@color/red"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -1,10 +1,11 @@
-package com.example.scanningreceiptstest
+package com.example.scanningreceiptstest.Controller
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.chaos.view.PinView
+import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.activity_verification.*
 
 
