@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 updateUI(STATE_CODE_SENT)
             }
         }
-
+/*
         val arraySpinner = arrayOf(
             "1", "2", "3", "4", "5", "6", "7"
         )
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
 
         pieChart.getDescription().setText(""); //the text which will be displayed.
-
+*/
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
