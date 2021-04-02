@@ -6,12 +6,19 @@ import android.os.Bundle
 import android.view.View
 import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.activity_add_income.*
+import kotlinx.android.synthetic.main.activity_add_income.outDate
+import kotlinx.android.synthetic.main.activity_add_manually.*
 import java.util.*
 
 class AddManually : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
+
+        saveExpense.setOnClickListener {
+
+
+        }
     }
 
     fun clickDataPicker(view: View) {
