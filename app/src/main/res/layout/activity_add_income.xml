@@ -39,8 +39,10 @@
             android:hint="Name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameIncome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,9 +59,10 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateIncome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
 
             <ImageView
@@ -82,8 +85,10 @@
             android:hint="Amount">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/amountIncome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,14 +143,16 @@
             android:hint="Category">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/categoryIncome"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/saveIncome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

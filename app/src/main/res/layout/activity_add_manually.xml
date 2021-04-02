@@ -154,7 +154,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/saveExpense"
             style="@style/light_button_style"
             android:layout_width="300dp"
             android:layout_height="wrap_content"

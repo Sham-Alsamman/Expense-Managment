@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_filled_button"
         android:text="Cancel"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/join"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/join" />
 </androidx.constraintlayout.widget.ConstraintLayout>

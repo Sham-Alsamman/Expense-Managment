@@ -47,9 +47,12 @@
             style="@style/edit_text_style"
             app:endIconMode="password_toggle">
 
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,6 +97,7 @@
             android:textColor="#374EEE"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:onClick="SignUpTextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView4"
