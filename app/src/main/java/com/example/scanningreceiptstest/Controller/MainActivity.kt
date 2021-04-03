@@ -13,7 +13,7 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.filter.*
+//import kotlinx.android.synthetic.main.filter.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -240,6 +240,8 @@ class MainActivity : AppCompatActivity() {
         private const val STATE_SIGNIN_FAILED = 5
         private const val STATE_SIGNIN_SUCCESS = 6
     }
+
+    /**FILTER :
     fun clickDataPicker(view: View) {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -258,5 +260,5 @@ class MainActivity : AppCompatActivity() {
             day
         )
         dpd.show()
-    }
+    }*/
 }
