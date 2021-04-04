@@ -29,36 +29,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/NameET"
             android:layout_width="match_parent"
+            style="@style/edit_text_style"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Name"
-            android:textColor="#5367F0" />
+            android:textColor="#5367F0">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/PhoneETSignUp"
+            style="@style/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Phone Number"
-            android:textColor="#5367F0" />
+            android:textColor="#5367F0" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+       </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/PasswordET"
+            style="@style/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Password"
-            android:textColor="#5367F0" />
-
+            android:textColor="#5367F0" >
         <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/RepasswordET"
             android:layout_width="match_parent"
+            style="@style/edit_text_style"
             android:layout_height="wrap_content"
             android:hint="Retype-Password"
-            android:textColor="#5367F0" />
+            android:textColor="#5367F0" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
