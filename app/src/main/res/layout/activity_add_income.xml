@@ -18,25 +18,23 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-
         <TextView
             android:id="@+id/addincome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="150dp"
             android:text="Add Income"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+            style="@style/title_style"
+             />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="250dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="210dp"
             android:hint="Name">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -50,14 +48,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outDate"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="250dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="350dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="310dp"
             android:hint="Date"
             android:onClick="clickDataPicker"
-            >
+            app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
+
+            app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateIncome"
@@ -65,25 +64,14 @@
                 android:layout_height="wrap_content"
                 android:inputType="text" />
 
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="35dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="205dp"
-                android:layout_marginTop="-35dp"
-                android:background="@drawable/ic_baseline_calendar_today_24"
-                android:onClick="clickDataPicker" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outAmount"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="250dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="450dp"
-
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="410dp"
             android:hint="Amount">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -94,54 +82,12 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="270dp"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="370dp"
-            android:text="Date"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="470dp"
-            android:text="Amount"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
-        <TextView
-            android:id="@+id/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="570dp"
-            android:text="Category"
-            android:textColor="@color/black"
-            android:textSize="18dp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outCat"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="250dp"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="550dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="510dp"
             android:hint="Category">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -155,17 +101,17 @@
 
         <Button
             android:id="@+id/saveIncome"
+            style="@style/light_button_style"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="650dp"
-            android:backgroundTint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="610dp"
+            android:layout_marginEnd="130dp"
             android:text="Save"
-            android:textColor="@color/black"
             android:textSize="18dp" />
 
-
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/menu"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -173,13 +119,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="70dp"
             android:background="@drawable/ic_baseline_menu_24" />
+            -->
 
         <ImageView
             android:id="@+id/notification"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_marginLeft="330dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/ic_baseline_notifications_none_24" />
 
     </RelativeLayout>

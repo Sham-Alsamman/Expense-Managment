@@ -1,4 +1,4 @@
-package com.example.gp2
+package com.example.scanningreceiptstest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

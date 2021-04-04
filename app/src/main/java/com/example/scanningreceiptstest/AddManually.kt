@@ -1,10 +1,13 @@
-package com.example.gp2
+package com.example.scanningreceiptstest
 
 import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.scanningreceiptstest.R
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_add_income.*
 import kotlinx.android.synthetic.main.activity_add_income.outDate
 import kotlinx.android.synthetic.main.activity_add_manually.*
@@ -15,23 +18,38 @@ class AddManually : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
 
-        saveExpense.setOnClickListener {
+        outDate1.setEndIconOnClickListener(View.OnClickListener {
+            showDatePicker()
+        })
+
+       saveExpense.setOnClickListener {
 
 
-        }
+         }
     }
 
-    fun clickDataPicker(view: View) {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private fun showDatePicker() {
+        //get current date:
+        val calendar = Calendar.getInstance()
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentYear = calendar.get(Calendar.YEAR)
 
-            outDate.editText!!.setText("$dayOfMonth - ${monthOfYear + 1} - $year")
+        //create date picker dialog with the current date:
+        val datePickerDialog = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, DatePickerDialog.OnDateSetListener{ view, year, monthOfYear, dayOfMonth ->
 
-        }, year, month, day)
-        dpd.show()
+            // Display selected date in edit text:
+            val date = String.format("$dayOfMonth/" + (monthOfYear + 1) + "/$year")
+
+            outDate1.editText!!.setText(date)
+
+        }, currentYear, currentMonth, currentDay)
+
+
+        datePickerDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        datePickerDialog.show()
     }
 }
+
+
