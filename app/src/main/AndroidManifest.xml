@@ -16,7 +16,7 @@
         <activity android:name=".Controller.welcomPage2" />
 
         <activity android:name=".Controller.SignUp"/>
-        <activity android:name=".Controller.TestActivity">
+        <activity android:name=".Controller.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

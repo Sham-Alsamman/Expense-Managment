@@ -14,35 +14,39 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#5367F0"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
-        android:text="Simple and most easy way to track your expenses " />
+        android:text="Simple and most easy way to track your expenses "
+        android:textColor="#5367F0"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#072B4F"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
-        android:text="- Add your expenses by scanning the  receipt or manually\n- Save your time by not typing\n- Save your money by reducing your expense\n- Find where are you spending lot " />
+        android:text="- Add your expenses by scanning the  receipt or manually\n- Save your time by not typing\n- Save your money by reducing your expense\n- Find where are you spending lot "
+        android:textColor="#072B4F"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#5367F0"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
-        android:text="Contact Us:" />
+        android:text="Contact Us:"
+        android:textColor="#5367F0"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="malakkhasawneh99@outlook.com"
         android:textColor="#072B4F"
         android:textSize="20sp" />
