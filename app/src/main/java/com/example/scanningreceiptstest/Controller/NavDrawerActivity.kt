@@ -1,19 +1,18 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.example.gp22.Report
 import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.main_menu_test.*
 
 open class NavDrawerActivity : AppCompatActivity() {
 
-    private fun onCreateDrawer() {
-        //toolbar and navigation drawer:
-        setSupportActionBar(toolbar)
+     fun onCreateDrawer() {
+        //navigation drawer:
         val drawerToggle = ActionBarDrawerToggle(this, drawerLayout,
             R.string.openDrawer,
             R.string.closeDrawer
@@ -33,13 +32,16 @@ open class NavDrawerActivity : AppCompatActivity() {
 
         when(item.itemId){
             R.id.navMenu_wallet -> {
-                //intent = Intent(applicationContext, Wallet::class.java)
+                intent = Intent(applicationContext, Wallet::class.java)
             }
             R.id.navMenu_report -> {
                 intent = Intent(applicationContext, Report::class.java)
             }
             R.id.navMenu_transactionHistory -> {
                 intent = Intent(applicationContext, TransactionHistory::class.java)
+            }
+            R.id.navMenu_notification -> {
+                intent = Intent(applicationContext, Notification::class.java)
             }
             R.id.navMenu_invitePartner -> {
                 intent = Intent(applicationContext, InvitePartner::class.java)
@@ -52,13 +54,17 @@ open class NavDrawerActivity : AppCompatActivity() {
             }
         }
 
-        startActivity(intent)
+        intent?.let {
+            startActivity(it)
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)
-        onCreateDrawer()
+        //add toolbar:
+        setSupportActionBar(toolbar)
     }
 
     //nav drawer icon (hamburger) click listener:
@@ -79,10 +85,6 @@ open class NavDrawerActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-/*
-    override fun onNavigationItemSelected(item: MenuItem): Boolean{
-
-    }*/
 
 }
 

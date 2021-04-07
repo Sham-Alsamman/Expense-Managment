@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Phone number authentication test</string>
+    <string name="app_name">Expense Management</string>
     <string name="true_tick">\u2713</string>
     <string name="title_activity_nav_test">navTest</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

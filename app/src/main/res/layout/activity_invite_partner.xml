@@ -35,7 +35,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField"
+                    android:id="@+id/invitePhoneNumET"
                     style="@style/edit_text_style"
                     android:hint="Phone number"
                     app:layout_constraintBottom_toTopOf="@+id/button2"
@@ -44,19 +44,22 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text"
+                        android:inputType="phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/sendBtn"
                     style="@style/light_button_style"
                     android:text="Send"
+                    android:onClick="sendInvitation"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textField" />
+                    app:layout_constraintTop_toBottomOf="@+id/invitePhoneNumET" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

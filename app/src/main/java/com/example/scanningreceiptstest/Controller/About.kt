@@ -13,6 +13,8 @@ class About : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acticity_about)
+        //add navigation drawer
+        onCreateDrawer()
     }
 
 }
