@@ -27,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
                 android:text="Simple and most easy way to track your expenses "
                 android:textColor="#5367F0"
                 android:textSize="25sp"
@@ -37,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
                 android:text="- Add your expenses by scanning the  receipt or manually\n- Save your time by not typing\n- Save your money by reducing your expense\n- Find where are you spending lot "
                 android:textColor="#072B4F"
                 android:textSize="20sp" />
@@ -45,6 +47,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:text="Contact Us:"
                 android:textColor="#5367F0"
@@ -55,6 +58,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="malakkhasawneh99@outlook.com"
                 android:textColor="#072B4F"
                 android:textSize="20sp" />
@@ -64,3 +68,4 @@
     <include layout="@layout/navigtion_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

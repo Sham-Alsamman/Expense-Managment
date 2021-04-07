@@ -10,11 +10,11 @@
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/title_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Sign Up"
+        style="@style/title_style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,10 +36,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Name"
+            app:endIconMode="custom"
             android:textColor="#5367F0">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -49,22 +51,28 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:hint="Phone Number"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:endIconMode="custom"
             android:textColor="#5367F0" >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="phone"/>
        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/PasswordET"
+            android:id="@+id/PasswordETSignUp"
             style="@style/edit_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            app:endIconMode="password_toggle"
             android:hint="Password"
             android:textColor="#5367F0" >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:inputType="textPassword"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,11 +80,13 @@
             android:id="@+id/RepasswordET"
             android:layout_width="match_parent"
             style="@style/edit_text_style"
+            app:endIconMode="password_toggle"
             android:layout_height="wrap_content"
             android:hint="Retype-Password"
             android:textColor="#5367F0" >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:inputType="textPassword"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
