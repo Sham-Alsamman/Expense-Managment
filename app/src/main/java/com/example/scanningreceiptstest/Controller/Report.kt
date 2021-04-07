@@ -10,10 +10,11 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.activity_report.*
 import com.example.gp22.BottomSheet_Filter
+import com.example.scanningreceiptstest.Controller.NavDrawerActivity
 import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
-class Report : AppCompatActivity() {
+class Report : NavDrawerActivity() {
 
     private lateinit var pieChart : PieChart;
     private lateinit var buttonOpenDialog : Button;
