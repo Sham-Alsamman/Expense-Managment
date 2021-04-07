@@ -27,7 +27,7 @@ class Login : AppCompatActivity() {
         val reg:String = "\\p{Punct}"
         //val text1: String = PhoneNum.editText?.text.toString()
 
-        PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
+        /*PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
             if(text.isNullOrEmpty()){
                 phoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 phoneNumET.error = "Enter Your Phone Number "
@@ -69,7 +69,7 @@ class Login : AppCompatActivity() {
 
             }
 
-        }
+        }*/
 
 
 

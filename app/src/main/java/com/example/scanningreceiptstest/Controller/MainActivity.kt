@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
                     codeStatusText.text = ""
                 }
             }
-            STATE_SIGNIN_SUCCESS -> { /******* hide the codeStatus? ***/
+            STATE_SIGNIN_SUCCESS -> { /******* automatically go to the next page ***/
                 Toast.makeText(this, "sign up success", Toast.LENGTH_LONG).show()
                 binding.apply {
                     phoneStatusText.text = ""

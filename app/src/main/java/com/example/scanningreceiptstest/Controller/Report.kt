@@ -1,4 +1,4 @@
-package com.example.gp22
+package com.example.scanningreceiptstest.Controller
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +24,8 @@ class Report : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
+        onCreateDrawer()
+
         pieChart = findViewById(R.id.piechart);
 
         values.add(PieEntry(40f, "Jan"));
