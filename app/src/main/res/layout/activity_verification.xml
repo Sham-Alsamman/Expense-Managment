@@ -5,7 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/verfibackground"
-    tools:context=".Verification">
+    tools:context=".Controller.Verification">
+
+    <LinearLayout
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/group_14"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/group_208" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Verification"
+            android:textColor="#000000"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="267dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:lineSpacingExtra="10dp"
+            android:text="Enter A 6 Digit Number That Was Sent To (Num) "
+            android:textAlignment="center"
+            android:textColor="#5C0B0909"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/verfictiondigitback"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+        <com.chaos.view.PinView
+            android:id="@+id/PinVew"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:inputType="number"
+            android:keyboardNavigationCluster="true"
+            android:textSize="25dp"
+            app:cursorColor="@color/Black"
+            app:itemCount="6" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/signUPbutton2"
@@ -15,10 +88,9 @@
         android:gravity="center"
         android:onClick="VerificationOnClick"
         android:text="Verify"
-        android:background="@drawable/background1"
+        android:background="@drawable/dark_filled_button"
         style="@style/light_button_style"
-        app:backgroundTint="#5366F0"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,100 +112,6 @@
         app:layout_constraintEnd_toEndOf="@+id/signUPbutton2"
         app:layout_constraintTop_toBottomOf="@+id/signUPbutton2" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginRight="62dp"
-        android:layout_marginBottom="205dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/group_208" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="398dp"
-        android:layout_height="291dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/group_14" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="267dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="47dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginRight="47dp"
-        android:layout_marginBottom="32dp"
-        android:gravity="center"
-        android:lineSpacingExtra="10dp"
-        android:paddingLeft="10dp"
-        android:text="Enter A 6 Digit Number That Was Sent To (Num) "
-        android:textAlignment="center"
-        android:textColor="#5C0B0909"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="357dp"
-        android:layout_height="140dp"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="137dp"
-        android:background="@drawable/verfictiondigitback"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
-
-        <com.chaos.view.PinView
-            android:id="@+id/PinVew"
-            style="@style/PinWidget.PinView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-            android:inputType="number"
-            android:keyboardNavigationCluster="true"
-            android:textSize="25dp"
-            app:cursorColor="@color/Black"
-            app:itemCount="6" />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="392dp"
-        android:gravity="center"
-        android:text="Verification"
-        android:textColor="#000000"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

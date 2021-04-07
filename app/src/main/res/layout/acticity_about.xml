@@ -1,49 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    style="@style/main_layout_2_style">
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About"
-        style="@style/title_style"/>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#5367F0"
-        android:layout_marginBottom="10dp"
-        android:text="Simple and most easy way to track your expenses " />
-
-    <TextView
-        android:id="@+id/textView8"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#072B4F"
-        android:layout_marginBottom="20dp"
-        android:text="- Add your expenses by scanning the  receipt or manually\n- Save your time by not typing\n- Save your money by reducing your expense\n- Find where are you spending lot " />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#5367F0"
-        android:layout_marginBottom="10dp"
-        android:text="Contact Us:" />
+        <include layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#072B4F"
-        android:text="malakkhasawneh99@outlook.com" />
-</LinearLayout>
+        <LinearLayout
+            style="@style/main_layout_2_style"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Simple and most easy way to track your expenses "
+                android:textColor="#5367F0"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="- Add your expenses by scanning the  receipt or manually\n- Save your time by not typing\n- Save your money by reducing your expense\n- Find where are you spending lot "
+                android:textColor="#072B4F"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Contact Us:"
+                android:textColor="#5367F0"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="malakkhasawneh99@outlook.com"
+                android:textColor="#072B4F"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/navigtion_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

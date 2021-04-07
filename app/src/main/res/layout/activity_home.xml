@@ -6,7 +6,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
    >
-<!--
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginLeft="174dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginRight="174dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/ic_baseline_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+       />
+
     <ImageView
         android:id="@+id/menu"
         android:layout_width="40dp"
@@ -18,16 +34,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-        -->
 
     <ImageView
         android:id="@+id/notification"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="329dp"
+        android:layout_marginLeft="329dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/ic_baseline_notifications_none_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
@@ -95,66 +111,4 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_baseline_add_24"
-        app:fabSize="normal"
-        android:backgroundTint="@color/purple_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="16dp"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/scan_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/add_fab"
-        app:layout_constraintEnd_toEndOf="@+id/add_fab"
-        app:layout_constraintStart_toStartOf="@+id/add_fab"
-        android:backgroundTint="@color/purple_light"
-        android:src="@drawable/ic_baseline_photo_camera_24"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/manually_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/scan_fab"
-        app:layout_constraintEnd_toEndOf="@+id/scan_fab"
-        app:layout_constraintStart_toStartOf="@+id/scan_fab"
-        android:backgroundTint="@color/purple_light"
-        android:src="@drawable/ic_baseline_manually" />
-
-    <TextView
-        android:id="@+id/addScanActionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Scan"
-        app:layout_constraintBottom_toBottomOf="@+id/scan_fab"
-        app:layout_constraintEnd_toStartOf="@+id/scan_fab"
-        app:layout_constraintTop_toTopOf="@+id/scan_fab"
-        android:layout_marginRight="8dp" />
-
-    <TextView
-        android:id="@+id/addManuallyActionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Manually"
-        app:layout_constraintBottom_toBottomOf="@+id/manually_fab"
-        app:layout_constraintEnd_toStartOf="@+id/manually_fab"
-        app:layout_constraintTop_toTopOf="@+id/manually_fab"
-        android:layout_marginRight="8dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
