@@ -19,8 +19,8 @@ class TestActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         val drawerToggle = ActionBarDrawerToggle(this, drawerLayout,
-            R.string.app_name,
-            R.string.app_name
+            R.string.openDrawer,
+            R.string.closeDrawer
         )
         drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()

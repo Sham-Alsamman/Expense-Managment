@@ -3,24 +3,30 @@
 
     <group android:id="@+id/menu_group1">
         <item
+            android:id="@+id/navMenu_wallet"
             android:icon="@drawable/ic_wallet4"
             android:title="Wallets"/>
         <item
+            android:id="@+id/navMenu_report"
             android:icon="@drawable/ic_report"
             android:title="Report" />
         <item
+            android:id="@+id/navMenu_transactionHistory"
             android:icon="@drawable/ic_history"
             android:title="Transaction" />
         <item
+            android:id="@+id/navMenu_invitePartner"
             android:icon="@drawable/invite_icon"
             android:title="Invite a partner" />
         <item
+            android:id="@+id/navMenu_about"
             android:icon="@drawable/about_icon"
             android:title="About" />
     </group>
 
     <group android:id="@+id/menu_group2">
-        <item android:title="Settings" />
-        <item android:title="Log out" />
+        <item
+            android:id="@+id/navMenu_logout"
+            android:title="Log out" />
     </group>
 </menu>
