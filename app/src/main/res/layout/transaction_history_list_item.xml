@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded_history_list_item"
-    android:padding="10dp"
     android:layout_marginBottom="10dp">
 
     <ImageView
@@ -19,30 +18,32 @@
         app:tint="#000000" />
 
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
+        android:id="@+id/transactionNameTv"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Shopping"
-        android:textSize="18sp"
+        android:text="Grocery / Shopping"
         android:textColor="#616F8D"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/transactionAmountTv"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/transactionDateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
         android:text="05/10/2020"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/transactionNameTv" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/transactionAmountTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
