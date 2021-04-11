@@ -1,7 +1,6 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +9,12 @@ import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.main_menu_test.*
 
 open class NavDrawerActivity : AppCompatActivity() {
+
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
+        //add toolbar:
+        setSupportActionBar(toolbar)
+    }
 
      fun onCreateDrawer() {
         //navigation drawer:
@@ -31,6 +36,9 @@ open class NavDrawerActivity : AppCompatActivity() {
         var intent : Intent? = null
 
         when(item.itemId){
+            R.id.navMenu_home -> {
+                intent = Intent(applicationContext, Home::class.java)
+            }
             R.id.navMenu_wallet -> {
                 intent = Intent(applicationContext, Wallet::class.java)
             }
@@ -50,6 +58,7 @@ open class NavDrawerActivity : AppCompatActivity() {
                 intent = Intent(applicationContext, About::class.java)
             }
             R.id.navMenu_logout -> {
+                /***********logout form the current account************/
                 intent = Intent(applicationContext, Login::class.java)
             }
         }
@@ -61,29 +70,27 @@ open class NavDrawerActivity : AppCompatActivity() {
         return true
     }
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
-        //add toolbar:
-        setSupportActionBar(toolbar)
-    }
-
     //nav drawer icon (hamburger) click listener:
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                drawerLayout.openDrawer(GravityCompat.START)
-                true
+        if (drawerLayout != null) {
+             if (item.itemId == android.R.id.home) {
+                    drawerLayout.openDrawer(GravityCompat.START)
+                    return true
             }
-            else -> super.onOptionsItemSelected(item)
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
+        if (drawerLayout != null) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                super.onBackPressed()
+            }
         }
+        else
+            super.onBackPressed()
     }
 
 }

@@ -38,6 +38,7 @@
                     android:id="@+id/invitePhoneNumET"
                     style="@style/edit_text_style"
                     android:hint="Phone number"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintBottom_toTopOf="@+id/button2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

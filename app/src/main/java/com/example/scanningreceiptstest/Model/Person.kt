@@ -24,10 +24,10 @@ class Person(userName: String, phoneNum: String) {
             if (value >= 0)
                 field = value
         }
-//    private val _transactions = mutableListOf<Transaction>()
-//    /**instead of getTransactions method**/
-//    val transactions: List<Transaction>
-//        get()= _transactions
+    private val _transactions = mutableListOf<Transaction>()
+    /**instead of getTransactions method**/
+    val transactions: List<Transaction>
+        get()= _transactions
 
 
     //not here?
@@ -40,17 +40,17 @@ class Person(userName: String, phoneNum: String) {
 
     }
 
-//    fun addExpense(expense: Expense){
-//        _transactions.add(expense)
-//    }
+    fun addExpense(expense: Expense){
+        _transactions.add(expense)
+    }
 
-//    fun addIncome(income: Income){
-//        incrementIncome(income)
-//        _transaction.add(income)
-//    }
+    fun addIncome(income: Income){
+        incrementIncome(income)
+        _transactions.add(income)
+    }
 
-//    private fun incrementIncome(income: Income) {
-//        totalIncome += income.amount
-//    }
+    private fun incrementIncome(income: Income) {
+        totalIncome += income.amount
+    }
 
 }
