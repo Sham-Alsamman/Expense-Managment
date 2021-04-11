@@ -9,7 +9,7 @@ import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.activity_verification.*
 
 
-class Verification : AppCompatActivity() {
+class Verification : NavDrawerActivity () {
 
     private var pinView: PinView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
