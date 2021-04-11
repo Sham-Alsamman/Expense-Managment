@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class SignUp : AppCompatActivity() {
+class SignUp : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)

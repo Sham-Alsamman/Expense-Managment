@@ -1,23 +1,14 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
-import com.example.scanningreceiptstest.Model.Home
-import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.profile_activity.*
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 
-class Login : AppCompatActivity() {
+class Login : NavDrawerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -19,6 +19,12 @@
 
         <activity android:name=".Controller.TestActivity" />
         <activity
+            android:name=".Controller.About"
+            android:label="About" />
+        <activity
+            android:name=".Controller.AddManually"
+            android:label="Add Expense"/>
+        <activity
             android:name=".Controller.Report"
             android:label="Report"/>
         <activity
@@ -40,8 +46,8 @@
             android:name=".Controller.Login"
             android:label="Login"/>
         <activity
-            android:name=".Controller.About"
-            android:label="About">
+            android:name=".Controller.Home"
+            android:label="Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
