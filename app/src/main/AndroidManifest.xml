@@ -15,7 +15,7 @@
             android:label="Verification"/>
         <activity android:name=".Controller.WelcomePage" />
         <activity android:name=".Controller.MainActivity"/>
-        <activity android:name=".Controller.welcomPage2" />
+        <activity android:name=".Controller.About" />
 
         <activity android:name=".Controller.TestActivity" />
         <activity
@@ -40,7 +40,7 @@
             android:name=".Controller.Login"
             android:label="Login"/>
         <activity
-            android:name=".Controller.About"
+            android:name=".Controller.welcomPage2"
             android:label="About"
             >
 
