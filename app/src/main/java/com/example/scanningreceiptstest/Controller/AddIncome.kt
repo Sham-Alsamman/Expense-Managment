@@ -1,63 +1,85 @@
+//package com.example.scanningreceiptstest
 package com.example.scanningreceiptstest.Controller
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_add_income.*
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
-import kotlinx.android.synthetic.main.activity_add_income.*
 import java.util.*
 
-class AddIncome : AppCompatActivity() {
+
+class AddIncome : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_income)
 
-       saveIncome.setOnClickListener {
+        outDate.setEndIconOnClickListener {
+            showDatePicker()
+        }
 
-           var name=nameIncome.text.toString()
-           var catIncome=categoryIncome.text.toString()
-           var amountIN=amountIncome.text.toString()
+        saveIncome.setOnClickListener {
 
-           var date=dateIncome.text.toString().split("-").toTypedArray()
+            var name=nameIncome.text.toString()
+            var catIncome=categoryIncome.text.toString()
+            var amountIN=amountIncome.text.toString()
+            var noteIn:String?=NotesIncome.text.toString()
+
+            var date=dateIncome.text.toString().split("/").toTypedArray()
 
 
-           /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
+            /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
+              Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
+              Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
 
-           // for(item in date)
-           //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
-           var dayInt= date[0].toInt()
-           var monthInt= date[1].toInt()
-           var yearInt= date[2].toInt()
+            // for(item in date)
+            //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
+            var dayInt= date[0].toInt()
+            var monthInt= date[1].toInt()
+            var yearInt= date[2].toInt()
 
-           /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
+            /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
+             Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
+             Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
 
-           var dd=Date(yearInt-1900,monthInt-1,dayInt)
+            var dateIncome=Date(yearInt-1900,monthInt-1,dayInt)
 
-           Toast.makeText(this,"date: "+dd, Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"date: "+dateIncome, Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"amount: "+amountIN, Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"noteIn: "+noteIn, Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"catIncome: "+catIncome, Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"name: "+name, Toast.LENGTH_LONG).show()
 
-           var newIncome= Income(dd,amountIN.toDouble(),"","",catIncome,name);
-       }
+            var newIncome= Income(dateIncome,amountIN.toDouble(),noteIn,catIncome,name)
+        }
 
     }
 
-    fun clickDataPicker(view: View) {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+    private fun showDatePicker() {
+        //get current date:
+        val calendar = Calendar.getInstance()
+        val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+        val currentMonth = calendar.get(Calendar.MONTH)
+        val currentYear = calendar.get(Calendar.YEAR)
 
-            dateIncome.setText("$dayOfMonth-${monthOfYear + 1}-$year")
+        //create date picker dialog with the current date:
+        val datePickerDialog = DatePickerDialog(this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, DatePickerDialog.OnDateSetListener{ view, year, monthOfYear, dayOfMonth ->
 
-        }, year, month, day)
-        dpd.show()
+            // Display selected date in edit text:
+            val date = String.format("$dayOfMonth/" + (monthOfYear + 1) + "/$year")
+
+            outDate.editText!!.setText(date)
+
+        }, currentYear, currentMonth, currentDay)
+
+        //set max date to the current date:
+        // datePickerDialog.datePicker.maxDate = calendar.timeInMillis
+
+        datePickerDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        datePickerDialog.show()
     }
 }

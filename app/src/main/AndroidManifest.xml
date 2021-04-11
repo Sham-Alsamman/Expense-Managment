@@ -10,10 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".Controller.Verification"
-            android:label="Verification"/>
+        <activity android:name=".Controller.Verification" />
         <activity android:name=".Controller.WelcomePage" />
+
         <activity android:name=".Controller.MainActivity"/>
         <activity android:name=".Controller.About" />
 
@@ -43,7 +42,6 @@
             android:name=".Controller.welcomPage2"
             android:label="About"
             >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
