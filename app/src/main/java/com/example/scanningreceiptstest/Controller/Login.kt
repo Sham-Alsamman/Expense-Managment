@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.profile_activity.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 class Login : NavDrawerActivity ()  {
 
     val reg: String = "\\p{Punct}"

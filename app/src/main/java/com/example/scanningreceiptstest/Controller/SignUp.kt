@@ -98,5 +98,15 @@ class SignUp : NavDrawerActivity () {
         startActivity(i)
     }
 
+    /********************************/
+    fun goToVerification(view: View) {
+        /***check if all fields are correct..**/
+
+        //open verification page:
+        val intent = Intent(applicationContext, Verification::class.java)
+        intent.putExtra(PHONE_NUMBER_EXTRA, PhoneETSignUp.editText?.text.toString())
+        startActivity(intent)
+    }
+
 }
 

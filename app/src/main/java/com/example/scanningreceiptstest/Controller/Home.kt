@@ -88,6 +88,11 @@ class Home : NavDrawerActivity() {
 
 
     }
+
+    fun openAddIncome(view: View) {
+        val intent = Intent(this, AddIncome::class.java)
+        startActivity(intent)
+    }
 }
 
 

@@ -35,7 +35,7 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
 
     override fun getItemCount(): Int = transactionsList.size
 
-    class TransactionViewHolder(val itemView: View) :RecyclerView.ViewHolder(itemView){
+    class TransactionViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
 
         private val name: TextView = itemView.transactionNameTv
         private val date: TextView = itemView.transactionDateTv
