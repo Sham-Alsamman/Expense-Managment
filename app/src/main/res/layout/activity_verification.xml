@@ -11,7 +11,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/verfibackground"
-    tools:context=".Controller.Verification">
+    tools:context=".Controller.Verification"
+    android:id="@+id/verification_layout">
 
     <LinearLayout
         android:id="@+id/imageView3"
@@ -50,7 +51,6 @@
             android:layout_width="267dp"
             android:layout_height="57dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
             android:lineSpacingExtra="10dp"
             android:text="Enter A 6 Digit Number That Was Sent To (Num) "
             android:textAlignment="center"
@@ -62,8 +62,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
-        android:layout_height="140dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/verfictiondigitback"
         android:gravity="center"
         android:paddingLeft="20dp"
@@ -88,12 +88,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/signUPbutton2"
+        android:id="@+id/verify_button"
         android:layout_width="207dp"
         android:layout_height="60dp"
         android:layout_marginBottom="11dp"
         android:gravity="center"
-        android:onClick="VerificationOnClick"
         android:text="Verify"
         android:background="@drawable/dark_filled_button"
         style="@style/light_button_style"
@@ -108,7 +107,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
         android:layout_marginBottom="18dp"
         android:gravity="center"
         android:text="Re-Send Code In 0:59 "
@@ -116,8 +114,9 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/signUPbutton2"
-        app:layout_constraintTop_toBottomOf="@+id/signUPbutton2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verify_button" />
 
 
 
