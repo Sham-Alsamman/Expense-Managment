@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.scanningreceiptstest">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,17 +13,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Controller.Verification" />
+        <activity
+            android:name=".Controller.Verification"
+            android:label="Verification"/>
         <activity android:name=".Controller.WelcomePage" />
-        <activity android:name=".Controller.MainActivity" />
+        <activity android:name=".Controller.MainActivity"/>
         <activity android:name=".Controller.welcomPage2" />
+
         <activity android:name=".Controller.TestActivity" />
-        <activity android:name=".Controller.InvitePartner" />
-        <activity android:name=".Controller.Notification" />
-        <activity android:name=".Controller.TransactionHistory" />
-        <activity android:name=".Controller.SignUp" />
-        <activity android:name=".Controller.Login" />
-        <activity android:name=".Controller.About">
+        <activity
+            android:name=".Controller.AddIncome"
+            android:label="Add Income"/>
+        <activity
+            android:name=".Controller.About"
+            android:label="About" />
+        <activity
+            android:name=".Controller.AddManually"
+            android:label="Add Expense"/>
+        <activity
+            android:name=".Controller.Report"
+            android:label="Report"/>
+        <activity
+            android:name=".Controller.Wallet"
+            android:label="Wallet"/>
+        <activity
+            android:name=".Controller.InvitePartner"
+            android:label="Invite Partner"/>
+        <activity
+            android:name=".Controller.Notification"
+            android:label="Notification"/>
+        <activity
+            android:name=".Controller.TransactionHistory"
+            android:label="Transaction History"/>
+        <activity
+            android:name=".Controller.SignUp"
+            android:label="Sign up"/>
+        <activity
+            android:name=".Controller.Login"
+            android:label="Login"/>
+        <activity
+            android:name=".Controller.Home"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

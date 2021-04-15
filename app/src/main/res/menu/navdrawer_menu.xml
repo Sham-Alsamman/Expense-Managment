@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
 
     <group android:id="@+id/menu_group1">
+        <item
+            android:id="@+id/navMenu_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home"/>
         <item
             android:id="@+id/navMenu_wallet"
             android:icon="@drawable/ic_wallet4"
@@ -15,6 +21,10 @@
             android:icon="@drawable/ic_history"
             android:title="Transaction" />
         <item
+            android:id="@+id/navMenu_notification"
+            android:icon="@drawable/ic_baseline_notifications_24"
+            android:title="Notification"/>
+        <item
             android:id="@+id/navMenu_invitePartner"
             android:icon="@drawable/invite_icon"
             android:title="Invite a partner" />
@@ -24,9 +34,7 @@
             android:title="About" />
     </group>
 
-    <group android:id="@+id/menu_group2">
         <item
             android:id="@+id/navMenu_logout"
             android:title="Log out" />
-    </group>
 </menu>

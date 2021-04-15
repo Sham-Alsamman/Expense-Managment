@@ -35,6 +35,10 @@ android {
     buildFeatures {
         dataBinding true
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 }
 
 dependencies {
@@ -48,6 +52,10 @@ dependencies {
     //to solve the problem: Kotlin runtime JAR files in the classpath should have the same version
     /***/implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30"
     /***/implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.30"
+
+
+
+
 
     //implementation 'androidx.camera:camera-camera2:1.0.0-alpha07'
     testImplementation 'junit:junit:4.12'
