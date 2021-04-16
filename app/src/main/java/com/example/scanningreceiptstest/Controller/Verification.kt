@@ -1,6 +1,7 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_verification.*
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 
@@ -66,7 +68,7 @@ class Verification() : NavDrawerActivity () {
 
                 if (e is FirebaseAuthInvalidCredentialsException) {
                     // Invalid request
-                    Toast.makeText(applicationContext, "Invalid Phone Number!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Invalid Phone Number!", Toast.LENGTH_SHORT).show()
                 } else if (e is FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
                     Toast.makeText(
@@ -91,13 +93,15 @@ class Verification() : NavDrawerActivity () {
                 storedVerificationId = verificationId
                 resendToken = token
 
+                /*************start the count down*********/
+
                 // Update UI
                 updateUI(STATE_CODE_SENT)
             }
         }
 
-        startPhoneNumberVerification(userPhoneNum)
 
+        startPhoneNumberVerification(userPhoneNum)
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
@@ -121,7 +125,7 @@ class Verification() : NavDrawerActivity () {
             Toast.makeText(
                 applicationContext,
                 "Please enter the verification code",
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
             return
         }
@@ -135,12 +139,22 @@ class Verification() : NavDrawerActivity () {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = task.result?.user
+                    //make pin view green
+                    val tick: String = getString(R.string.true_tick)
+                    PinVew.setLineColor(Color.GREEN)
+                    textView10.text = "$tick Code verified"
+                    textView10.setTextColor(Color.GREEN)
+                    pinView!!.setTextColor(Color.GREEN)
                     updateUI(STATE_SIGNIN_SUCCESS, user)
                 } else {
                     // Sign in failed, display a message and update the UI
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-                        Toast.makeText(applicationContext, "Incorrect code!", Toast.LENGTH_LONG).show()
+                        // make the pin view red
+                        PinVew.setLineColor(Color.RED)
+                        textView10.text = "X Incorrect code"
+                        textView10.setTextColor(Color.RED)
+                        pinView!!.setTextColor(Color.RED)
                     }
                     // Update UI
                     updateUI(STATE_SIGNIN_FAILED)
@@ -161,7 +175,6 @@ class Verification() : NavDrawerActivity () {
         when (uiState) {
             STATE_CODE_SENT -> {
                 // Code sent state, show the verification field, the
-                /**********???????????***********/
                 Toast.makeText(applicationContext, "Code sent", Toast.LENGTH_SHORT).show()
             }
             STATE_VERIFY_FAILED -> {
@@ -174,11 +187,11 @@ class Verification() : NavDrawerActivity () {
 
             }
             STATE_SIGNIN_FAILED -> {
-                Toast.makeText(this, "sign up failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "sign up failed", Toast.LENGTH_SHORT).show()
             }
             STATE_SIGNIN_SUCCESS -> {
                 /******* automatically go to the next page ***/
-                Toast.makeText(this, "sign up success", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "sign up success", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
             }
@@ -194,8 +207,8 @@ class Verification() : NavDrawerActivity () {
         private const val STATE_SIGNIN_SUCCESS = 6
     }
 
-    /***
-    fun VerificationOnClick(view: View) {
+/***
+fun VerificationOnClick(view: View) {
 
         val string: String = getString(R.string.true_tick)
         val OTP = pinView!!.text.toString()
