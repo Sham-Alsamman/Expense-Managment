@@ -3,7 +3,11 @@ package com.example.scanningreceiptstest.Controller
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.Spinner
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -21,10 +25,32 @@ class Report : NavDrawerActivity() {
     private var values = ArrayList<PieEntry>();
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         onCreateDrawer()
+
+        // access the items of the list
+        val spin = resources.getStringArray(R.array.TimePeriod)
+        // access the spinner
+        val spinner = findViewById<Spinner>(R.id.spin)
+        if (spinner != null) {
+            val adapter = ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, spin)
+            spinner.adapter = adapter
+
+            spinner.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    //
+
+                }
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
+            }
+        }
 
         pieChart = findViewById(R.id.piechart);
 
