@@ -22,8 +22,10 @@ class BottomSheet_Filter : BottomSheetDialogFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.bottomsheet_filter, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,20 +33,6 @@ class BottomSheet_Filter : BottomSheetDialogFragment(){
         btn.setOnClickListener {
             Toast.makeText(context, " you", Toast.LENGTH_SHORT).show()
 
-        }
-
-        imageView.setOnClickListener{
-            val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            val dpd = DatePickerDialog(context!!, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-                savedDate.setText("$dayOfMonth - ${monthOfYear + 1} - $year")
-
-            }, year, month, day)
-            dpd.show()
         }
 
     }
