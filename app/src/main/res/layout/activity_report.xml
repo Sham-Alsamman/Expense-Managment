@@ -19,55 +19,17 @@
             <!--tools:context=".Report"-->
 
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:elevation="20dp"
-                android:shadowColor="#12531111"
-                android:text="JD 1,893.45"
-                android:textColor="@color/black"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:elevation="20dp"
-                android:shadowColor="#12531111"
-                android:text="WALLET BALANCE"
-                android:textColor="@color/material_on_background_disabled"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:elevation="20dp"
-                android:shadowColor="#12531111"
-                android:text="Expenses Distribution"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/filter_btn"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="362dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.673"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_btn">
+                app:layout_constraintTop_toBottomOf="@+id/filter_btn"
+                app:layout_constraintVertical_bias="1.0">
 
             </com.github.mikephil.charting.charts.PieChart>
 
@@ -75,11 +37,199 @@
                 android:id="@+id/filter_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="142dp"
                 android:background="@drawable/box"
                 android:text="filter"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="Expenses Distribution"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="Total"
+                android:textColor="#8E8D8D"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/totalValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="JD 1800.00"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/Remaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="Remaining"
+                android:textColor="#8E8D8D"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/RemainingValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="JD 800.00"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/expected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="98dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="Expected Remaining"
+                android:textColor="#8E8D8D"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/expectedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="98dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="JD 900.00"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/avg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="Average"
+                android:textColor="#8E8D8D"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/avgValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="135dp"
+                android:layout_marginBottom="313dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="JD 30 / Day"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

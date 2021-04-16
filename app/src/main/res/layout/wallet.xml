@@ -33,6 +33,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.139" />
 
+            <Button
+                android:id="@+id/saveIncome"
+                android:layout_width="110dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/purpleborder"
+                android:elevation="50dp"
+                android:shadowColor="#12531111"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintVertical_bias="0.029" />
+
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
