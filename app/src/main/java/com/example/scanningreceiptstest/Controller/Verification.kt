@@ -3,7 +3,9 @@ package com.example.scanningreceiptstest.Controller
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.chaos.view.PinView
 import com.example.scanningreceiptstest.R
@@ -13,7 +15,6 @@ import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_verification.*
-import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 
@@ -30,6 +31,8 @@ class Verification() : NavDrawerActivity () {
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 
     private var pinView: PinView? = null
+    private lateinit var countDown: CountDownTimer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verification)
@@ -37,6 +40,9 @@ class Verification() : NavDrawerActivity () {
         pinView = findViewById(R.id.PinVew);
         verify_button.setOnClickListener{
             verifyPhoneNumberWithCode(storedVerificationId, pinView!!.text.toString())
+        }
+        resendCodeTv.setOnClickListener{
+            startPhoneNumberVerification(userPhoneNum)
         }
 
         //get phone num from sign up page:
@@ -94,14 +100,31 @@ class Verification() : NavDrawerActivity () {
                 resendToken = token
 
                 /*************start the count down*********/
+                countDown = object : CountDownTimer(60000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        resendCodeTv.isEnabled = false
+                        resendCodeTv.text = String.format("Re-Send Code in 00:%02d", millisUntilFinished / 1000)
+
+                    }
+
+                    override fun onFinish() {
+                        resendCodeTv.text = "Re-Send Code"
+                        resendCodeTv.isEnabled = true
+                    }
+                }.start()
 
                 // Update UI
                 updateUI(STATE_CODE_SENT)
             }
         }
 
-
         startPhoneNumberVerification(userPhoneNum)
+    }
+
+    override fun onDestroy() {
+        countDown.cancel()
+        Log.i("onDestroy", "called")
+        super.onDestroy()
     }
 
     private fun startPhoneNumberVerification(phoneNumber: String) {
@@ -179,7 +202,11 @@ class Verification() : NavDrawerActivity () {
             }
             STATE_VERIFY_FAILED -> {
                 // Verification has failed, show all options
-                Toast.makeText(applicationContext, "verification failed, check your network and your phone number correctness", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    "verification failed, check your network and your phone number correctness",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             STATE_VERIFY_SUCCESS -> {
                 // Verification has succeeded, proceed to firebase sign in
