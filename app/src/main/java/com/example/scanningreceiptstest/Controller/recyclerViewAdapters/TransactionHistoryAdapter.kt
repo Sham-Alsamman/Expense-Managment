@@ -24,7 +24,11 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.transaction_history_list_item, parent, false)/* as TextView*/
+        val view = layoutInflater.inflate(
+            R.layout.transaction_history_list_item,
+            parent,
+            false
+        )/* as TextView*/
         return TransactionViewHolder(view)
     }
 
@@ -35,29 +39,29 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
 
     override fun getItemCount(): Int = transactionsList.size
 
-    class TransactionViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
+    class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val name: TextView = itemView.transactionNameTv
         private val date: TextView = itemView.transactionDateTv
         private val amount: TextView = itemView.transactionAmountTv
 
         fun bind(item: Transaction) {
-            name.text = item.name + " / " + item.category
+          /*  name.text = item.name + " / " + item.category*/ /// commented
+
             /*val dateFormatter = DateTimeFormatter.ofPattern("dd/mm/yyyy")
             date.text = item.date.toString().format(dateFormatter)*/
 
             val formatter = SimpleDateFormat("dd/MM/yyyy")
             date.text = formatter.format(item.date)
-            if (item is Income){
+            if (item is Income) {
                 amount.text = "+${item.amount}JD"
                 amount.setTextColor(Color.parseColor("#7ED321"))
-            }
-            else{
+            } else {
                 amount.text = "-${item.amount}JD"
                 amount.setTextColor(Color.parseColor("#D32121"))
             }
         }
 
     }
-
 }
+

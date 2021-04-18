@@ -11,12 +11,13 @@ class Profile : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
+        onCreateDrawer()
         SaveText.setOnClickListener {
-            SaveInfo()
+            saveInfo()
         }
     }
 
-    private fun SaveInfo()
+    private fun saveInfo()
     {
 
     }
