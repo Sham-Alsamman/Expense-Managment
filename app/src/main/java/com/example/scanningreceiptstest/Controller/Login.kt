@@ -86,13 +86,6 @@ class Login : NavDrawerActivity() {
         }
     }
 
-    fun PhoneErrors(text: CharSequence?) {
-
-    }
-
-    fun PasswordErrors(text: CharSequence?) {
-
-    }
 
 
 }
