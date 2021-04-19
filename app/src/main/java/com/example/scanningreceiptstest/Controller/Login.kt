@@ -3,7 +3,9 @@ package com.example.scanningreceiptstest.Controller
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isEmpty
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.R
 import com.google.android.material.textfield.TextInputLayout
@@ -63,6 +65,25 @@ class Login : NavDrawerActivity ()  {
     fun Login(view: View) {
         // val i = Intent(applicationContext, ::class.java)
         //startActivity(i)
+        if (phoneNumET.editText?.text!!.isEmpty() && PasswordEt.editText?.text!!.isEmpty()){
+            Toast.makeText(applicationContext,"Please enter phone number and password ",Toast.LENGTH_LONG).show()
+        }
+        else if(phoneNumET.editText?.text!!.isEmpty()){
+            Toast.makeText(applicationContext,"Please enter phone number ",Toast.LENGTH_LONG).show()
+        }
+        else if (PasswordEt.editText?.text!!.isEmpty()){
+            Toast.makeText(applicationContext,"Please enter password ",Toast.LENGTH_LONG).show()
+        }
+        else if(phoneNumET.error!=null){
+            Toast.makeText(applicationContext,phoneNumET.error,Toast.LENGTH_LONG).show()
+
+        }
+        else if(PasswordEt.error!=null){
+            Toast.makeText(applicationContext,PasswordEt.error,Toast.LENGTH_LONG).show()
+        }
+        else{
+            // login into home page in the app
+        }
     }
 
     fun PhoneErrors(text: CharSequence?) {
@@ -73,25 +94,4 @@ class Login : NavDrawerActivity ()  {
     }
 
 
-/* CHECK THE NAMES OF THE VIEWS!! (causing error)
-    fun ShowHidePass(view: View) {
-
-        if(view.getId()==R.id.ShowPassword){
-
-            if(PasswordEt.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-                ShowPassword.setImageResource(R.drawable.ic_baseline_visibility_off_24);
-
-                //Show Password
-                PasswordEt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            }
-            else{
-                //Hide Password
-                ShowPassword.setImageResource(R.drawable.ic_baseline_remove_red_eye_24);
-                PasswordEt.setTransformationMethod(PasswordTransformationMethod.getInstance());
-
-            }
-        }
-
-
-    }*/
 }
