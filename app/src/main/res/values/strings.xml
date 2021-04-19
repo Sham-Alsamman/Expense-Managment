@@ -11,4 +11,11 @@
 
     <string name="openDrawer">Open drawer</string>
     <string name="closeDrawer">Close drawer</string>
+    <string name="selected_item">Selected item:</string>
+    <string-array name="Category">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+
+    </string-array>
 </resources>

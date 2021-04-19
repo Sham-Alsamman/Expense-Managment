@@ -19,7 +19,6 @@
         <activity android:name=".Controller.WelcomePage" />
         <activity android:name=".Controller.MainActivity"/>
         <activity android:name=".Controller.welcomPage2" />
-
         <activity android:name=".Controller.TestActivity" />
         <activity
             android:name=".Controller.AddIncome"
@@ -29,7 +28,8 @@
             android:label="About" />
         <activity
             android:name=".Controller.AddManually"
-            android:label="Add Expense"/>
+            android:label="Add Expense"
+        />
         <activity
             android:name=".Controller.Report"
             android:label="Report"/>

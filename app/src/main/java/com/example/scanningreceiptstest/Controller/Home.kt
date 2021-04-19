@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import com.example.scanningreceiptstest.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : NavDrawerActivity() {
 
