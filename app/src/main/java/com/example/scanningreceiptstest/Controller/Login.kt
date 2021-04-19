@@ -15,14 +15,14 @@ import kotlinx.android.synthetic.main.profile_activity.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Login : NavDrawerActivity ()  {
+class Login : NavDrawerActivity() {
 
     val reg: String = "\\p{Punct}"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val PhoneNum= findViewById<TextInputLayout>(R.id.phoneNumET)
-        val Password= findViewById<TextInputLayout>(R.id.PasswordEt)
+        val PhoneNum = findViewById<TextInputLayout>(R.id.phoneNumET)
+        val Password = findViewById<TextInputLayout>(R.id.PasswordEt)
 
         PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
@@ -55,33 +55,33 @@ class Login : NavDrawerActivity ()  {
         }
 
 
-
     }
 
     fun SignUpTextView(view: View) {
         val i = Intent(applicationContext, SignUp::class.java)
         startActivity(i)
     }
+
     fun Login(view: View) {
         // val i = Intent(applicationContext, ::class.java)
         //startActivity(i)
-        if (phoneNumET.editText?.text!!.isEmpty() && PasswordEt.editText?.text!!.isEmpty()){
-            Toast.makeText(applicationContext,"Please enter phone number and password ",Toast.LENGTH_LONG).show()
-        }
-        else if(phoneNumET.editText?.text!!.isEmpty()){
-            Toast.makeText(applicationContext,"Please enter phone number ",Toast.LENGTH_LONG).show()
-        }
-        else if (PasswordEt.editText?.text!!.isEmpty()){
-            Toast.makeText(applicationContext,"Please enter password ",Toast.LENGTH_LONG).show()
-        }
-        else if(phoneNumET.error!=null){
-            Toast.makeText(applicationContext,phoneNumET.error,Toast.LENGTH_LONG).show()
+        if (phoneNumET.editText?.text!!.isEmpty() && PasswordEt.editText?.text!!.isEmpty()) {
+            Toast.makeText(
+                applicationContext,
+                "Please enter phone number and password ",
+                Toast.LENGTH_LONG
+            ).show()
+        } else if (phoneNumET.editText?.text!!.isEmpty()) {
+            Toast.makeText(applicationContext, "Please enter phone number ", Toast.LENGTH_LONG)
+                .show()
+        } else if (PasswordEt.editText?.text!!.isEmpty()) {
+            Toast.makeText(applicationContext, "Please enter password ", Toast.LENGTH_LONG).show()
+        } else if (phoneNumET.error != null) {
+            Toast.makeText(applicationContext, phoneNumET.error, Toast.LENGTH_LONG).show()
 
-        }
-        else if(PasswordEt.error!=null){
-            Toast.makeText(applicationContext,PasswordEt.error,Toast.LENGTH_LONG).show()
-        }
-        else{
+        } else if (PasswordEt.error != null) {
+            Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
+        } else {
             // login into home page in the app
         }
     }
@@ -89,7 +89,8 @@ class Login : NavDrawerActivity ()  {
     fun PhoneErrors(text: CharSequence?) {
 
     }
-    fun PasswordErrors(text: CharSequence?){
+
+    fun PasswordErrors(text: CharSequence?) {
 
     }
 
