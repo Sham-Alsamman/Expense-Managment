@@ -92,6 +92,5 @@ open class NavDrawerActivity : AppCompatActivity() {
         else
             super.onBackPressed()
     }
-
 }
 

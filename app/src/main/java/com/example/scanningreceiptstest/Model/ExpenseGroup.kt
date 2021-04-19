@@ -9,9 +9,10 @@ class ExpenseGroup {
      //   get() = _Partners
 
     var ID: String="" ;
+    /******* remove
     private val _categoryList :MutableList<String> = mutableListOf<String>()
     val categoryList:List<String>
-        get() = _categoryList
+        get() = _categoryList*/
 
     fun AddPartners(PhoneNumber :String ){
      //add phone number to list of person

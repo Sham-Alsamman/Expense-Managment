@@ -48,6 +48,8 @@ class Report : NavDrawerActivity() {
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
+                    spinner.setSelection(adapter.getPosition(spin[0]))
+
                 }
             }
         }
@@ -61,8 +63,6 @@ class Report : NavDrawerActivity() {
 
         filter_btn.setOnClickListener {
             bottomsheetFilter.show(supportFragmentManager, "BottomSheetDialog")
-
-
         }
 /*
 

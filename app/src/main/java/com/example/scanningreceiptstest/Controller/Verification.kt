@@ -31,7 +31,19 @@ class Verification() : NavDrawerActivity () {
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 
     private var pinView: PinView? = null
-    private lateinit var countDown: CountDownTimer
+
+    private var countDown: CountDownTimer = object : CountDownTimer(60000, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            resendCodeTv.isEnabled = false
+            resendCodeTv.text = String.format("Re-Send Code in 00:%02d", millisUntilFinished / 1000)
+
+        }
+
+        override fun onFinish() {
+            resendCodeTv.text = "Re-Send Code"
+            resendCodeTv.isEnabled = true
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,19 +111,8 @@ class Verification() : NavDrawerActivity () {
                 storedVerificationId = verificationId
                 resendToken = token
 
-                /*************start the count down*********/
-                countDown = object : CountDownTimer(60000, 1000) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        resendCodeTv.isEnabled = false
-                        resendCodeTv.text = String.format("Re-Send Code in 00:%02d", millisUntilFinished / 1000)
-
-                    }
-
-                    override fun onFinish() {
-                        resendCodeTv.text = "Re-Send Code"
-                        resendCodeTv.isEnabled = true
-                    }
-                }.start()
+                //start the count down
+                countDown.start()
 
                 // Update UI
                 updateUI(STATE_CODE_SENT)
@@ -123,6 +124,7 @@ class Verification() : NavDrawerActivity () {
 
     override fun onDestroy() {
         countDown.cancel()
+
         Log.i("onDestroy", "called")
         super.onDestroy()
     }
@@ -141,6 +143,7 @@ class Verification() : NavDrawerActivity () {
         else
             Toast.makeText(this, "Phone number is empty!", Toast.LENGTH_SHORT).show()
 
+        Log.i("start", "startPhoneNumberVerification")
     }
 
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {

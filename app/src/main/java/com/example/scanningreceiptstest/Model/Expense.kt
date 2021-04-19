@@ -12,5 +12,4 @@ public class Expense(
 ) : Transaction(date1,amount1,notes1,category1,name) {
 
 
-
 }

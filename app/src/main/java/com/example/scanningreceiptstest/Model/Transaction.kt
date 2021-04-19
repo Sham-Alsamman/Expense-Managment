@@ -16,8 +16,9 @@ public abstract class Transaction(
     var category: String? = category
     var name: String = name
 
-    fun Add(T: Transaction) {
+    /**** remove
+     * fun Add(T: Transaction) {
 
-    }
+    }*/
 
 }
