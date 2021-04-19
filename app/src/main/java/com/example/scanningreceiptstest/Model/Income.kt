@@ -5,10 +5,9 @@ import java.util.*
 public class Income(
     date: Date,
     amount: Double,
-    notes: String?,
-    category1: String,
-    name:String
-) : Transaction(date,amount,notes,category1,name) {
+    name1:String
+) : Transaction(date,amount) {
 
+     var name=name1
 
 }

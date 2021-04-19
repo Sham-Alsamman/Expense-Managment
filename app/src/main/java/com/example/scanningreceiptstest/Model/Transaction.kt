@@ -4,21 +4,9 @@ import java.util.*
 
 public abstract class Transaction(
     date: Date,
-    amount: Double,
-    notes: String?, /*******Delete?*******/
-    category: String,
-    name: String
-) {
-    var date: Date = date
-    var amount: Double = amount
-    var notes: String? = notes
-    lateinit var id: String
-    var category: String? = category
-    var name: String = name
-
-    /**** remove
-     * fun Add(T: Transaction) {
-
-    }*/
+    amount: Double) {
+    var date: Date=date
+    var amount: Double =amount
+    lateinit var id : String
 
 }

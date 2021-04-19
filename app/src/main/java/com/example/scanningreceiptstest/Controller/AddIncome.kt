@@ -6,9 +6,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import com.example.scanningreceiptstest.Model.Expense
 import kotlinx.android.synthetic.main.activity_add_income.*
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
+import kotlinx.android.synthetic.main.activity_add_manually.*
 import java.util.*
 
 
@@ -16,44 +19,70 @@ class AddIncome : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_income)
+        var name=""
+        var amountIN=""
+        var date=arrayOf<String>()
+        var DateIncome=Date()
+        var dayInt= 0
+        var monthInt= 0
+        var yearInt= 0
+        var flag=true
+
+        outName.editText?.doOnTextChanged { text, start, before, count ->
+            outName.error=null
+        }
+
+        outDate.editText?.doOnTextChanged { text, start, before, count ->
+            outDate.error=null
+        }
+
+        outAmount.editText?.doOnTextChanged { text, start, before, count ->
+            outAmount.error=null
+        }
 
         outDate.setEndIconOnClickListener {
             showDatePicker()
         }
 
         saveIncome.setOnClickListener {
+            if (!nameIncome.text.isNullOrEmpty()) {
+                name= nameIncome.text.toString()
+                outName.error=null
+            }
+            else
+            {
+                nameIncome.error="Please enter the Name of Receipt"
+                flag=false
+            }
 
-            var name=nameIncome.text.toString()
-            var catIncome=categoryIncome.text.toString()
-            var amountIN=amountIncome.text.toString()
-            var noteIn:String?=NotesIncome.text.toString()
+            if (!amountIncome.text.isNullOrEmpty()) {
+                amountIN=amountIncome.text.toString()
+                outAmount.error=null
+            }
+            else
+            {
+                outAmount.error="Please enter the amount of Receipt"
+                flag=false
+            }
 
-            var date=dateIncome.text.toString().split("/").toTypedArray()
+            if (!dateIncome.text.isNullOrEmpty()) {
+                outDate.error=null
+                date = dateIn.text.toString().split("/").toTypedArray()
+                dayInt = date[0].toInt()
+                monthInt = date[1].toInt()
+                yearInt = date[2].toInt()
 
+                DateIncome=Date(yearInt-1900,monthInt-1,dayInt)
+                Toast.makeText(this,"date: "+DateIncome, Toast.LENGTH_LONG).show()
+            }
+            else{
+                outDate.error="Please Enter The Date Of Receipt"
+                flag=false
+            }
 
-            /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
-              Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
-              Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
-
-            // for(item in date)
-            //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
-            var dayInt= date[0].toInt()
-            var monthInt= date[1].toInt()
-            var yearInt= date[2].toInt()
-
-            /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
-
-            var dateIncome=Date(yearInt-1900,monthInt-1,dayInt)
-
-            Toast.makeText(this,"date: "+dateIncome, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,"amount: "+amountIN, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,"noteIn: "+noteIn, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,"catIncome: "+catIncome, Toast.LENGTH_LONG).show()
-            Toast.makeText(this,"name: "+name, Toast.LENGTH_LONG).show()
-
-            var newIncome= Income(dateIncome,amountIN.toDouble(),noteIn,catIncome,name)
+            if (flag) {
+                var newIncome = Income(DateIncome, amountIN.toDouble(), name)
+            }
         }
 
     }
