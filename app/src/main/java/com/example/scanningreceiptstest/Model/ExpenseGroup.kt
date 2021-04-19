@@ -3,10 +3,9 @@ package com.example.scanningreceiptstest.Model
 class ExpenseGroup {
 
     // here i want to declare list of person
-
-   // private val _Partners :MutableList<> = mutableListOf<>()
-  //  val Partners:List<>
-     //   get() = _Partners
+    private val _Partners :MutableList<Person> = mutableListOf<Person>()
+    val Partners:List<Person>
+       get() = _Partners
 
     var ID: String="" ;
     private val _categoryList :MutableList<String> = mutableListOf<String>()
@@ -14,7 +13,10 @@ class ExpenseGroup {
         get() = _categoryList
 
     fun AddPartners(PhoneNumber :String ){
-     //add phone number to list of person
+        // here should search in firebase about the phone number if exist or not
+        // if exist we add the person to the partners list
+     //add new partners to list of person
+       // _Partners.add();
     }
 
     fun GetTransactionHistory(Filter :String){ // return type list of transaction
