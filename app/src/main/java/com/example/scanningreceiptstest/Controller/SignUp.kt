@@ -53,7 +53,7 @@ class SignUp : NavDrawerActivity () {
                 PhoneSignUp.error ="Enter Country code also along with the phone number"
             }
            // to check if the phone number already register in firebase
-            else if (CheckForPhoneNumber(text.toString())){
+            else if (CheckForPhoneNumber(text.toString())){ // check
                 PhoneSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 PhoneSignUp.error ="The phone number is already register in the application"
             }
