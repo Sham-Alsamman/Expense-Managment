@@ -18,8 +18,10 @@ class TransactionHistory : NavDrawerActivity() {
         onCreateDrawer()
 
         /***testing***/
-        val transactions = listOf(Income(Date.valueOf("2020-3-8"), 25.2,""),
-        Expense(Date.valueOf("2005-12-15"), 30.0, "", "shopping",recEnum.None))
+        val transactions = listOf(
+            Income(Date.valueOf("2020-3-8"), 25.2, "salary"),
+            Expense(Date.valueOf("2005-12-15"), 30.0, "categoty1", "shopping", recEnum.None)
+        )
 
         val recyclerAdapter = TransactionHistoryAdapter()
         recyclerAdapter.transactionsList = transactions

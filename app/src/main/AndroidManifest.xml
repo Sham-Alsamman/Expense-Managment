@@ -42,8 +42,8 @@
             android:name=".Controller.InvitePartner"
             android:label="Invite Partner"/>
         <activity
-            android:name=".Controller.Notification"
-            android:label="Notification"/>
+            android:name=".Controller.Invitations"
+            android:label="Invitations"/>
         <activity
             android:name=".Controller.TransactionHistory"
             android:label="Transaction History"/>

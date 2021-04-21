@@ -40,3 +40,12 @@ class ExpenseGroup {
 
 
 }
+
+/**** Create DBExpenseGroup data class in database package
+ * contains the group id and a list of partners "IDs" only
+ * all fields will be declared in the constructor with val keyword
+ * for example, see Invitation class and DBInvitation class
+ *
+ * create extension methods in both classes to convert from the original class to the DB class and vice versa
+ * (see Invitation classes for more details)
+ ****/

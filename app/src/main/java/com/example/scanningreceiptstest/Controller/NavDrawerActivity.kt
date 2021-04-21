@@ -48,8 +48,8 @@ open class NavDrawerActivity : AppCompatActivity() {
             R.id.navMenu_transactionHistory -> {
                 intent = Intent(applicationContext, TransactionHistory::class.java)
             }
-            R.id.navMenu_notification -> {
-                intent = Intent(applicationContext, Notification::class.java)
+            R.id.navMenu_invitations -> {
+                intent = Intent(applicationContext, Invitations::class.java)
             }
             R.id.navMenu_invitePartner -> {
                 intent = Intent(applicationContext, InvitePartner::class.java)

@@ -76,6 +76,9 @@ dependencies {
     // Declare the dependency for the Firebase Authentication library
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    // Declare the dependency for the Realtime Database library
+    implementation 'com.google.firebase:firebase-database-ktx'
+
     //kapt 'groupId:artifactId:version'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'

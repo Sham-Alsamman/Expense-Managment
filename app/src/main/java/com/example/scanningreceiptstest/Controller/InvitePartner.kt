@@ -23,11 +23,20 @@ class InvitePartner : NavDrawerActivity() {
             invitePhoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
             invitePhoneNumET.error = "Enter a complete phone number with country code (ex. +999795555555)"
         }
+        else if (!isPartnerExist()){
+            invitePhoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
+            invitePhoneNumET.error = "This phone number is not registered in the app"
+        }
         else{
             invitePhoneNumET.setEndIconDrawable(0)
             invitePhoneNumET.error = ""
             sendToPartner(invitePhoneNumET.editText?.text.toString())
         }
+    }
+
+    private fun isPartnerExist(): Boolean {
+        //check if the phone number exists in the database
+        return false
     }
 
     private fun sendToPartner(phoneNum: String) {
