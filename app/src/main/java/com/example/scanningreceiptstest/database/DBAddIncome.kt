@@ -13,6 +13,5 @@ fun DBAddIncome.toInvitation(): Income {
     return Income(
         date,
         amount,
-        name
-    )
+        name )
 }
