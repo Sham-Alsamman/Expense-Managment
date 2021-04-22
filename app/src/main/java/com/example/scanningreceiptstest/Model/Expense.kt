@@ -1,14 +1,15 @@
 package com.example.scanningreceiptstest.Model
 
+import com.example.scanningreceiptstest.database.DBExpense
 import java.util.*
 
 
 class Expense(
-    date1: Date,
-    amount1: Double,
-    category1: String,
-    name: String,
-    recurrent1: recEnum
+    val date1: Date,
+    val amount1: Double,
+    val category1: String,
+    val name: String,
+    val recurrent1: recEnum
 ) : Transaction( date1, amount1) {
 
     var recurrent: recEnum = recurrent1
@@ -24,3 +25,13 @@ class Expense(
  * create extension methods in both classes to convert from the original class to the DB class and vice versa
  * (see Invitation classes for more details)
  ****/
+
+fun Expense.toExpense() : DBExpense {
+    return DBExpense(
+        date1,
+        amount1,
+        category1,
+        name,
+        recurrent1
+    )
+}
