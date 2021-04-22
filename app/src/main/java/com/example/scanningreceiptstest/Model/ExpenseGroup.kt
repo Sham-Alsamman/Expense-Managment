@@ -1,13 +1,15 @@
 package com.example.scanningreceiptstest.Model
 
-class ExpenseGroup {
+import com.example.scanningreceiptstest.database.DBInvitation
+import com.example.scanningreceiptstest.database.ExpenseGroup
+
+class ExpenseGroup(val groupID: String , val Partners:MutableList<Person>) {
 
     // here i want to declare list of person
     private val _Partners :MutableList<Person> = mutableListOf<Person>()
-    val Partners:List<Person>
-       get() = _Partners
-
     var ID: String="" ;
+
+
     /******* remove
     private val _categoryList :MutableList<String> = mutableListOf<String>()
     val categoryList:List<String>
@@ -49,3 +51,10 @@ class ExpenseGroup {
  * create extension methods in both classes to convert from the original class to the DB class and vice versa
  * (see Invitation classes for more details)
  ****/
+
+fun ExpenseGroup.toExpenseGroup(): ExpenseGroup { // we call it extension method
+    return ExpenseGroup(
+        groupID,
+        _Partners
+    )
+}
