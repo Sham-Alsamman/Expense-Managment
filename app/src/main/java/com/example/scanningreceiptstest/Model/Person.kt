@@ -1,50 +1,75 @@
 package com.example.scanningreceiptstest.Model
 
+import com.example.scanningreceiptstest.database.DBPerson
+
 class Person(userName: String, phoneNum: String) {
+
+    constructor(
+        phoneNum: String,
+        userName: String,
+        groupId: String,
+        monthlySal: Double,
+        totalIncome: Double,
+        savingAmount: Double,
+        savingWallet: Double,
+        transactions: List<Transaction>
+    )
+            : this(userName, phoneNum) {
+        this.groupId = groupId
+        this.monthlySalary = monthlySal
+        this.totalIncome = totalIncome
+        this.savingAmount = savingAmount
+        this.savingWallet = savingWallet
+        this._transactions = transactions as MutableList<Transaction>
+    }
+
     var name: String = userName
+
+    // the phone number is the ID of person
     var phoneNumber: String = phoneNum
 
-    var homeId: String = ""  //should be read only (val), auto value??
+    var groupId: String = ""  //should be read only (val), auto value??
 
     var monthlySalary: Double = 0.0
-        set(value){ //instead of setMonthlySalary() method
-            if(value >= 0)
+        set(value) { //instead of setMonthlySalary() method
+            if (value >= 0)
                 field = value
         }
 
     var totalIncome: Double = 0.0 // should be always positive num??
     var savingAmount: Double = 0.0
         set(value) { // instead of setSavingAmount() method
-            if(value >= 0)
+            if (value >= 0)
                 field = value
         }
 
     var savingWallet: Double = 0.0
-        set(value){
+        set(value) {
             if (value >= 0)
                 field = value
         }
-    private val _transactions = mutableListOf<Transaction>()
+    private var _transactions = mutableListOf<Transaction>()
+
     /**instead of getTransactions method**/
     val transactions: List<Transaction>
-        get()= _transactions
+        get() = _transactions
 
 
     //not here?
-    fun acceptInvitation(homeId: String){
+    fun acceptInvitation(homeId: String) {
 
     }
 
     //not here?
-    fun receiveInvite(homeId: String){
+    fun receiveInvite(homeId: String) {
 
     }
 
-    fun addExpense(expense: Expense){
+    fun addExpense(expense: Expense) {
         _transactions.add(expense)
     }
 
-    fun addIncome(income: Income){
+    fun addIncome(income: Income) {
         incrementIncome(income)
         _transactions.add(income)
     }
@@ -53,14 +78,16 @@ class Person(userName: String, phoneNum: String) {
         totalIncome += income.amount
     }
 
-}
+    fun toDBPerson(): DBPerson {
+        return DBPerson(
+            phoneNumber,
+            name,
+            groupId,
+            monthlySalary,
+            totalIncome,
+            savingAmount,
+            savingWallet,
+        )
+    }
 
-/**** Create DBPerson data class in database package
- * contains all fields in Person class except the transactions list will be splitted to 2 lists:
- * expenses (contains all expenses IDs) and incomes (contains all incomes IDs)
- * all fields will be declared in the constructor with val keyword
- * for example, see Invitation class and DBInvitation class
- *
- * create extension methods in both classes to convert from the original class to the DB class and vice versa
- * (see Invitation classes for more details)
- ****/
+}
