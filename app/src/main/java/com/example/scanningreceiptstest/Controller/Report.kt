@@ -1,7 +1,6 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -14,9 +13,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.activity_report.*
 import com.example.gp22.BottomSheet_Filter
-import com.example.scanningreceiptstest.Controller.NavDrawerActivity
 import com.example.scanningreceiptstest.R
-import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
 class Report : NavDrawerActivity() {
 
@@ -31,13 +28,22 @@ class Report : NavDrawerActivity() {
         setContentView(R.layout.activity_report)
         onCreateDrawer()
 
+//        val a = ArrayList<String>();
+//            a.add("Last month");
+//            a.add("Last 2 months");
+//            a.add("Last 3 months");
+//            a.add("last 4 months");
+//            a.add("Last year");
+//
+
         // access the items of the list
-        val spin = resources.getStringArray(R.array.TimePeriod)
+        val spinItems = resources.getStringArray(R.array.TimePeriod)
+
         // access the spinner
         val spinner = findViewById<Spinner>(R.id.spin)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, spin)
+                android.R.layout.simple_spinner_item, spinItems)
             spinner.adapter = adapter
 
             spinner.onItemSelectedListener = object :
@@ -48,7 +54,7 @@ class Report : NavDrawerActivity() {
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
-                    spinner.setSelection(adapter.getPosition(spin[0]))
+                    spinner.setSelection(adapter.getPosition(spinItems[0]))
 
                 }
             }
