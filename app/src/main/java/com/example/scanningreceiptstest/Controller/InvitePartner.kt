@@ -1,12 +1,22 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.scanningreceiptstest.Model.Invitation
+import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.DBInvitation
+import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_invite_partner.*
 
 class InvitePartner : NavDrawerActivity() {
+
+
+    private fun updateList(list: List<DBInvitation>) {
+        //Toast.makeText(this, "list updated ${list.size}", Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,16 +46,32 @@ class InvitePartner : NavDrawerActivity() {
 
     private fun isPartnerExist(): Boolean {
         //check if the phone number exists in the database
-        return false
+        return true
     }
 
     private fun sendToPartner(phoneNum: String) {
         //search for the number in the database
         //https://www.youtube.com/watch?v=I84JmwBRJTY
         //https://blog.usejournal.com/send-device-to-device-push-notifications-without-server-side-code-238611c143
+
+        val i = Invitation("sham", phoneNum, "123456", InvitationStatus.NEW)
+
+        Database.sendInvitation(i.toDBInvitation())
+
+        Database.getAllInvitations(phoneNum, ::updateList)
+
         //if found send notification to that user using the user's token??
         Toast.makeText(this, "Invitation sent successfully", Toast.LENGTH_LONG).show()
         //else
         // Toast.makeText(this, "This phone number does not exist, tell your partner to sign up in this app", Toast.LENGTH_LONG).show()
+    }
+
+    /************************/
+    companion object{
+        fun getInvitations(list: List<DBInvitation>){
+            Log.i("DBgetInvitations", "${list.size}")
+            if (list.isNotEmpty())
+                Log.i("DB", list[0]?.senderName.toString())
+        }
     }
 }

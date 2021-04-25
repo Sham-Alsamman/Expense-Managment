@@ -1,15 +1,16 @@
 package com.example.scanningreceiptstest.database
 
-import com.example.scanningreceiptstest.Model.InvitationStatus
+import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.example.scanningreceiptstest.Model.Person
 
-data class ExpenseGroup(
-    val groupID: String,
+data class DBExpenseGroup(
+    var groupID: String,
     val _Partners :MutableList<Person> = mutableListOf<Person>()
+){
+    constructor(): this("")
+}
 
-)
-
-fun ExpenseGroup.toExpenseGroup(): ExpenseGroup {
+fun DBExpenseGroup.toExpenseGroup(): ExpenseGroup {
     return ExpenseGroup(
         groupID,
         _Partners

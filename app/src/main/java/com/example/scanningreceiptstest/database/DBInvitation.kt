@@ -8,7 +8,9 @@ data class DBInvitation(
     val receiverPhoneNum: String,
     val groupID: String,
     val invitationStatus: InvitationStatus
-)
+){
+    constructor() : this("", "", "", InvitationStatus.NEW)
+}
 
 //extension fun to convert form database invitation object to invitation object
 //fun <class_name>.<method_name>(): <return_type> {}
@@ -19,4 +21,12 @@ fun DBInvitation.toInvitation(): Invitation {
         groupID,
         invitationStatus
     )
+}
+
+fun List<DBInvitation>.toInvitationList(): List<Invitation> {
+    val invitationsList = mutableListOf<Invitation>()
+    for (i in this){
+        invitationsList.add(i.toInvitation())
+    }
+    return invitationsList
 }

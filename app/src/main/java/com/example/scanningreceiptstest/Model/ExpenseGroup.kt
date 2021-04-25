@@ -1,7 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
-import com.example.scanningreceiptstest.database.DBInvitation
-import com.example.scanningreceiptstest.database.ExpenseGroup
+import com.example.scanningreceiptstest.database.DBExpenseGroup
 
 class ExpenseGroup(val groupID: String , val Partners:MutableList<Person>) {
 
@@ -40,6 +39,12 @@ class ExpenseGroup(val groupID: String , val Partners:MutableList<Person>) {
         // return filter list
     }
 
+    fun toDBExpenseGroup(): DBExpenseGroup {
+        return DBExpenseGroup(
+            groupID,
+            _Partners
+        )
+    }
 
 }
 
@@ -51,10 +56,3 @@ class ExpenseGroup(val groupID: String , val Partners:MutableList<Person>) {
  * create extension methods in both classes to convert from the original class to the DB class and vice versa
  * (see Invitation classes for more details)
  ****/
-
-fun ExpenseGroup.toExpenseGroup(): ExpenseGroup { // we call it extension method
-    return ExpenseGroup(
-        groupID,
-        _Partners
-    )
-}
