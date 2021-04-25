@@ -12,7 +12,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.activity_report.*
-import com.example.gp22.BottomSheet_Filter
+//import com.example.gp22.BottomSheet_Filter
 import com.example.scanningreceiptstest.R
 
 class Report : NavDrawerActivity() {
@@ -43,7 +43,7 @@ class Report : NavDrawerActivity() {
         val spinner = findViewById<Spinner>(R.id.spin)
         if (spinner != null) {
             val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, spinItems)
+                android.R.layout.simple_list_item_1, spinItems)
             spinner.adapter = adapter
 
             spinner.onItemSelectedListener = object :
@@ -54,7 +54,7 @@ class Report : NavDrawerActivity() {
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
-                    spinner.setSelection(adapter.getPosition(spinItems[0]))
+                    spinner.setSelection(0)
 
                 }
             }

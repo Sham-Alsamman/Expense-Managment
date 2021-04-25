@@ -67,7 +67,7 @@ class AddIncome : NavDrawerActivity() {
 
             if (!dateIncome.text.isNullOrEmpty()) {
                 outDate.error=null
-                date = dateIn.text.toString().split("/").toTypedArray()
+                date = dateIncome.text.toString().split("/").toTypedArray()
                 dayInt = date[0].toInt()
                 monthInt = date[1].toInt()
                 yearInt = date[2].toInt()

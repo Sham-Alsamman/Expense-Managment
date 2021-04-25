@@ -1,4 +1,4 @@
-package com.example.gp22
+package com.example.scanningreceiptstest.Controller
 
 import android.app.DatePickerDialog
 import android.content.Context
