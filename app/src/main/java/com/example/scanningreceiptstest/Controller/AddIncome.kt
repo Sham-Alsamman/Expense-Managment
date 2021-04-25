@@ -11,7 +11,9 @@ import com.example.scanningreceiptstest.Model.Expense
 import kotlinx.android.synthetic.main.activity_add_income.*
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -74,6 +76,8 @@ class AddIncome : NavDrawerActivity() {
 
                 DateIncome=Date(yearInt-1900,monthInt-1,dayInt)
                 Toast.makeText(this,"date: "+DateIncome, Toast.LENGTH_LONG).show()
+
+
             }
             else{
                 outDate.error="Please Enter The Date Of Receipt"

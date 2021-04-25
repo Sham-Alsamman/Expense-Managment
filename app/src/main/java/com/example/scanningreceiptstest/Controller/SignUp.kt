@@ -1,17 +1,26 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.isEmpty
 import androidx.core.widget.doOnTextChanged
+import com.example.scanningreceiptstest.Model.Invitation
+import com.example.scanningreceiptstest.Model.InvitationStatus
+import com.example.scanningreceiptstest.Model.Person
+import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.Database
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.phoneNumET
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -50,7 +59,7 @@ class SignUp : NavDrawerActivity() {
                 PhoneSignUp.error = "Enter Country code also along with the phone number"
             }
             // to check if the phone number already register in firebase
-            else if (CheckForPhoneNumber(text.toString())) { // check
+            else if (Database.checkIfUserExist(text.toString())) { // check
                 PhoneSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 PhoneSignUp.error = "The phone number is already register in the application"
             } else {
@@ -91,6 +100,14 @@ class SignUp : NavDrawerActivity() {
     }
 
     fun SignInTextView(view: View) {
+ /*
+        val listTransaction = mutableListOf<Transaction>()
+        val m = Person("+962791558798","Malak","1",2000.500,3000.00,500.00,100.00,listTransaction)
+        Database.addNewUser(m.toDBPerson())
+
+
+  */
+
         val i = Intent(applicationContext, Login::class.java)
         startActivity(i)
     }
@@ -112,7 +129,9 @@ class SignUp : NavDrawerActivity() {
         } else if (PhoneETSignUp.error != null) {
             Toast.makeText(applicationContext, PhoneETSignUp.error, Toast.LENGTH_LONG).show()
 
-        } else if (NameET.error != null) {
+        }
+
+        else if (NameET.error != null) {
             Toast.makeText(applicationContext, NameET.error, Toast.LENGTH_LONG).show()
 
         } else if (PasswordETSignUp.error != null) {
@@ -129,7 +148,7 @@ class SignUp : NavDrawerActivity() {
         }
 
     }
-
+/*
     fun CheckForPhoneNumber(phone: String): Boolean { // to check if phone number if exist or not in fire base
         var flag: Boolean = true;
         /*
@@ -155,6 +174,8 @@ class SignUp : NavDrawerActivity() {
          */
         return flag
     }
+
+ */
 
 }
 
