@@ -23,14 +23,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background2"
-                tools:layout_editor_absoluteX="26dp"
-                tools:layout_editor_absoluteY="-95dp">
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="192dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="100dp">
-
 
 
                     <RelativeLayout
@@ -126,7 +125,7 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
-                      <!--  <com.google.android.material.textfield.TextInputLayout
+                        <!--  <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/outCat2"
                             android:layout_width="270dp"
                             android:layout_height="wrap_content"
@@ -145,9 +144,9 @@
                         <TextView
                             android:id="@+id/textView14"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="340dp"
-                            android:layout_marginLeft="20dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="340dp"
                             android:text="Category" />
 
                         <Spinner
@@ -156,8 +155,8 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="380dp"
-                            app:layout_constraintStart_toStartOf="parent"
                             android:background="@drawable/spinn"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"></Spinner>
 
                         <Spinner
@@ -166,16 +165,16 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="500dp"
-                            app:layout_constraintStart_toStartOf="parent"
                             android:background="@drawable/spinn"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"></Spinner>
 
                         <TextView
                             android:id="@+id/textView13"
                             android:layout_width="wrap_content"
-                            android:layout_marginTop="460dp"
-                            android:layout_marginLeft="20dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="460dp"
                             android:text="Recurrent" />
 
                         <!-- <com.google.android.material.textfield.TextInputLayout
@@ -268,6 +267,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="Save"
+                        android:onClick="SaveExpense"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

@@ -2,7 +2,10 @@ package com.example.scanningreceiptstest.database
 
 import android.app.Person
 import android.util.Log
+import android.widget.EditText
+import android.widget.Toast
 import com.example.scanningreceiptstest.Controller.InvitePartner
+import com.example.scanningreceiptstest.Controller.SignUp
 import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -10,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlin.math.exp
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 //variables to hold the current user and expense group
 var CURRENT_USER: Person? = null
@@ -26,13 +30,13 @@ object Database {
 
 
     /****Login*****/
-                                //this parameter is the function to call when the data changes
+    //this parameter is the function to call when the data changes
     fun getUser(phoneNum: String, onDataRetrieved: (DBPerson) -> Unit) {
         //get the person obj with this phone num
         //where to store password????
         ////get: ref.users.phoneNum
 
-        userRef.child(phoneNum).addValueEventListener( object : ValueEventListener {
+        userRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user = snapshot.getValue(DBPerson::class.java)
                 if (user != null)
@@ -52,7 +56,7 @@ object Database {
         expenseGroupRef.child(groupId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val group = snapshot.getValue(DBExpenseGroup::class.java)
-                if(group != null)
+                if (group != null)
                     onDataRetrieved(group)
             }
 
@@ -63,14 +67,36 @@ object Database {
     }
 
     /****Sign up****/
-//    fun checkIfUserExist(phoneNum: String): Boolean {
-//        //check if this phone num already exists in the database
-//        ////search for: ref.users.phoneNum
-//    }
+
+    fun checkIfUserExist(phoneNum: String): Boolean {
+        //check if this phone num already exists in the database
+        ////search for: ref.users.phoneNum
+        var flag = false
+        userRef.child("phoneNumber").equalTo(phoneNum.toString()).addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) { //phone number exist
+                    flag = true
+                } else {
+                    // phone number not exist
+                    flag = false
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return flag
+    }
+
 
     fun addNewUser(user: DBPerson) {
         //add this user to the DB (the id is the phone num)
         ////create: ref.users.phoneNum.push() like sendInvitation()
+
+        //userRef.child(user.phoneNumber).push().setValue(user)
+        userRef.child(user.phoneNumber).setValue(user)
     }
 
     //this method is called when a new user sign up, to put him in a new group
@@ -93,12 +119,16 @@ object Database {
     fun addNewExpense(phoneNum: String, expense: DBExpense) {
         // and add the expense object to the expense node
         ////add to the list in: ref.expense.phoneNum.push() like sendInvitation()
+
+        expenseRef.child(phoneNum).push().setValue(expense)
     }
 
     /****Add income****/
     fun addNewIncome(phoneNum: String, income: DBIncome) {
         // and add the income object to the income node
         ////add to the list in: ref.income.phoneNum.push()
+
+        incomeRef.child(phoneNum).push().setValue(income)
     }
 
     /****Invite partner****/
@@ -118,7 +148,7 @@ object Database {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val expenseList = mutableListOf<DBExpense>()
 
-                for (data in snapshot.children){
+                for (data in snapshot.children) {
                     val expense = data.getValue(DBExpense::class.java)
                     if (expense != null)
                         expenseList.add(expense)
@@ -140,7 +170,7 @@ object Database {
         incomeRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val incomeList = mutableListOf<DBIncome>()
-                for (data in snapshot.children){
+                for (data in snapshot.children) {
                     val income = data.getValue(DBIncome::class.java)
                     if (income != null)
                         incomeList.add(income)
@@ -156,8 +186,11 @@ object Database {
     }
 
     /****Invitations****/
-                                            //this parameter is the function to call when the data changes
-    fun getAllInvitations(phoneNum: String, onDataRetrievedFun: (list: List<DBInvitation>) -> Unit) {
+    //this parameter is the function to call when the data changes
+    fun getAllInvitations(
+        phoneNum: String,
+        onDataRetrievedFun: (list: List<DBInvitation>) -> Unit
+    ) {
         //get a list of all user's invitations
         ////get the list: ref.invitation.phoneNum
 
@@ -170,7 +203,7 @@ object Database {
                 //convert each invitation to DBInvitation object then add it to the list
                 for (data in snapshot.children) {
                     val invite = data.getValue(DBInvitation::class.java)
-                    if(invite != null)
+                    if (invite != null)
                         invitations.add(invite)
                 }
                 //call the function (that is given as a parameter) to pass the data back to the calling class
@@ -189,5 +222,12 @@ object Database {
     fun updateUserInfo(phoneNum: String, user: DBPerson) {
         //update this user's data
         ////update: ref.users.phoneNum
+
+        /*
+       var hashMap = HashMap<String, Any>()
+        hashMap.put("user",user)
+        userRef.child(phoneNum).updateChildren(hashMap)
+
+         */
     }
 }
