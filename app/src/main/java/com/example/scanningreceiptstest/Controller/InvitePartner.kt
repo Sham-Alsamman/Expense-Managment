@@ -13,6 +13,18 @@ import kotlinx.android.synthetic.main.activity_invite_partner.*
 
 class InvitePartner : NavDrawerActivity() {
 
+    private var validPhoneNum = false
+        /*set(value) {
+            field = value
+            if(validPhoneNum && !phoneNumExist)
+                sendToPartner(invitePhoneNumET.editText?.text.toString())
+        }*/
+    private var phoneNumExist = true
+        set(value) {
+            field = value
+            if(validPhoneNum && !phoneNumExist)
+                sendToPartner(invitePhoneNumET.editText?.text.toString())
+        }
 
     private fun updateList(list: List<DBInvitation>) {
         //Toast.makeText(this, "list updated ${list.size}", Toast.LENGTH_SHORT).show()
@@ -25,28 +37,44 @@ class InvitePartner : NavDrawerActivity() {
     }
 
     fun sendInvitation(view: View) {
-        if(invitePhoneNumET.editText?.text?.isBlank() == true){
+        validPhoneNum = false
+        val phoneNum = invitePhoneNumET.editText?.text
+
+        isPartnerExist(phoneNum.toString())
+
+        if(phoneNum?.isBlank() == true){
             invitePhoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
             invitePhoneNumET.error = "Enter your partner's phone number"
         }
-        else if (invitePhoneNumET.editText?.text?.startsWith('+') == false){
+        else if (phoneNum?.startsWith('+') == false){
             invitePhoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
             invitePhoneNumET.error = "Enter a complete phone number with country code (ex. +999795555555)"
         }
-        else if (!isPartnerExist()){
+        /*else if (!isPartnerExist(invitePhoneNumET.editText?.text.toString())){
             invitePhoneNumET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
             invitePhoneNumET.error = "This phone number is not registered in the app"
-        }
+        }*/
         else{
+            validPhoneNum = true
             invitePhoneNumET.setEndIconDrawable(0)
             invitePhoneNumET.error = ""
-            sendToPartner(invitePhoneNumET.editText?.text.toString())
         }
     }
 
-    private fun isPartnerExist(): Boolean {
+    private fun isPartnerExist(phoneNum: String) {
         //check if the phone number exists in the database
-        return true
+        Database.checkIfUserExist(phoneNum, ::partnerExists)
+       // return true
+    }
+
+    private fun partnerExists(exist: Boolean){
+        if(exist) {
+            phoneNumExist = true
+            Toast.makeText(this, "exist", Toast.LENGTH_SHORT).show()
+        }else {
+            phoneNumExist = false
+            Toast.makeText(this, "Phone num does not exist", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun sendToPartner(phoneNum: String) {
@@ -58,7 +86,7 @@ class InvitePartner : NavDrawerActivity() {
 
         Database.sendInvitation(i.toDBInvitation())
 
-        Database.getAllInvitations(phoneNum, ::updateList)
+        //Database.getAllInvitations(phoneNum, ::updateList)
 
         //if found send notification to that user using the user's token??
         Toast.makeText(this, "Invitation sent successfully", Toast.LENGTH_LONG).show()

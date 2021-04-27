@@ -28,7 +28,6 @@ object Database {
     private val expenseRef = database.getReference("expense")
     private val incomeRef = database.getReference("income")
 
-
     /****Login*****/
     //this parameter is the function to call when the data changes
     fun getUser(phoneNum: String, onDataRetrieved: (DBPerson) -> Unit) {
@@ -68,34 +67,31 @@ object Database {
 
     /****Sign up****/
 
-    fun checkIfUserExist(phoneNum: String): Boolean {
+    fun checkIfUserExist(phoneNum: String, onDataRetrieved: (Boolean) -> Unit) {
         //check if this phone num already exists in the database
         ////search for: ref.users.phoneNum
-        var flag = false
-        userRef.child("phoneNumber").equalTo(phoneNum.toString()).addValueEventListener(object :
-            ValueEventListener {
+
+
+        userRef.child(phoneNum).addListenerForSingleValueEvent( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) { //phone number exist
-                    flag = true
-                } else {
-                    // phone number not exist
-                    flag = false
-                }
+                var exist = false
+                if(snapshot.exists())
+                    exist = true
+
+                onDataRetrieved(exist)
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
-        return flag
     }
 
 
     fun addNewUser(user: DBPerson) {
         //add this user to the DB (the id is the phone num)
-        ////create: ref.users.phoneNum.push() like sendInvitation()
+        ////create: ref.users.phoneNum
 
-        //userRef.child(user.phoneNumber).push().setValue(user)
         userRef.child(user.phoneNumber).setValue(user)
     }
 

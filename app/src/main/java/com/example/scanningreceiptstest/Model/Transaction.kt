@@ -9,5 +9,4 @@ abstract class Transaction(
     var date: Date = date
     var amount: Double = amount
     lateinit var id: String
-
 }

@@ -7,6 +7,10 @@ import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.DBExpense
+import com.example.scanningreceiptstest.database.Database
+import com.example.scanningreceiptstest.database.toExpenseList
 import kotlinx.android.synthetic.main.activity_transation_history.*
 import java.sql.Date
 
@@ -26,5 +30,11 @@ class TransactionHistory : NavDrawerActivity() {
         val recyclerAdapter = TransactionHistoryAdapter()
         recyclerAdapter.transactionsList = transactions
         transactionRecyclerView.adapter = recyclerAdapter
+        
+        //Database.getAllExpenses(CURRENT_USER?.phoneNum, ::getList)
+    }
+
+    fun getList(list: List<DBExpense>){
+        val newList = list.toExpenseList()
     }
 }

@@ -67,6 +67,7 @@ class Person(userName: String, phoneNum: String) {
 
     fun addExpense(expense: Expense) {
         _transactions.add(expense)
+        /****edit total***/
     }
 
     fun addIncome(income: Income) {

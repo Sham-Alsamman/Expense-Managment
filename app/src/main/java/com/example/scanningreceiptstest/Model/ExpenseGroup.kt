@@ -27,7 +27,7 @@ class ExpenseGroup(val groupID: String , val Partners:MutableList<Person>) {
         //call function filltering() in this class to filter the transaction depend on what user need
 
     }
-    fun Filtering( ){ // should take two parameter transaction list to filter it and filter to filter list  depend on it
+    fun Filtering(){ // should take two parameter transaction list to filter it and filter to filter list  depend on it
 
     // filtering the transction list depend on parameter
 
