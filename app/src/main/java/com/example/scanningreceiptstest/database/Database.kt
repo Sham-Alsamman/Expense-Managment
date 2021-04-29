@@ -1,19 +1,12 @@
 package com.example.scanningreceiptstest.database
 
-import android.app.Person
-import android.util.Log
-import android.widget.EditText
-import android.widget.Toast
-import com.example.scanningreceiptstest.Controller.InvitePartner
-import com.example.scanningreceiptstest.Controller.SignUp
 import com.example.scanningreceiptstest.Model.ExpenseGroup
+import com.example.scanningreceiptstest.Model.Person
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlin.math.exp
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 //variables to hold the current user and expense group
 var CURRENT_USER: Person? = null

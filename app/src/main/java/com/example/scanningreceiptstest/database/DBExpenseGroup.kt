@@ -5,7 +5,7 @@ import com.example.scanningreceiptstest.Model.Person
 
 data class DBExpenseGroup(
     var groupID: String,
-    val _Partners :MutableList<Person> = mutableListOf<Person>()
+    val _Partners :MutableList<String> = mutableListOf()
 ){
     constructor(): this("")
 }
