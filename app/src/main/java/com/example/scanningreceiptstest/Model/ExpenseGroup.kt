@@ -1,6 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
-import com.example.scanningreceiptstest.database.DBExpenseGroup
+import com.example.scanningreceiptstest.database.*
 
 class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
 
@@ -24,7 +24,13 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
         // call getTransaction() mehtod  from person to retrive list of transaction
 
         //call function filtering() in this class to filter the transaction depend on what user need
+        if(groupFilter.equals(GroupTransactionFilter.Individual)){
+          Database.getAllExpenses(CURRENT_USER?.phoneNumber!!,::DbResultExpese)
+            Database.getAllIncomes(CURRENT_USER?.phoneNumber!!,::DbResultIncome)
+        }
+        else{
 
+        }
         /***
          * if the groupFilter is individual: get expenses and incomes for the current user only
          * else: set the expenses and incomes for all partners
@@ -33,6 +39,12 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
          *
          * return filtered list
          ***/
+    }
+    fun DbResultExpese(list :List<DBExpense>){
+     // filtering(list,PeriodTransactionFilter.Last2Months);
+    }
+    fun DbResultIncome(list :List<DBIncome>){
+        // filtering(list,PeriodTransactionFilter.Last2Months);
     }
 
     /**this method is called by Report activity**/

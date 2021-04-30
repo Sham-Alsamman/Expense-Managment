@@ -1,6 +1,10 @@
 package com.example.scanningreceiptstest.Model
 
 import com.example.scanningreceiptstest.database.DBPerson
+import com.google.firebase.database.Exclude
+
+
+
 
 class Person(userName: String, phoneNum: String) {
 
@@ -78,6 +82,8 @@ class Person(userName: String, phoneNum: String) {
     private fun incrementIncome(income: Income) {
         totalIncome += income.amount
     }
+
+
 
     fun toDBPerson(): DBPerson {
         return DBPerson(

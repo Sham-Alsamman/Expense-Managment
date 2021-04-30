@@ -211,12 +211,15 @@ object Database {
     fun updateUserInfo(phoneNum: String, user: DBPerson) {
         //update this user's data
         ////update: ref.users.phoneNum
+        var hashMap = HashMap<String, Any>()
+        hashMap.put("groupId",user.groupId)
+        hashMap.put("monthlySalary",user.monthlySalary)
+        hashMap.put("name",user.name)
+        hashMap.put("phoneNumber",user.phoneNumber)
+        hashMap.put("savingAmount",user.savingAmount)
+        hashMap.put("savingWallet",user.savingWallet)
+        hashMap.put("totalIncome",user.totalIncome)
 
-        /*
-       var hashMap = HashMap<String, Any>()
-        hashMap.put("user",user)
         userRef.child(phoneNum).updateChildren(hashMap)
-
-         */
     }
 }

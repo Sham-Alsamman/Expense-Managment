@@ -17,7 +17,7 @@ class Profile : NavDrawerActivity() {
         onCreateDrawer()
         SaveText.setOnClickListener {
             //saveInfo()
-            /*
+/*
             val listTransaction = mutableListOf<Transaction>()
             val m = com.example.scanningreceiptstest.Model.Person(
                 "+962791558798",
@@ -31,7 +31,9 @@ class Profile : NavDrawerActivity() {
             )
             Database.updateUserInfo("+962791558798",m.toDBPerson())
 
-             */
+
+ */
+
         }
     }
 
