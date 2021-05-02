@@ -7,8 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isEmpty
 import androidx.core.widget.doOnTextChanged
+import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.DBExpense
+import com.example.scanningreceiptstest.database.DBPerson
+import com.example.scanningreceiptstest.database.Database
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.profile_activity.*
@@ -16,6 +22,7 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class Login : NavDrawerActivity() {
+
 
     val reg: String = "\\p{Punct}"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +63,10 @@ class Login : NavDrawerActivity() {
 
 
     }
+    fun DbResultPerson(person: Person){
+        CURRENT_USER=person
+    }
+
 
     fun SignUpTextView(view: View) {
         val i = Intent(applicationContext, SignUp::class.java)
@@ -82,10 +93,8 @@ class Login : NavDrawerActivity() {
         } else if (PasswordEt.error != null) {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
-            // login into home page in the app
+           // Database.getUser(phoneNumET.editText?.text!!.toString(),::DbResultPerson)
         }
     }
-
-
 
 }

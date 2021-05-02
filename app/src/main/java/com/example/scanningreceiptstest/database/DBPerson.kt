@@ -2,6 +2,7 @@ package com.example.scanningreceiptstest.database
 
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.Model.Transaction
+import com.google.firebase.database.Exclude
 
 data class DBPerson(
     val phoneNumber: String, val name: String, val groupId: String, val monthlySalary: Double,
