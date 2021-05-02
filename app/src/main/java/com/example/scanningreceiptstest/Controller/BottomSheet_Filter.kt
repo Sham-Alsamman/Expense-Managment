@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import com.example.scanningreceiptstest.Model.GroupTransactionFilter
+import com.example.scanningreceiptstest.Model.PeriodTransactionFilter
 import com.example.scanningreceiptstest.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_add_manually.*
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
-class BottomSheet_Filter : BottomSheetDialogFragment(){
+class BottomSheet_Filter : BottomSheetDialogFragment() {
 
+    var groupFilter: GroupTransactionFilter = GroupTransactionFilter.Individual
+    var periodFilter: PeriodTransactionFilter = PeriodTransactionFilter.CurrentMonth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,37 +32,23 @@ class BottomSheet_Filter : BottomSheetDialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // val spinner = findViewById<Spinner>(R.id.spin)
-
-        // access the items of the list
-        /*val spinItems = resources.getStringArray(R.array.TimePeriod)
-
-        // access the spinner
-
-        if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, spinItems)
-            spinner.adapter = adapter*/
-
-        spin.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                //
-
-            }
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-                spinner.setSelection(0)
-
-            }
-        }
-        //}
-
         btn.setOnClickListener {
-            Toast.makeText(context, " you", Toast.LENGTH_SHORT).show()
+            if (group.isChecked) {
+                groupFilter = GroupTransactionFilter.Group
+            } else if (individual.isChecked) {
+                groupFilter = GroupTransactionFilter.Individual
+            }
 
+            when (spin.selectedItemPosition) {
+                0 -> periodFilter = PeriodTransactionFilter.CurrentMonth
+                1 -> periodFilter = PeriodTransactionFilter.Last2Months
+                2 -> periodFilter = PeriodTransactionFilter.Last3Months
+                3 -> periodFilter = PeriodTransactionFilter.Last4Months
+                4 -> periodFilter = PeriodTransactionFilter.OneYear
+            }
+            Toast.makeText(context, "$groupFilter & $periodFilter", Toast.LENGTH_SHORT).show()
+            dismiss()
         }
-
     }
 
     override fun onAttach(context: Context) {

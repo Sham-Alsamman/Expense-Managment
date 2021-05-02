@@ -211,7 +211,7 @@ object Database {
     fun updateUserInfo(phoneNum: String, user: DBPerson) {
         //update this user's data
         ////update: ref.users.phoneNum
-        var hashMap = HashMap<String, Any>()
+        val hashMap = HashMap<String, Any>()
         hashMap.put("groupId",user.groupId)
         hashMap.put("monthlySalary",user.monthlySalary)
         hashMap.put("name",user.name)
