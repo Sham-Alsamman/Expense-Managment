@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.TransactionHistoryAdapter
 import com.example.scanningreceiptstest.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : NavDrawerActivity() {
+    private val recyclerAdapter = TransactionHistoryAdapter()
 
     var mScanFab: FloatingActionButton? =null
     var mManuallyFab: FloatingActionButton? = null
@@ -28,6 +30,7 @@ class Home : NavDrawerActivity() {
         setContentView(R.layout.activity_home)
         onCreateDrawer()
 
+        lastRecord.adapter=recyclerAdapter
 // Register all the FABs with their IDs
         // This FAB button is the Parent
         mScanFab = findViewById(R.id.scan_fab);

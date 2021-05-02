@@ -14,6 +14,7 @@ import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
 import java.text.SimpleDateFormat
@@ -179,6 +180,7 @@ class AddManually : NavDrawerActivity() {
                     var newExpense =
                         Expense(dateExp, amountExpense.toDouble(), catExpense, name, recSelected)
 
+                    Database.addNewExpense(CURRENT_USER!!.phoneNumber,newExpense.toDBExpense())
                 }
 
             }
