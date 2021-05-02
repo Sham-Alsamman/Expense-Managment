@@ -36,29 +36,7 @@ class Report : NavDrawerActivity() {
 //            a.add("Last year");
 //
 
-        // access the items of the list
-        val spinItems = resources.getStringArray(R.array.TimePeriod)
 
-        // access the spinner
-        val spinner = findViewById<Spinner>(R.id.spin)
-        if (spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, spinItems)
-            spinner.adapter = adapter
-
-            spinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    //
-
-                }
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
-                    spinner.setSelection(0)
-
-                }
-            }
-        }
 
         pieChart = findViewById(R.id.piechart);
 
