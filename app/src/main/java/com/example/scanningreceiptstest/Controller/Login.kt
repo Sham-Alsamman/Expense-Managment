@@ -1,23 +1,26 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isEmpty
+import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
+import com.example.scanningreceiptstest.Model.ExpenseGroup
+import com.example.scanningreceiptstest.Model.PeriodTransactionFilter
 import com.example.scanningreceiptstest.Model.Person
+import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.DBExpense
 import com.example.scanningreceiptstest.database.DBPerson
 import com.example.scanningreceiptstest.database.Database
+import com.example.scanningreceiptstest.database.toPerson
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.profile_activity.*
+import java.text.SimpleDateFormat
+import java.time.YearMonth
+import java.util.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -25,11 +28,61 @@ class Login : NavDrawerActivity() {
 
 
     val reg: String = "\\p{Punct}"
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val PhoneNum = findViewById<TextInputLayout>(R.id.phoneNumET)
         val Password = findViewById<TextInputLayout>(R.id.PasswordEt)
+
+/*
+        var m =  SimpleDateFormat("MM/dd/yyyy").parse("2/5/2021")
+        var m2 =  SimpleDateFormat("MM/dd/yyyy").parse("2/3/2021")
+        var m3 =  SimpleDateFormat("MM/dd/yyyy").parse("2/2/2021")
+
+
+
+        val list: List<Transaction> = emptyList()
+        val list2: MutableList<String> = mutableListOf()
+        var pp :Person = Person("maalk", "+962791558798")
+        */
+         /*
+        pp.transactions[0].date=m;
+        pp.transactions[0].amount=900.00;
+        pp.transactions[1].date=m2;
+        pp.transactions[1].amount=600.00;
+        pp.transactions[2].date=m2;
+        pp.transactions[2].amount=345.00;
+
+
+          */
+          /*
+        val now = Calendar.getInstance()
+        val thisMonth = now.add(Calendar.MONTH,1)
+        Toast.makeText(this, "this  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
+        val twoMonthsAgo = now.add(Calendar.MONTH,-2)
+        Toast.makeText(this, "2  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
+        val threeMonth = now.add(Calendar.MONTH,-1)
+        Toast.makeText(this, "3  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
+        val fourMonth = now.add(Calendar.MONTH,-1)
+        Toast.makeText(this, "4  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
+        now.add(Calendar.YEAR, -1)
+        Toast.makeText(this, "year is   " + now.get(Calendar.YEAR), Toast.LENGTH_LONG).show()
+
+
+           */
+        // val monthYearFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+        /*
+        var intThisMonth =thisMonth.format(monthYearFormatter).toInt()
+        var intTwoMonth =twoMonthsAgo.format(monthYearFormatter).toInt()
+        var intThreeMonth =threeMonth.format(monthYearFormatter).toInt()
+        var intFourMonth =fourMonth.format(monthYearFormatter).toInt()
+
+         */
+
+      // var dd :ExpenseGroup =ExpenseGroup("1",list2)
+      //  var r = ExpenseGroup.filterTransactions(list, PeriodTransactionFilter.Last2Months)
+        // Toast.makeText(this, "list is " + r.toString(), Toast.LENGTH_LONG).show()
 
         PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
@@ -63,8 +116,9 @@ class Login : NavDrawerActivity() {
 
 
     }
-    fun DbResultPerson(person: Person){
-        CURRENT_USER=person
+    fun DbResultPerson(person: DBPerson){
+
+        CURRENT_USER=person.toPerson()
     }
 
 
@@ -93,7 +147,8 @@ class Login : NavDrawerActivity() {
         } else if (PasswordEt.error != null) {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
-           // Database.getUser(phoneNumET.editText?.text!!.toString(),::DbResultPerson)
+            Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+            // should go to the home activity
         }
     }
 

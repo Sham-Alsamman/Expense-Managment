@@ -8,7 +8,12 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.chaos.view.PinView
+import com.example.scanningreceiptstest.Model.Person
+import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.DBExpenseGroup
+import com.example.scanningreceiptstest.database.Database
+import com.example.scanningreceiptstest.database.toExpenseGroup
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -59,6 +64,7 @@ class Verification() : NavDrawerActivity () {
 
         //get phone num from sign up page:
         val phone = intent?.extras?.getString(PHONE_NUMBER_EXTRA)
+
         if(phone != null) userPhoneNum = phone
 
         // Initialize Firebase auth
@@ -221,7 +227,16 @@ class Verification() : NavDrawerActivity () {
             }
             STATE_SIGNIN_SUCCESS -> {
                 /******* automatically go to the next page ***/
-                Toast.makeText(this, "sign up success", Toast.LENGTH_SHORT).show()
+                // get the person object from sign up page
+                val list: List<Transaction> =emptyList<Transaction>()
+                val person2 = intent?.extras?.getString("Person") as Person
+                var dbExpe=DBExpenseGroup()
+                dbExpe._Partners.add(person2.phoneNumber)
+                var ExpenseGroup= Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+                var newPerson=Person(person2.name,person2.phoneNumber,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
+                Database.addNewUser(newPerson.toDBPerson())
+
+                Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, Home::class.java)
                 startActivity(intent)
             }
