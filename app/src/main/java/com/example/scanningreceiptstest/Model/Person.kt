@@ -6,7 +6,7 @@ import com.google.firebase.database.Exclude
 
 
 
-class Person(userName: String, phoneNum: String) {
+class Person(phoneNum: String,userName: String ) {
 
     constructor(
         phoneNum: String,
@@ -18,7 +18,7 @@ class Person(userName: String, phoneNum: String) {
         savingWallet: Double,
         transactions: List<Transaction>
     )
-            : this(userName, phoneNum) {
+            : this(phoneNum,userName) {
         this.groupId = groupId
         this.monthlySalary = monthlySal
         this.totalIncome = totalIncome

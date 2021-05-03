@@ -13,9 +13,15 @@
     <string name="closeDrawer">Close drawer</string>
     <string name="selected_item">Selected item:</string>
     <string-array name="Category">
-        <item>Daily</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
+        <item>Food</item>
+        <item>Shopping</item>
+        <item>Medical and Health</item>
+        <item>Education</item>
+        <item>Housing</item>
+        <item>Entertainment</item>
+        <item>Transposition</item>
+        <item>Other</item>
+
 
     </string-array>
 
