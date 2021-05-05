@@ -1,16 +1,10 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.core.view.isEmpty
 import androidx.core.widget.doOnTextChanged
-import com.example.scanningreceiptstest.Model.Invitation
-import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
@@ -18,12 +12,7 @@ import com.example.scanningreceiptstest.database.DBExpenseGroup
 import com.example.scanningreceiptstest.database.Database
 import com.example.scanningreceiptstest.database.toExpenseGroup
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_invite_partner.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.phoneNumET
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -163,18 +152,23 @@ class SignUp : NavDrawerActivity() {
 
         } else {
             //open verification page:
-            var dbExpe=DBExpenseGroup()
-            var ExpenseGroup= Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+
                 var username=NameET.editText?.text!!.toString()
                 var phoneNUMBER=PhoneETSignUp.editText?.text!!.toString()
 
-                val list: List<Transaction> =emptyList<Transaction>()
-                // error when add person
-                var person = Person(username,phoneNUMBER,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
-                Database.addNewUser(person.toDBPerson())
 
+                // error when add person
+                var person = Person(
+                    username,
+                    phoneNUMBER
+                )
+               // Database.addNewUser(person.toDBPerson())
+
+           // val intent2 = Intent(applicationContext, Verification::class.java)
             val intent = Intent(applicationContext, Verification::class.java)
             intent.putExtra(PHONE_NUMBER_EXTRA, PhoneETSignUp.editText?.text.toString())
+            intent.putExtra("Person", person)
+
             startActivity(intent)
         }
 

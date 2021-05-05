@@ -3,10 +3,12 @@ package com.example.scanningreceiptstest.Model
 import com.example.scanningreceiptstest.database.DBPerson
 import com.google.firebase.database.Exclude
 
+import java.io.Serializable;
 
 
 
-class Person(phoneNum: String,userName: String ) {
+class Person(userName: String, phoneNum: String) :Serializable {
+
 
     constructor(
         phoneNum: String,

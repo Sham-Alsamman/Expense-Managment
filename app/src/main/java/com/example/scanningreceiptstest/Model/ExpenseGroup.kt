@@ -1,6 +1,12 @@
 package com.example.scanningreceiptstest.Model
 
+import android.os.Build
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.scanningreceiptstest.database.*
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
 
@@ -27,28 +33,38 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
     }
 
     companion object {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun filterTransactions(
             list: List<Transaction>,
             periodFilter: PeriodTransactionFilter
         ): List<Transaction> { // should take two parameter transaction list to filter it and filter to filter list  depend on it
             val filteredList = mutableListOf<Transaction>()
 
-            // filtering the transaction list depend on parameter
-            when (periodFilter) {
-                PeriodTransactionFilter.CurrentMonth -> {
+            val now = Calendar.getInstance()
+           //  filtering the transaction list depend on parameter
 
+            var filterList = emptyList<Transaction>()
+
+                when (periodFilter) {
+                PeriodTransactionFilter.CurrentMonth -> {
+                   val thisMonth = now.add(Calendar.MONTH,1)
+                     filterList= list.filter { s -> s.date.month == now.getTime().month } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last2Months -> {
-
+                    val twoMonthsAgo= now.add(Calendar.MONTH,-2)
+                     filterList=  list.filter { s -> s.date.month == now.getTime().month } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last3Months -> {
-
+                    val threeMonth= now.add(Calendar.MONTH,-1)
+                     filterList=   list.filter { s -> s.date.month == now.getTime().month  } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last4Months -> {
-
+                    val fourMonth= now.add(Calendar.MONTH,-1)
+                     filterList=   list.filter { s -> s.date.month == now.getTime().month  } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.OneYear -> {
-
+                    now.add(Calendar.YEAR, -1)
+                     filterList=  list.filter { s -> s.date.year == now.get(Calendar.YEAR) } as  MutableList<Transaction>
                 }
             }
 
@@ -58,7 +74,9 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
             // var monthList: MutableList<String> = month.filter { s -> s == "January" } as MutableList<String>
 
             // return filter list
-            return list
+
+           // return list
+            return filterList
         }
     }
 

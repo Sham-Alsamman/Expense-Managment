@@ -99,6 +99,7 @@ object Database {
             group.groupID = id
             //store the group in the DB
             expenseGroupRef.child(id).setValue(group)
+
         }
         //return the group to the calling class to let it know the new group id
         return group
