@@ -11,6 +11,7 @@ import com.example.scanningreceiptstest.Model.Expense
 import kotlinx.android.synthetic.main.activity_add_income.*
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
 import java.text.SimpleDateFormat
@@ -86,6 +87,8 @@ class AddIncome : NavDrawerActivity() {
 
             if (flag) {
                 var newIncome = Income(DateIncome, amountIN.toDouble(), name)
+
+                Database.addNewIncome(CURRENT_USER!!.phoneNumber,newIncome.toDBIncome())
             }
         }
 

@@ -6,7 +6,9 @@ import com.google.firebase.database.Exclude
 import java.io.Serializable;
 
 
+
 class Person(userName: String, phoneNum: String) :Serializable {
+
 
     constructor(
         phoneNum: String,
@@ -18,7 +20,7 @@ class Person(userName: String, phoneNum: String) :Serializable {
         savingWallet: Double,
         transactions: List<Transaction>
     )
-            : this(userName, phoneNum) {
+            : this(phoneNum,userName) {
         this.groupId = groupId
         this.monthlySalary = monthlySal
         this.totalIncome = totalIncome
