@@ -1,7 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
 import com.example.scanningreceiptstest.database.DBPerson
-import com.google.firebase.database.Exclude
 
 import java.io.Serializable;
 

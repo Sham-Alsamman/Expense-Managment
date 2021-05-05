@@ -54,9 +54,7 @@ dependencies {
     /***/implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.30"
     /***/implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.30"
 
-
-
-
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     //implementation 'androidx.camera:camera-camera2:1.0.0-alpha07'
     testImplementation 'junit:junit:4.12'
@@ -68,7 +66,7 @@ dependencies {
 
     //firebase
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
@@ -83,9 +81,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //firebase ML kit
-    implementation 'com.google.firebase:firebase-core'
-    implementation 'com.google.firebase:firebase-ml-vision'
-
+    //implementation 'com.google.firebase:firebase-core'
+    //implementation 'com.google.firebase:firebase-ml-vision'
 
     //pin view import
     implementation 'com.chaos.view:pinview:1.4.4'

@@ -1,19 +1,14 @@
 package com.example.scanningreceiptstest.Controller
 
+//import com.example.gp22.BottomSheet_Filter
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Spinner
+import com.example.scanningreceiptstest.R
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import kotlinx.android.synthetic.main.activity_report.*
-//import com.example.gp22.BottomSheet_Filter
-import com.example.scanningreceiptstest.R
 
 class Report : NavDrawerActivity() {
 
@@ -42,12 +37,12 @@ class Report : NavDrawerActivity() {
 
         values.add(PieEntry(40f, "Jan"));
         values.add(PieEntry(60f, "Feb"));
-        var bottomsheetFilter = BottomSheet_Filter()
+        /*var bottomsheetFilter = BottomSheet_Filter(this)
 
 
         filter_btn.setOnClickListener {
             bottomsheetFilter.show(supportFragmentManager, "BottomSheetDialog")
-        }
+        }*/
 /*
 
 btn!!.setOnClickListener {

@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_add_manually.*
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
-class BottomSheet_Filter : BottomSheetDialogFragment() {
+class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogFragment() {
 
     var groupFilter: GroupTransactionFilter = GroupTransactionFilter.Individual
     var periodFilter: PeriodTransactionFilter = PeriodTransactionFilter.CurrentMonth
@@ -48,6 +48,7 @@ class BottomSheet_Filter : BottomSheetDialogFragment() {
             }
             Toast.makeText(context, "$groupFilter & $periodFilter", Toast.LENGTH_SHORT).show()
             dismiss()
+            currentActivity.applyFilterChanges()
         }
     }
 
