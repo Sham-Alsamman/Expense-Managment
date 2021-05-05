@@ -33,7 +33,7 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
     }
 
     companion object {
-        @RequiresApi(Build.VERSION_CODES.O)
+        //@RequiresApi(Build.VERSION_CODES.O)
         fun filterTransactions(
             list: List<Transaction>,
             periodFilter: PeriodTransactionFilter
@@ -48,19 +48,19 @@ class ExpenseGroup(val groupID: String, partners: MutableList<String>) {
                 when (periodFilter) {
                 PeriodTransactionFilter.CurrentMonth -> {
                    val thisMonth = now.add(Calendar.MONTH,1)
-                     filterList= list.filter { s -> s.date.month == now.getTime().month } as  MutableList<Transaction>
+                     filterList= list.filter { s -> s.date.month == now.time.month } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last2Months -> {
                     val twoMonthsAgo= now.add(Calendar.MONTH,-2)
-                     filterList=  list.filter { s -> s.date.month == now.getTime().month } as  MutableList<Transaction>
+                     filterList=  list.filter { s -> s.date.month == now.time.month } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last3Months -> {
                     val threeMonth= now.add(Calendar.MONTH,-1)
-                     filterList=   list.filter { s -> s.date.month == now.getTime().month  } as  MutableList<Transaction>
+                     filterList=   list.filter { s -> s.date.month == now.time.month  } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.Last4Months -> {
                     val fourMonth= now.add(Calendar.MONTH,-1)
-                     filterList=   list.filter { s -> s.date.month == now.getTime().month  } as  MutableList<Transaction>
+                     filterList=   list.filter { s -> s.date.month == now.time.month  } as  MutableList<Transaction>
                 }
                 PeriodTransactionFilter.OneYear -> {
                     now.add(Calendar.YEAR, -1)

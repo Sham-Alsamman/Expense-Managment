@@ -61,9 +61,9 @@ class TransactionHistory : NavDrawerActivity() {
 
     private fun onExpenseDBResult(list: List<DBExpense>){
         transactionsList.addAll(list.toExpenseList())
-        transactionsList =
-            ExpenseGroup.filterTransactions(transactionsList, filterSheet.periodFilter).toMutableList()
-        //update the adapter list:
+//        transactionsList =
+//            ExpenseGroup.filterTransactions(transactionsList, /*filterSheet.periodFilter*/PeriodTransactionFilter.OneYear).toMutableList()
+//        //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
         Toast.makeText(this, "expense updated", Toast.LENGTH_SHORT).show()
@@ -71,13 +71,12 @@ class TransactionHistory : NavDrawerActivity() {
 
     private fun onIncomeDBResult(list: List<DBIncome>) {
         transactionsList.addAll(list.toIncomeList())
-        transactionsList =
-            ExpenseGroup.filterTransactions(transactionsList, filterSheet.periodFilter).toMutableList()
-        //update the adapter list:
+//        transactionsList =
+//            ExpenseGroup.filterTransactions(transactionsList, filterSheet.periodFilter).toMutableList()
+//        //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
         Toast.makeText(this, "income updated", Toast.LENGTH_SHORT).show()
-
     }
 
 

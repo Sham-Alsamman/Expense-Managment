@@ -1,12 +1,8 @@
-//package com.example.scanningreceiptstest
 package com.example.scanningreceiptstest.Controller
 
 
-//import android.app.Person
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
-import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database

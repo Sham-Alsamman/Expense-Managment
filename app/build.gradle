@@ -80,14 +80,14 @@ dependencies {
     // Declare the dependency for the Realtime Database library
     implementation 'com.google.firebase:firebase-database-ktx'
 
-    //kapt 'groupId:artifactId:version'
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    //firebase ML kit
+    implementation 'com.google.firebase:firebase-core'
+    implementation 'com.google.firebase:firebase-ml-vision'
 
-    //pin view immport
+
+    //pin view import
     implementation 'com.chaos.view:pinview:1.4.4'
-    //implementation 'com.github.GoodieBag:Pinview:v1.4'
-    //implementation 'com.mukesh:otpview:1.0.1'
 
 }
