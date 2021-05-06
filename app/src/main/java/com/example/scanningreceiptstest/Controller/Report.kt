@@ -1,6 +1,5 @@
 package com.example.scanningreceiptstest.Controller
 
-//import com.example.gp22.BottomSheet_Filter
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -13,7 +12,7 @@ import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.Transaction
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
-class Report : NavDrawerActivity() {
+class Report : NavDrawerActivity(), IFilterSheet {
 
 
     companion object {
@@ -21,7 +20,7 @@ class Report : NavDrawerActivity() {
         lateinit var pieChart: PieChart;
         var valuesList = ArrayList<PieEntry>();
 
-        public fun get_Filtered_transactions(list: List<Transaction>) {
+        fun get_Filtered_transactions(list: List<Transaction>) {
             for (i in list) {
                 i as Expense
                 val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
@@ -70,5 +69,7 @@ class Report : NavDrawerActivity() {
         pieChart.getDescription().text = ""; //the text which will be displayed.
     }
 
-
+    override fun applyFilterChanges() {
+        //
+    }
 }

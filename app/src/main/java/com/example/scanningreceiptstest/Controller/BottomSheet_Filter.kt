@@ -55,7 +55,7 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
             }
 
             Toast.makeText(context, "$groupFilter & $periodFilter", Toast.LENGTH_SHORT).show()
-
+/*
             if (groupFilter == GroupTransactionFilter.Group) {
                 var groupID = CURRENT_USER!!.groupId
 
@@ -72,12 +72,12 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
             }
 
             Report.get_Filtered_transactions(filteredTransactions)
-
+*/
             dismiss()
             currentActivity.applyFilterChanges()
         }
     }
-
+/*
     private fun filterByTime(user: Person, periodFilter: PeriodTransactionFilter) {
         for (i in CURRENT_USER?.transactions!!) {
             if (periodFilter == PeriodTransactionFilter.CurrentMonth) {
@@ -127,11 +127,6 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
     private fun OneYear(givenDate: Date): Boolean {
         val today = Date()
         return givenDate.year == today.year
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
+    }*/
 
 }
