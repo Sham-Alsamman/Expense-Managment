@@ -9,12 +9,31 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.example.scanningreceiptstest.Model.Expense
+import com.example.scanningreceiptstest.Model.Transaction
+import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
 class Report : NavDrawerActivity() {
 
-    private lateinit var pieChart : PieChart;
-    private lateinit var buttonOpenDialog : Button;
-    private var values = ArrayList<PieEntry>();
+
+    companion object {
+
+        lateinit var pieChart: PieChart;
+        var valuesList = ArrayList<PieEntry>();
+
+        public fun get_Filtered_transactions(list: List<Transaction>) {
+            for (i in list) {
+                i as Expense
+                val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
+                for (key in frequenciesByCategory.keys) {
+                    var total = list.size
+
+                    var value = frequenciesByCategory.getValue(key) / total * 1.0f
+                    valuesList.add(PieEntry(value, key))
+                }
+            }
+        }
+    }
 
 
 
@@ -23,52 +42,16 @@ class Report : NavDrawerActivity() {
         setContentView(R.layout.activity_report)
         onCreateDrawer()
 
-//        val a = ArrayList<String>();
-//            a.add("Last month");
-//            a.add("Last 2 months");
-//            a.add("Last 3 months");
-//            a.add("last 4 months");
-//            a.add("Last year");
-//
-
-
 
         pieChart = findViewById(R.id.piechart);
 
-        values.add(PieEntry(40f, "Jan"));
-        values.add(PieEntry(60f, "Feb"));
-        /*var bottomsheetFilter = BottomSheet_Filter(this)
+        valuesList.add(PieEntry(40f, "Jan"));
+        valuesList.add(PieEntry(60f, "Feb"));
 
 
-        filter_btn.setOnClickListener {
-            bottomsheetFilter.show(supportFragmentManager, "BottomSheetDialog")
-        }*/
-/*
-
-btn!!.setOnClickListener {
-                var d = "" //:String = savedDate.text.toString()
-                var t = ""
-
-                if(individual.isSelected)
-                    t = "individual"
-                else if(group.isSelected)
-                    t = "group"
-
-                //go to transactions list and bring the data in date d and group or individally and add the data to generate method
-
-                bottomsheetFilter.dismiss()
-                generate(values)
-            }
-        btn.setOnClickListener {
-        }
-    */
-
-        generate(values)
+        generate(valuesList)
     }
 
-    public fun apply(d:String, t: String){
-        generate(values)
-    }
     public fun generate(values : ArrayList<PieEntry>){
 
         pieChart.setUsePercentValues(true);
