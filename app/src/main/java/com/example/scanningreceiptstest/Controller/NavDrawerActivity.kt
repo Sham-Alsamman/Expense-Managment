@@ -65,6 +65,7 @@ open class NavDrawerActivity : AppCompatActivity() {
 
         intent?.let {
             startActivity(it)
+            finish()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

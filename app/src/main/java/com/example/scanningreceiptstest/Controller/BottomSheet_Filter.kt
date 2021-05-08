@@ -23,8 +23,8 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
 
     var groupFilter: GroupTransactionFilter = GroupTransactionFilter.Individual
     var periodFilter: PeriodTransactionFilter = PeriodTransactionFilter.CurrentMonth
-    var selectedTransactions: ArrayList<Transaction> = ArrayList()
-    var filteredTransactions: ArrayList<Transaction> = ArrayList()
+    //var selectedTransactions: ArrayList<Transaction> = ArrayList()
+    //var filteredTransactions: ArrayList<Transaction> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,56 +77,5 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
             currentActivity.applyFilterChanges()
         }
     }
-/*
-    private fun filterByTime(user: Person, periodFilter: PeriodTransactionFilter) {
-        for (i in CURRENT_USER?.transactions!!) {
-            if (periodFilter == PeriodTransactionFilter.CurrentMonth) {
-                if (inCurrentMonth(i.date)) {
-                    selectedTransactions.add(i)
-                }
-            } else if (periodFilter == PeriodTransactionFilter.Last2Months) {
-                if (Last2Months(i.date)) {
-                    selectedTransactions.add(i)
-                }
-            } else if (periodFilter == PeriodTransactionFilter.Last3Months) {
-                if (Last3Months(i.date)) {
-                    selectedTransactions.add(i)
-                }
-            } else if (periodFilter == PeriodTransactionFilter.Last4Months) {
-                if (Last4Months(i.date)) {
-                    selectedTransactions.add(i)
-                }
-            } else if (periodFilter == PeriodTransactionFilter.OneYear) {
-                if (OneYear(i.date)) {
-                    selectedTransactions.add(i)
-                }
-            }
-        }
-    }
-
-    private fun inCurrentMonth(givenDate: Date): Boolean {
-        val today = Date()
-        return givenDate.month == today.month && givenDate.year == today.year
-    }
-
-    private fun Last2Months(givenDate: Date): Boolean {
-        val today = Date()
-        return givenDate.month > today.month - 2 && givenDate.year == today.year
-    }
-
-    private fun Last3Months(givenDate: Date): Boolean {
-        val today = Date()
-        return givenDate.month > today.month - 3 && givenDate.year == today.year
-    }
-
-    private fun Last4Months(givenDate: Date): Boolean {
-        val today = Date()
-        return givenDate.month > today.month - 4 && givenDate.year == today.year
-    }
-
-    private fun OneYear(givenDate: Date): Boolean {
-        val today = Date()
-        return givenDate.year == today.year
-    }*/
 
 }

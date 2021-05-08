@@ -231,7 +231,7 @@ class Verification() : NavDrawerActivity () {
                 val list: List<Transaction> =emptyList<Transaction>()
                 val person2 = intent?.extras?.getString("Person") as Person
                 var dbExpe=DBExpenseGroup()
-                dbExpe._Partners.add(person2.phoneNumber)
+                dbExpe.partners.add(person2.phoneNumber)
                 var ExpenseGroup= Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
                 var newPerson=Person(person2.name,person2.phoneNumber,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
                 Database.addNewUser(newPerson.toDBPerson())
