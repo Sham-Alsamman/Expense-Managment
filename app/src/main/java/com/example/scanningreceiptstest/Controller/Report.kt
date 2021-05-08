@@ -10,48 +10,39 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.Transaction
+import com.example.scanningreceiptstest.database.CURRENT_GROUP
+import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.DBExpense
+import com.example.scanningreceiptstest.database.Database
+import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
 class Report : NavDrawerActivity(), IFilterSheet {
 
-
-    companion object {
-
-        lateinit var pieChart: PieChart;
-        var valuesList = ArrayList<PieEntry>();
-
-        fun get_Filtered_transactions(list: List<Transaction>) {
-            for (i in list) {
-                i as Expense
-                val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
-                for (key in frequenciesByCategory.keys) {
-                    var total = list.size
-
-                    var value = frequenciesByCategory.getValue(key) / total * 1.0f
-                    valuesList.add(PieEntry(value, key))
-                }
-            }
-        }
-    }
-
-
+    lateinit var pieChart: PieChart;
+    var valuesList = ArrayList<PieEntry>();
+    private val filterSheet = BottomSheet_Filter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         onCreateDrawer()
 
+//
+//        pieChart = findViewById(R.id.piechart);
+//
+//        valuesList.add(PieEntry(40f, "Jan"));
+//        valuesList.add(PieEntry(60f, "Feb"));
+//
 
-        pieChart = findViewById(R.id.piechart);
+        filter_btn.setOnClickListener {
+            filterSheet.show(supportFragmentManager, "BottomSheetDialog")
+        }
 
-        valuesList.add(PieEntry(40f, "Jan"));
-        valuesList.add(PieEntry(60f, "Feb"));
-
-
-        generate(valuesList)
+//        generate(valuesList)
     }
 
-    public fun generate(values : ArrayList<PieEntry>){
+    fun generate(values : ArrayList<PieEntry>){
 
         pieChart.setUsePercentValues(true);
 
@@ -70,6 +61,25 @@ class Report : NavDrawerActivity(), IFilterSheet {
     }
 
     override fun applyFilterChanges() {
-        //
+        Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResult)
+        for(i in CURRENT_GROUP!!.partners)
+            Database.getAllExpenses(i, ::ExpensesDBResult)
+
+        generate(valuesList)
+    }
+
+    private fun ExpensesDBResult(list: List<DBExpense>) {
+        for (i in list) {
+            i as Expense
+            var total = list.size
+
+            val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
+
+            for (key in frequenciesByCategory.keys) {
+                var value = frequenciesByCategory.getValue(key) / total * 1.0f
+                valuesList.add(PieEntry(value, key))
+            }
+        }
+
     }
 }

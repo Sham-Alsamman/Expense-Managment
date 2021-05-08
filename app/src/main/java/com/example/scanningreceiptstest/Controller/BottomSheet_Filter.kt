@@ -75,6 +75,7 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
 */
             dismiss()
             currentActivity.applyFilterChanges()
+
         }
     }
 
