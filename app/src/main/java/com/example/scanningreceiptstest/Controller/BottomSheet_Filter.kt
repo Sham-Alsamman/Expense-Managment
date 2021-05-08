@@ -21,8 +21,11 @@ import kotlin.collections.ArrayList
 
 class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogFragment() {
 
-    var groupFilter: GroupTransactionFilter = GroupTransactionFilter.Individual
-    var periodFilter: PeriodTransactionFilter = PeriodTransactionFilter.CurrentMonth
+
+        var groupFilter: GroupTransactionFilter = GroupTransactionFilter.Individual
+        var periodFilter: PeriodTransactionFilter = PeriodTransactionFilter.CurrentMonth
+
+
     //var selectedTransactions: ArrayList<Transaction> = ArrayList()
     //var filteredTransactions: ArrayList<Transaction> = ArrayList()
 

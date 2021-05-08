@@ -9,6 +9,7 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.example.scanningreceiptstest.Model.Expense
+import com.example.scanningreceiptstest.Model.GroupTransactionFilter
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
@@ -61,14 +62,31 @@ class Report : NavDrawerActivity(), IFilterSheet {
     }
 
     override fun applyFilterChanges() {
-        Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResult)
-        for(i in CURRENT_GROUP!!.partners)
-            Database.getAllExpenses(i, ::ExpensesDBResult)
+
+        if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
+
+            for(i in CURRENT_GROUP!!.partners)
+                Database.getAllExpenses(i, ::ExpensesDBResult)
+
+        } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
+
+            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResult)
+        }
+
 
         generate(valuesList)
     }
 
     private fun ExpensesDBResult(list: List<DBExpense>) {
+        var TransList : ArrayList <Transaction> = ArrayList<Transaction>()
+
+        for ( i in list ) {
+            i as Transaction
+            TransList.add(i)
+        }
+
+        filterByTime(TransList, filterSheet.periodFilter)
+
         for (i in list) {
             i as Expense
             var total = list.size
