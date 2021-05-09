@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.scanningreceiptstest">
 
-<!--    <uses-permission android:name="android.permission.INTERNET" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <!--    <uses-permission android:name="android.permission.INTERNET" />-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
 
     <application
         android:allowBackup="true"
@@ -12,47 +12,49 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        tools:replace="android:supportsRtl"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
 
         <activity
             android:name=".Controller.Verification"
-            android:label="Verification"/>
+            android:label="Verification" />
         <activity android:name=".Controller.WelcomePage" />
-        <activity android:name=".Controller.MainActivity"/>
+        <activity android:name=".Controller.MainActivity" />
         <activity android:name=".Controller.welcomPage2" />
         <activity android:name=".Controller.TestActivity" />
         <activity
             android:name=".Controller.AddIncome"
-            android:label="Add Income"/>
+            android:label="Add Income" />
         <activity
             android:name=".Controller.About"
             android:label="About" />
         <activity
             android:name=".Controller.AddManually"
-            android:label="Add Expense"
-        />
+            android:label="Add Expense" />
         <activity
             android:name=".Controller.Report"
-            android:label="Report"/>
+            android:label="Report" />
         <activity
             android:name=".Controller.Wallet"
-            android:label="Wallet"/>
+            android:label="Wallet" />
         <activity
             android:name=".Controller.InvitePartner"
-            android:label="Invite Partner"/>
+            android:label="Invite Partner" />
         <activity
             android:name=".Controller.Invitations"
-            android:label="Invitations"/>
+            android:label="Invitations" />
         <activity
             android:name=".Controller.TransactionHistory"
-            android:label="Transaction History"/>
+            android:label="Transaction History" />
+        <activity
+            android:name=".Controller.Profile"
+            android:label="Profile" />
         <activity
             android:name=".Controller.SignUp"
-            android:label="Sign up"/>
+            android:label="Sign up" />
         <activity
             android:name=".Controller.Login"
-            android:label="Login"/>
+            android:label="Login" />
         <activity
             android:name=".Controller.Home"
             android:label="@string/app_name">

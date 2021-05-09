@@ -12,18 +12,18 @@ import kotlinx.android.synthetic.main.activity_home.*
 class Home : NavDrawerActivity() {
     private val recyclerAdapter = TransactionHistoryAdapter()
 
-    var mScanFab: FloatingActionButton? =null
-    var mManuallyFab: FloatingActionButton? = null
-    var mAddFab: FloatingActionButton? = null
+    private var mScanFab: FloatingActionButton? =null
+    private var mManuallyFab: FloatingActionButton? = null
+    private var mAddFab: FloatingActionButton? = null
 
 
     // These are taken to make visible and invisible along
     // with FABs
-    var addManuallyActionText: TextView? = null
-    var addScanActionText:   TextView? = null
+    private var addManuallyActionText: TextView? = null
+    private var addScanActionText:   TextView? = null
 
     // to check whether sub FAB buttons are visible or not.
-    var isAllFabsVisible: Boolean? = null
+    private var isAllFabsVisible: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,66 +31,55 @@ class Home : NavDrawerActivity() {
         onCreateDrawer()
 
         lastRecord.adapter=recyclerAdapter
-// Register all the FABs with their IDs
+        // Register all the FABs with their IDs
         // This FAB button is the Parent
-        mScanFab = findViewById(R.id.scan_fab);
-        mManuallyFab = findViewById(R.id.manually_fab);
-        mAddFab = findViewById(R.id.add_fab);
+        mScanFab = findViewById(R.id.scan_fab)
+        mManuallyFab = findViewById(R.id.manually_fab)
+        mAddFab = findViewById(R.id.add_fab)
 
 
-        addManuallyActionText = findViewById(R.id.addManuallyActionText);
-        addScanActionText = findViewById(R.id.addScanActionText);
+        addManuallyActionText = findViewById(R.id.addManuallyActionText)
+        addScanActionText = findViewById(R.id.addScanActionText)
 
-
-
-        mScanFab!!.setVisibility(View.GONE);
-        mManuallyFab!!.setVisibility(View.GONE);
-        addManuallyActionText!!.setVisibility(View.GONE);
-        addScanActionText!!.setVisibility(View.GONE);
-
-        isAllFabsVisible = false;
-
+        hideFabs()
 
         mAddFab!!.setOnClickListener {
 
             if (!isAllFabsVisible!!) {
 
-                mScanFab!!.show();
-                mManuallyFab!!.show();
-                addManuallyActionText!!.setVisibility(View.VISIBLE);
-                addScanActionText!!.setVisibility(View.VISIBLE);
+                mScanFab!!.show()
+                mManuallyFab!!.show()
+                addManuallyActionText!!.visibility = View.VISIBLE
+                addScanActionText!!.visibility = View.VISIBLE
 
-
-                isAllFabsVisible = true;
+                isAllFabsVisible = true
             } else {
-
-                mScanFab!!.hide();
-                mManuallyFab!!.hide();
-                addManuallyActionText!!.setVisibility(View.GONE);
-                addScanActionText!!.setVisibility(View.GONE);
-
-                isAllFabsVisible = false;
+                hideFabs()
             }
-        };
+        }
 
 
 
         mScanFab!!.setOnClickListener{
-
             val intent = Intent("android.media.action.IMAGE_CAPTURE")
             startActivity(intent)
+            hideFabs()
         }
-
-
 
         mManuallyFab!!.setOnClickListener{
-
             val intent = Intent(this,AddManually::class.java)
             startActivity(intent)
-
+            hideFabs()
         }
+    }
 
+    private fun hideFabs() {
+        mScanFab!!.hide()
+        mManuallyFab!!.hide()
+        addManuallyActionText!!.visibility = View.GONE
+        addScanActionText!!.visibility = View.GONE
 
+        isAllFabsVisible = false
     }
 
     fun openAddIncome(view: View) {
