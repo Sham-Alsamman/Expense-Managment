@@ -90,4 +90,7 @@ dependencies {
     //implementation 'com.github.GoodieBag:Pinview:v1.4'
     //implementation 'com.mukesh:otpview:1.0.1'
 
+    // for hash password
+    implementation group:'at.favre.lib',name:'bcrypt' ,version: '0.9.0'
+
 }

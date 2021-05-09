@@ -1,18 +1,21 @@
 package com.example.scanningreceiptstest.Model
 
+import android.widget.EditText
+import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.database.DBPerson
-import com.google.firebase.database.Exclude
+import com.example.scanningreceiptstest.database.Database
+import com.google.firebase.database.*
 
 import java.io.Serializable;
 
 
-
-class Person(userName: String, phoneNum: String) :Serializable {
-
+class Person(userName: String, phoneNum: String,Password: String) :Serializable {
 
     constructor(
         phoneNum: String,
         userName: String,
+        Password: String,
         groupId: String,
         monthlySal: Double,
         totalIncome: Double,
@@ -20,7 +23,7 @@ class Person(userName: String, phoneNum: String) :Serializable {
         savingWallet: Double,
         transactions: List<Transaction>
     )
-            : this(phoneNum,userName) {
+            : this(userName, phoneNum,Password) {
         this.groupId = groupId
         this.monthlySalary = monthlySal
         this.totalIncome = totalIncome
@@ -30,6 +33,7 @@ class Person(userName: String, phoneNum: String) :Serializable {
     }
 
     var name: String = userName
+    var password: String = Password
 
     // the phone number is the ID of person
     var phoneNumber: String = phoneNum
@@ -70,7 +74,40 @@ class Person(userName: String, phoneNum: String) :Serializable {
     fun receiveInvite(homeId: String) {
 
     }
+   /*
+    fun CheckPassword(Phone :String ,Pass:String){
 
+        var p: Person?=null
+        var passval = Pass.toString().trim()
+        Database.userRef.orderByChild("phoneNumber").equalTo(Phone).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (postSnapshot in snapshot.children) {
+                        p= postSnapshot.getValue(Person::class.java)
+
+                    }
+                    val l = p?.password.toString()
+                    val result = BCrypt.verifyer().verify(passval.toCharArray(), l)
+                    if (result.verified) {
+                        // correct password
+                    } else {
+                        //not correct password
+                    }
+                }
+                else{
+                    // phone number not exist
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    */
     fun addExpense(expense: Expense) {
         _transactions.add(expense)
         /****edit total***/
@@ -91,6 +128,7 @@ class Person(userName: String, phoneNum: String) :Serializable {
         return DBPerson(
             phoneNumber,
             name,
+            password,
             groupId,
             monthlySalary,
             totalIncome,

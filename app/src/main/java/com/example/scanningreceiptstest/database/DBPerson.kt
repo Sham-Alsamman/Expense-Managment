@@ -5,11 +5,11 @@ import com.example.scanningreceiptstest.Model.Transaction
 import com.google.firebase.database.Exclude
 
 data class DBPerson(
-    val phoneNumber: String, val name: String, val groupId: String, val monthlySalary: Double,
+    val phoneNumber: String, val name: String, val password :String, val groupId: String, val monthlySalary: Double,
     val totalIncome: Double, val savingAmount: Double, val savingWallet: Double
     //,val expenseList: List<String>, val incomeList: List<String>
 ) {
-    constructor() : this("", "", "", 0.0, 0.0, 0.0, 0.0)
+    constructor() : this("", "", "","", 0.0, 0.0, 0.0, 0.0)
 }
 
 fun DBPerson.toPerson(): Person {
@@ -23,6 +23,7 @@ fun DBPerson.toPerson(): Person {
     return Person(
         phoneNumber,
         name,
+        password,
         groupId,
         monthlySalary,
         totalIncome,

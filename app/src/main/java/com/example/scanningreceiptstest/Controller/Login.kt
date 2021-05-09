@@ -147,7 +147,18 @@ class Login : NavDrawerActivity() {
         } else if (PasswordEt.error != null) {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
-            Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+            if(Database.CheckPassword(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())) {
+                Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+                val i = Intent(applicationContext,Home::class.java)
+                startActivity(i)
+            }
+            else{
+                Toast.makeText(
+                    applicationContext,
+                    "Incorrect Password or Phone Number ",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             // should go to the home activity
         }
     }

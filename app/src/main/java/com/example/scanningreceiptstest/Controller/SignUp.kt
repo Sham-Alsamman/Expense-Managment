@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
@@ -155,12 +156,14 @@ class SignUp : NavDrawerActivity() {
 
                 var username=NameET.editText?.text!!.toString()
                 var phoneNUMBER=PhoneETSignUp.editText?.text!!.toString()
-
+                var password=PasswordETSignUp.editText?.text!!.toString()
+                var hashPass= BCrypt.withDefaults().hashToString(12,password.toCharArray())
 
                 // error when add person
                 var person = Person(
                     username,
-                    phoneNUMBER
+                    phoneNUMBER,
+                    hashPass
                 )
                // Database.addNewUser(person.toDBPerson())
 
