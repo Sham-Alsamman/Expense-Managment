@@ -62,8 +62,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="First Name"
-                    app:boxBackgroundColor="@color/white">
+                    android:hint="First Name">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -94,8 +93,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="Phone Number"
-                    app:boxBackgroundColor="@color/white">
+                    android:hint="Phone Number">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -124,8 +122,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="New Password"
-                    app:boxBackgroundColor="@color/white">
+                    android:hint="New Password">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText

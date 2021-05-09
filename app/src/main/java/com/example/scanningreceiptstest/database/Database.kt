@@ -9,7 +9,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 //variables to hold the current user and expense group
-var CURRENT_USER: Person? = null
+var CURRENT_USER: Person? = Person("Sham", "+123456789")//null
 var CURRENT_GROUP: ExpenseGroup? = null
 
 object Database {
