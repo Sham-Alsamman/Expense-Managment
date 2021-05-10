@@ -66,23 +66,23 @@ dependencies {
 
     //firebase
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    //implementation platform('com.google.firebase:firebase-bom:27.1.0')
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies
-    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.3'
 
     // Declare the dependency for the Firebase Authentication library
-    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx:20.0.4'
 
     // Declare the dependency for the Realtime Database library
-    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx:19.7.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //firebase ML kit
     //implementation 'com.google.firebase:firebase-core'
-    //implementation 'com.google.firebase:firebase-ml-vision'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
 
     //pin view import
     implementation 'com.chaos.view:pinview:1.4.4'
