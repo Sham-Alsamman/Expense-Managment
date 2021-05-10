@@ -2,6 +2,7 @@ package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
 import android.view.View
+import android.widget.CursorAdapter
 import android.widget.Toast
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
@@ -10,6 +11,7 @@ import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_invite_partner.*
+import java.util.*
 
 class InvitePartner : NavDrawerActivity() {
 
@@ -69,11 +71,15 @@ class InvitePartner : NavDrawerActivity() {
         //https://www.youtube.com/watch?v=I84JmwBRJTY
         //https://blog.usejournal.com/send-device-to-device-push-notifications-without-server-side-code-238611c143
 
+
         if (CURRENT_USER != null && CURRENT_GROUP != null) {
-            val invitation = Invitation(CURRENT_USER!!.name, phoneNum, CURRENT_GROUP!!.groupID, InvitationStatus.NEW)
+            val invitation = Invitation("", CURRENT_USER!!.name, phoneNum, CURRENT_GROUP!!.groupID, InvitationStatus.NEW)
             Database.sendInvitation(invitation.toDBInvitation())
 
             Toast.makeText(this, "Invitation sent successfully", Toast.LENGTH_SHORT).show()
+
+            invitePhoneNumET.setEndIconDrawable(0)
+            invitePhoneNumET.error = null
         }
         else
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show()

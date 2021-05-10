@@ -2,79 +2,48 @@ package com.example.scanningreceiptstest.Controller
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Spinner
+import com.example.scanningreceiptstest.R
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.example.scanningreceiptstest.Model.Expense
+import com.example.scanningreceiptstest.Model.GroupTransactionFilter
+import com.example.scanningreceiptstest.Model.Transaction
+import com.example.scanningreceiptstest.database.CURRENT_GROUP
+import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.DBExpense
+import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_report.*
-//import com.example.gp22.BottomSheet_Filter
-import com.example.scanningreceiptstest.R
+import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
-class Report : NavDrawerActivity() {
+class Report : NavDrawerActivity(), IFilterSheet {
 
-    private lateinit var pieChart : PieChart;
-    private lateinit var buttonOpenDialog : Button;
-    private var values = ArrayList<PieEntry>();
-
-
+    lateinit var pieChart: PieChart;
+    var valuesList = ArrayList<PieEntry>();
+    private val filterSheet = BottomSheet_Filter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         onCreateDrawer()
 
-//        val a = ArrayList<String>();
-//            a.add("Last month");
-//            a.add("Last 2 months");
-//            a.add("Last 3 months");
-//            a.add("last 4 months");
-//            a.add("Last year");
+//
+//        pieChart = findViewById(R.id.piechart);
+//
+//        valuesList.add(PieEntry(40f, "Jan"));
+//        valuesList.add(PieEntry(60f, "Feb"));
 //
 
-
-
-        pieChart = findViewById(R.id.piechart);
-
-        values.add(PieEntry(40f, "Jan"));
-        values.add(PieEntry(60f, "Feb"));
-        var bottomsheetFilter = BottomSheet_Filter()
-
-
         filter_btn.setOnClickListener {
-            bottomsheetFilter.show(supportFragmentManager, "BottomSheetDialog")
+            filterSheet.show(supportFragmentManager, "BottomSheetDialog")
         }
-/*
 
-btn!!.setOnClickListener {
-                var d = "" //:String = savedDate.text.toString()
-                var t = ""
-
-                if(individual.isSelected)
-                    t = "individual"
-                else if(group.isSelected)
-                    t = "group"
-
-                //go to transactions list and bring the data in date d and group or individally and add the data to generate method
-
-                bottomsheetFilter.dismiss()
-                generate(values)
-            }
-        btn.setOnClickListener {
-        }
-    */
-
-        generate(values)
+//        generate(valuesList)
     }
 
-    public fun apply(d:String, t: String){
-        generate(values)
-    }
-    public fun generate(values : ArrayList<PieEntry>){
+    fun generate(values : ArrayList<PieEntry>){
 
         pieChart.setUsePercentValues(true);
 
@@ -92,5 +61,43 @@ btn!!.setOnClickListener {
         pieChart.getDescription().text = ""; //the text which will be displayed.
     }
 
+    override fun applyFilterChanges() {
 
+        if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
+
+            for(i in CURRENT_GROUP!!.partners)
+                Database.getAllExpenses(i, ::ExpensesDBResult)
+
+        } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
+
+            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResult)
+        }
+
+
+        generate(valuesList)
+    }
+
+    private fun ExpensesDBResult(list: List<DBExpense>) {
+        var TransList : ArrayList <Transaction> = ArrayList<Transaction>()
+
+        for ( i in list ) {
+            i as Transaction
+            TransList.add(i)
+        }
+
+        filterByTime(TransList, filterSheet.periodFilter)
+
+        for (i in list) {
+            i as Expense
+            var total = list.size
+
+            val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
+
+            for (key in frequenciesByCategory.keys) {
+                var value = frequenciesByCategory.getValue(key) / total * 1.0f
+                valuesList.add(PieEntry(value, key))
+            }
+        }
+
+    }
 }

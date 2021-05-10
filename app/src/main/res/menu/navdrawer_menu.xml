@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+        <item
+            android:id="@+id/navMenu_editProfile"
+            android:title="Edit profile"/>
+
     <group android:id="@+id/menu_group1">
         <item
             android:id="@+id/navMenu_home"

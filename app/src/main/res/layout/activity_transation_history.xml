@@ -17,7 +17,10 @@
             style="@style/main_layout_2_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background2">
+            android:background="@drawable/background2"
+            android:paddingBottom="0dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp">
 
             <TextView
                 android:id="@+id/textView12"

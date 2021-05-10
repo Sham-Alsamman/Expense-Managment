@@ -11,7 +11,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 //variables to hold the current user and expense group
-var CURRENT_USER: Person? = null
+var CURRENT_USER: Person? = Person("Sham", "+123456789")//null
 var CURRENT_GROUP: ExpenseGroup? = null
 
 object Database {
@@ -30,7 +30,7 @@ object Database {
         //where to store password????
         ////get: ref.users.phoneNum
 
-        userRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
+        userRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val user = snapshot.getValue(DBPerson::class.java)
                 if (user != null)
@@ -47,7 +47,7 @@ object Database {
         //get the (current) expense group using the groupId in the Person obj
         ////get: ref.expense_group.groupId
 
-        expenseGroupRef.child(groupId).addValueEventListener(object : ValueEventListener {
+        expenseGroupRef.child(groupId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val group = snapshot.getValue(DBExpenseGroup::class.java)
                 if (group != null)
@@ -138,7 +138,6 @@ object Database {
             group.groupID = id
             //store the group in the DB
             expenseGroupRef.child(id).setValue(group)
-
         }
         //return the group to the calling class to let it know the new group id
         return group
@@ -164,8 +163,11 @@ object Database {
     fun sendInvitation(invitation: DBInvitation) {
         //add the invitation to the user's invitations
         ////add to the list in: ref.invitation.phoneNum.push()
-
-        invitationRef.child(invitation.receiverPhoneNum).push().setValue(invitation)
+        val id = invitationRef.push().key
+        if (id != null) {
+            invitation.id = id
+            invitationRef.child(invitation.receiverPhoneNum).child(id).setValue(invitation)
+        }
     }
 
     /****Transaction history and Report and Home?****/
@@ -173,7 +175,7 @@ object Database {
         //get a list of all user's expenses
         ////get the list: ref.expense.phoneNum
 
-        expenseRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
+        expenseRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val expenseList = mutableListOf<DBExpense>()
 
@@ -196,7 +198,7 @@ object Database {
         //get a list of all user's incomes
         ////get the list: ref.income.phoneNum
 
-        incomeRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
+        incomeRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val incomeList = mutableListOf<DBIncome>()
                 for (data in snapshot.children) {
@@ -224,7 +226,7 @@ object Database {
         ////get the list: ref.invitation.phoneNum
 
         //get all invitations sent to this phoneNum:
-        invitationRef.child(phoneNum).addValueEventListener(object : ValueEventListener {
+        invitationRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //a list to store the invitations:
                 val invitations = mutableListOf<DBInvitation>()
@@ -261,5 +263,24 @@ object Database {
         hashMap.put("totalIncome",user.totalIncome)
 
         userRef.child(phoneNum).updateChildren(hashMap)
+    }
+
+    fun updateInvitation(phoneNum: String, invitation: DBInvitation) {
+        val hashMap = HashMap<String, Any>()
+        hashMap["id"] = invitation.id
+        hashMap["senderName"] = invitation.senderName
+        hashMap["receiverPhoneNum"] = invitation.receiverPhoneNum
+        hashMap["groupID"] = invitation.groupID
+        hashMap["invitationStatus"] = invitation.invitationStatus
+
+        invitationRef.child(phoneNum).child(invitation.id).updateChildren(hashMap)
+    }
+
+    fun updateExpenseGroup(groug: DBExpenseGroup) {
+        val hashMap = HashMap<String, Any>()
+        hashMap["groupID"] = groug.groupID
+        hashMap["partners"] = groug.partners
+
+        expenseGroupRef.child(groug.groupID).updateChildren(hashMap)
     }
 }
