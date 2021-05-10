@@ -29,12 +29,12 @@ class Report : NavDrawerActivity(), IFilterSheet {
         setContentView(R.layout.activity_report)
         onCreateDrawer()
 
-//
-//        pieChart = findViewById(R.id.piechart);
-//
+
+        pieChart = findViewById(R.id.piechart);
+
 //        valuesList.add(PieEntry(40f, "Jan"));
 //        valuesList.add(PieEntry(60f, "Feb"));
-//
+
 
         filter_btn.setOnClickListener {
             filterSheet.show(supportFragmentManager, "BottomSheetDialog")
