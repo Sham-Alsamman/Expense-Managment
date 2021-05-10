@@ -47,14 +47,14 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
                 Database.getAllIncomes(id, ::onIncomeDBResult)
             }
         }else {
-            Database.getAllExpenses("+123456789", ::onExpenseDBResult)
-            Database.getAllIncomes("+123456789", ::onIncomeDBResult)
+            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::onExpenseDBResult)
+            Database.getAllIncomes(CURRENT_USER!!.phoneNumber, ::onIncomeDBResult)
         }
     }
 
     private fun onExpenseDBResult(list: List<DBExpense>){
         transactionsList.addAll(list.toExpenseList())
-        /****filter******/
+
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter) as MutableList<Transaction>
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
@@ -64,7 +64,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
 
     private fun onIncomeDBResult(list: List<DBIncome>) {
         transactionsList.addAll(list.toIncomeList())
-        /****filter******/
+
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter) as MutableList<Transaction>
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList

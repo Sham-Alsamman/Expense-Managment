@@ -228,18 +228,36 @@ class Verification() : NavDrawerActivity () {
             STATE_SIGNIN_SUCCESS -> {
                 /******* automatically go to the next page ***/
                 // get the person object from sign up page
-                val list: List<Transaction> =emptyList<Transaction>()
-                val person2 = intent?.extras?.getString("Person") as Person
-                var dbExpe=DBExpenseGroup()
-                dbExpe.partners.add(person2.phoneNumber)
-                var ExpenseGroup= Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
-                var newPerson=Person(person2.name,person2.phoneNumber,person2.password,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
-                Database.addNewUser(newPerson.toDBPerson())
+                val list: List<Transaction> = mutableListOf()
+                val person2 = intent?.extras?.get("Person") as Person?
+                if (person2 != null) {
+                    var dbExpe = DBExpenseGroup()
+                    dbExpe.partners.add(person2.phoneNumber)
+                    var ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+                    var newPerson = Person(
+                        person2.phoneNumber,
+                        person2.name,
+                        person2.password,
+                        ExpenseGroup.groupID,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        list
+                    )
+                    Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
 
-                Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, Home::class.java)
-                startActivity(intent)
+
+                }
             }
+        }
+    }
+
+    fun onUserAdded(successful: Boolean) {
+        if (successful){
+            Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
         }
     }
 

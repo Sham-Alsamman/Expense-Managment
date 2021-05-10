@@ -46,7 +46,7 @@ class Profile : NavDrawerActivity() {
 
             var phone2=findViewById<EditText>(R.id.phoneNum).text.toString()
 
-            var person=Person(phone2,userName2, CURRENT_USER!!.groupId,CURRENT_USER!!.monthlySalary,CURRENT_USER!!.totalIncome,
+            var person=Person(phone2,userName2, CURRENT_USER!!.password, CURRENT_USER!!.groupId,CURRENT_USER!!.monthlySalary,CURRENT_USER!!.totalIncome,
                 CURRENT_USER!!.savingAmount,CURRENT_USER!!.savingWallet,CURRENT_USER!!.transactions)
 
             Database.updateUserInfo(phone2,person.toDBPerson())

@@ -1,12 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
-import android.widget.EditText
-import android.widget.Toast
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.database.DBPerson
-import com.example.scanningreceiptstest.database.Database
-import com.google.firebase.database.*
-
 import java.io.Serializable;
 
 
@@ -38,7 +32,7 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
     // the phone number is the ID of person
     var phoneNumber: String = phoneNum
 
-    var groupId: String = ""  //should be read only (val), auto value??
+    var groupId: String = ""
 
     var monthlySalary: Double = 0.0
         set(value) { //instead of setMonthlySalary() method
@@ -66,8 +60,8 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
 
 
     //not here?
-    fun acceptInvitation(homeId: String) {
-
+    fun changeGroup(newGroupId: String) {
+        groupId = newGroupId
     }
 
     //not here?

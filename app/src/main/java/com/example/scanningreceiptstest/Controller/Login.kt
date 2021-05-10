@@ -13,6 +13,7 @@ import com.example.scanningreceiptstest.database.DBPerson
 import com.example.scanningreceiptstest.database.Database
 import com.example.scanningreceiptstest.database.toPerson
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
 import java.text.SimpleDateFormat
 import java.util.regex.Matcher
@@ -109,8 +110,11 @@ class Login : NavDrawerActivity() {
         }
     }
 
-    fun DbResultPerson(person: DBPerson) {
+    private fun DbResultPerson(person: DBPerson) {
         CURRENT_USER = person.toPerson()
+        val i = Intent(applicationContext,Home::class.java)
+        startActivity(i)
+        finish()
     }
 
 
@@ -139,19 +143,24 @@ class Login : NavDrawerActivity() {
         } else if (PasswordEt.error != null) {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
-            if(Database.CheckPassword(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())) {
-                Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
-                val i = Intent(applicationContext,Home::class.java)
-                startActivity(i)
-            }
-            else{
-                Toast.makeText(
-                    applicationContext,
-                    "Incorrect Password or Phone Number ",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            // should go to the home activity
+                checkIfPasswordExist(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())
+
+        }
+    }
+    private fun checkIfPasswordExist(phoneNum: String, Pass :String) {
+        //check if the phone number and password exists in the database or not
+        Database.CheckPassword(phoneNum,Pass,::onDBResult)
+    }
+
+    private fun onDBResult(exist: Boolean){
+        if(exist) {
+            Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+        }else {
+            Toast.makeText(
+                applicationContext,
+                "Incorrect Password or Phone Number ",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
