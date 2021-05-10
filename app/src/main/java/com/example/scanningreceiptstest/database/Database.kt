@@ -1,5 +1,7 @@
 package com.example.scanningreceiptstest.database
 
+import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.example.scanningreceiptstest.Model.Person
 import com.google.firebase.database.DataSnapshot
@@ -57,6 +59,43 @@ object Database {
             }
         })
     }
+
+    fun CheckPassword(Phone :String ,Pass:String) :Boolean{
+        var flag=true
+        var p: Person?=null
+        var passval = Pass.toString().trim()
+        userRef.orderByChild("phoneNumber").equalTo(Phone).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (postSnapshot in snapshot.children) {
+                        p= postSnapshot.getValue(Person::class.java)
+                    }
+                    val l = p?.password.toString()
+                    val result = BCrypt.verifyer().verify(passval.toCharArray(), l)
+                    if (result.verified) {
+                        // correct password
+                       flag=true
+                    } else {
+                        //not correct password
+                       flag=false
+                    }
+                }
+                else{
+                   // phone number not exist
+                    flag=false
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return  flag
+    }
+
+
 
     /****Sign up****/
 

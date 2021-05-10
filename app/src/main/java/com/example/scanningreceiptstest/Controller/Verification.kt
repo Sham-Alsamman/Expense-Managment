@@ -233,7 +233,7 @@ class Verification() : NavDrawerActivity () {
                 var dbExpe=DBExpenseGroup()
                 dbExpe.partners.add(person2.phoneNumber)
                 var ExpenseGroup= Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
-                var newPerson=Person(person2.name,person2.phoneNumber,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
+                var newPerson=Person(person2.name,person2.phoneNumber,person2.password,ExpenseGroup.groupID,0.0,0.0,0.0,0.0,list)
                 Database.addNewUser(newPerson.toDBPerson())
 
                 Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
