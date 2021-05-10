@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import kotlinx.android.synthetic.main.main_menu_test.*
 import kotlinx.android.synthetic.main.main_menu_test.navView
@@ -73,6 +74,8 @@ open class NavDrawerActivity : AppCompatActivity() {
             }
             R.id.navMenu_logout -> {
                 /***********logout form the current account************/
+                CURRENT_USER = null
+                CURRENT_GROUP = null
                 intent = Intent(applicationContext, Login::class.java)
             }
         }

@@ -109,8 +109,11 @@ class Login : NavDrawerActivity() {
         }
     }
 
-    fun DbResultPerson(person: DBPerson) {
+    private fun DbResultPerson(person: DBPerson) {
         CURRENT_USER = person.toPerson()
+        val i = Intent(applicationContext,Home::class.java)
+        startActivity(i)
+        finish()
     }
 
 
@@ -140,9 +143,8 @@ class Login : NavDrawerActivity() {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
             if(Database.CheckPassword(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())) {
+                Toast.makeText(this, "Processing.. please wait", Toast.LENGTH_SHORT).show()
                 Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
-                val i = Intent(applicationContext,Home::class.java)
-                startActivity(i)
             }
             else{
                 Toast.makeText(

@@ -11,7 +11,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 //variables to hold the current user and expense group
-var CURRENT_USER: Person? = Person("Sham", "+123456789", "")//null
+var CURRENT_USER: Person? = /*Person("Sham", "+123456789", "")*/null
 var CURRENT_GROUP: ExpenseGroup? = null
 
 object Database {
@@ -62,14 +62,14 @@ object Database {
 
     fun CheckPassword(Phone :String ,Pass:String) :Boolean{
         var flag=true
-        var p: Person?=null
+        var p: DBPerson?=null
         var passval = Pass.toString().trim()
         userRef.orderByChild("phoneNumber").equalTo(Phone).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (postSnapshot in snapshot.children) {
-                        p= postSnapshot.getValue(Person::class.java)
+                        p= postSnapshot.getValue(DBPerson::class.java)
                     }
                     val l = p?.password.toString()
                     val result = BCrypt.verifyer().verify(passval.toCharArray(), l)
@@ -120,11 +120,16 @@ object Database {
     }
 
 
-    fun addNewUser(user: DBPerson) {
+    fun addNewUser(user: DBPerson, onAddedSuccessfully: (Boolean) -> Unit) {
         //add this user to the DB (the id is the phone num)
         ////create: ref.users.phoneNum
 
-        userRef.child(user.phoneNumber).setValue(user)
+        userRef.child(user.phoneNumber).setValue(user).addOnCompleteListener { task ->
+            if (task.isSuccessful)
+                onAddedSuccessfully(true)
+            else
+                onAddedSuccessfully(false)
+        }
     }
 
     //this method is called when a new user sign up, to put him in a new group

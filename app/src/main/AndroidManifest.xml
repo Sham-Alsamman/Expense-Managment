@@ -53,10 +53,10 @@
             android:name=".Controller.SignUp"
             android:label="Sign up" />
         <activity
-            android:name=".Controller.Login"
-            android:label="Login" />
-        <activity
             android:name=".Controller.Home"
+            android:label="Home" />
+        <activity
+            android:name=".Controller.Login"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
