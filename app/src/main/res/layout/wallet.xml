@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/monthlyIncome"
+                android:id="@+id/monthlyIncomeBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -79,6 +79,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/monthlyIncome"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberDecimal" />
@@ -86,13 +87,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/SavingAmountLabel"
+                android:id="@+id/SavingRateLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="110dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                android:text="Saving Amount"
+                android:text="Saving Rate"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,13 +105,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="90dp"
-                android:hint="Income"
+                android:hint="Rate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/savingRate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="numberDecimal" />
