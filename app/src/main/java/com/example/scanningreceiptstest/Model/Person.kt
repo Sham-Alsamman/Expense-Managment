@@ -1,11 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
-import android.widget.EditText
-import android.widget.Toast
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.database.DBPerson
-
-
 import java.io.Serializable;
 
 
