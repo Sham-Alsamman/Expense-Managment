@@ -11,10 +11,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.GroupTransactionFilter
 import com.example.scanningreceiptstest.Model.Transaction
-import com.example.scanningreceiptstest.database.CURRENT_GROUP
-import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.DBExpense
-import com.example.scanningreceiptstest.database.Database
+import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_report.*
 import kotlinx.android.synthetic.main.bottomsheet_filter.*
 
@@ -64,9 +61,9 @@ class Report : NavDrawerActivity(), IFilterSheet {
     override fun applyFilterChanges() {
 
         if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
-
-            for(i in CURRENT_GROUP!!.partners)
-                Database.getAllExpenses(i, ::ExpensesDBResult)
+            if(CURRENT_GROUP!!.partners!=null)
+                for(i in CURRENT_GROUP!!.partners!!)
+                    Database.getAllExpenses(i, ::ExpensesDBResult)
 
         } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
 
@@ -81,20 +78,21 @@ class Report : NavDrawerActivity(), IFilterSheet {
         var TransList : ArrayList <Transaction> = ArrayList<Transaction>()
 
         for ( i in list ) {
-            i as Transaction
-            TransList.add(i)
+            var e = i.toExpense()
+            TransList.add(e)
         }
 
         filterByTime(TransList, filterSheet.periodFilter)
 
         for (i in list) {
-            i as Expense
+            var e = i.toExpense()
+
             var total = list.size
 
-            val frequenciesByCategory = list.groupingBy { i.category }.eachCount()
+            val frequenciesByCategory = list.groupingBy { e.category }.eachCount()
 
-            for (key in frequenciesByCategory.keys) {
-                var value = frequenciesByCategory.getValue(key) / total * 1.0f
+            for (key in frequenciesByCategory!!.keys) {
+                var value = frequenciesByCategory.getValue(key) / total!! * 1.0f
                 valuesList.add(PieEntry(value, key))
             }
         }
