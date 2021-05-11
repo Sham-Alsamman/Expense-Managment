@@ -60,7 +60,7 @@ object Database {
         })
     }
 
-    fun CheckPassword(Phone :String ,Pass:String) :Boolean{
+    fun CheckPassword(Phone :String ,Pass:String ,onDataRetrieved: (Boolean) -> Unit) {
         var flag=true
         var p: DBPerson?=null
         var passval = Pass.toString().trim()
@@ -85,6 +85,7 @@ object Database {
                    // phone number not exist
                     flag=false
                 }
+                onDataRetrieved(flag)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -92,7 +93,7 @@ object Database {
             }
 
         })
-        return  flag
+
     }
 
 

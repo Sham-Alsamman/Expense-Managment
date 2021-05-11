@@ -13,6 +13,7 @@ import com.example.scanningreceiptstest.database.DBPerson
 import com.example.scanningreceiptstest.database.Database
 import com.example.scanningreceiptstest.database.toPerson
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
 import java.text.SimpleDateFormat
 import java.util.regex.Matcher
@@ -142,18 +143,24 @@ class Login : NavDrawerActivity() {
         } else if (PasswordEt.error != null) {
             Toast.makeText(applicationContext, PasswordEt.error, Toast.LENGTH_LONG).show()
         } else {
-            if(Database.CheckPassword(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())) {
-                Toast.makeText(this, "Processing.. please wait", Toast.LENGTH_SHORT).show()
-                Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
-            }
-            else{
-                Toast.makeText(
-                    applicationContext,
-                    "Incorrect Password or Phone Number ",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            // should go to the home activity
+                checkIfPasswordExist(phoneNumET.editText?.text.toString(),PasswordEt.editText?.text.toString())
+
+        }
+    }
+    private fun checkIfPasswordExist(phoneNum: String, Pass :String) {
+        //check if the phone number and password exists in the database or not
+        Database.CheckPassword(phoneNum,Pass,::onDBResult)
+    }
+
+    private fun onDBResult(exist: Boolean){
+        if(exist) {
+            Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+        }else {
+            Toast.makeText(
+                applicationContext,
+                "Incorrect Password or Phone Number ",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
