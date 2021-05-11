@@ -54,11 +54,13 @@
                 android:id="@+id/transactionRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/filter_btn"
+                tools:listitem="@layout/transaction_history_list_item"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="10dp">
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -19,8 +18,10 @@
         android:id="@+id/userNameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Ahmed mohammad"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        tools:text="Ahmed mohammad"
         android:textColor="#000000"
         android:textSize="30sp" />
 </LinearLayout>

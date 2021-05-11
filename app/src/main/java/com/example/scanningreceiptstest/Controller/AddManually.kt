@@ -26,8 +26,8 @@ class AddManually : NavDrawerActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
 
-        var recSelected:recEnum
-        var catSelected:String
+        var recSelected: recEnum
+        var catSelected: String
         val categoryItems = resources.getStringArray(R.array.Category)
 
         val spinnerRecurrent = findViewById<Spinner>(R.id.spinner)
@@ -43,11 +43,11 @@ class AddManually : NavDrawerActivity() {
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>,
-                    view: View, position: Int, id: Long
+                    view: View?, position: Int, id: Long
                 ) {
                     //Toast.makeText(this@AddManually, getString(R.string.selected_item) + " " +
-                     //       "" +spinner.selectedItem.toString(), Toast.LENGTH_SHORT
-                   // ).show()
+                    //       "" +spinner.selectedItem.toString(), Toast.LENGTH_SHORT
+                    // ).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -83,110 +83,109 @@ class AddManually : NavDrawerActivity() {
             }
 
 
-        var name = ""
-        var catExpense = ""
-        var amountExpense = ""
-        var date = arrayOf<String>()
-        var dateExp: Date = Date()
-        var dayInt: Int = 0
-        var monthInt: Int = 0
-        var yearInt: Int = 0
-        var flag = true
+            var name = ""
+            var catExpense = ""
+            var amountExpense = ""
+            var date = arrayOf<String>()
+            var dateExp: Date = Date()
+            var dayInt: Int = 0
+            var monthInt: Int = 0
+            var yearInt: Int = 0
+            var flag = true
 
 
-        outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
-            outlinedTextField.error = null
-        }
-       /* outCat2.editText?.doOnTextChanged { text, start, before, count ->
-            outCat2.error = null
-        }*/
-
-        outDate1.editText?.doOnTextChanged { text, start, before, count ->
-            outDate1.error = null
-        }
-
-        outAmountManually.editText?.doOnTextChanged { text, start, before, count ->
-            outAmountManually.error = null
-        }
-        /*  outDate1.editText?.doOnTextChanged { text, start, before, count ->
-            outlinedTextField.error=null
-        }*/
-        outDate1.setEndIconOnClickListener(View.OnClickListener {
-            showDatePicker()
-        })
-
-        saveExpense.setOnClickListener {
-            if (!NameIn.text.isNullOrEmpty()) {
-                name = NameIn.text.toString()
+            outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
                 outlinedTextField.error = null
-            } else {
-                outlinedTextField.error = "Please enter the Name of Receipt"
-                flag = false
             }
-          /*  if (!catIn.text.isNullOrEmpty()) {
-                catExpense = catIn.text.toString()
-                outCat2.error = null
-            } else {
-                outCat2.error = "Please enter the Category of Receipt"
-                flag = false
-            }*/
+            /* outCat2.editText?.doOnTextChanged { text, start, before, count ->
+                 outCat2.error = null
+             }*/
 
-            if (!amountIn.text.isNullOrEmpty()) {
-                amountExpense = amountIn.text.toString()
-                outAmountManually.error = null
-            } else {
-                outAmountManually.error = "Please enter the amount of Receipt"
-                flag = false
-            }
-
-            if (!dateIn.text.isNullOrEmpty()) {
+            outDate1.editText?.doOnTextChanged { text, start, before, count ->
                 outDate1.error = null
-                date = dateIn.text.toString().split("/").toTypedArray()
-                dayInt = date[0].toInt()
-                monthInt = date[1].toInt()
-                yearInt = date[2].toInt()
-
-                dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
-                Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
-                /*
-                val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-                val date: Date = dateFormat.parse("2020-1-1")
-                val m = Expense(date, 200.00, "Clothes", "shop", recEnum.Daily)
-                Database.addNewExpense("+962791558798",m.toDBExpense())
-                */
-            } else {
-                outDate1.error = "Please Enter The Date Of Receipt"
-                flag = false
             }
 
-                 recSelected= spinner.selectedItem as recEnum
-                 catSelected=spinnerCat.selectedItem as String
+            outAmountManually.editText?.doOnTextChanged { text, start, before, count ->
+                outAmountManually.error = null
+            }
+            /*  outDate1.editText?.doOnTextChanged { text, start, before, count ->
+                outlinedTextField.error=null
+            }*/
+            outDate1.setEndIconOnClickListener(View.OnClickListener {
+                showDatePicker()
+            })
 
-           /* Toast.makeText(this@AddManually, recSelected.toString(), Toast.LENGTH_SHORT).show()
-            Toast.makeText(this@AddManually,catSelected, Toast.LENGTH_SHORT).show()*/
+            saveExpense.setOnClickListener {
+                if (!NameIn.text.isNullOrEmpty()) {
+                    name = NameIn.text.toString()
+                    outlinedTextField.error = null
+                } else {
+                    outlinedTextField.error = "Please enter the Name of Receipt"
+                    flag = false
+                }
+                /*  if (!catIn.text.isNullOrEmpty()) {
+                      catExpense = catIn.text.toString()
+                      outCat2.error = null
+                  } else {
+                      outCat2.error = "Please enter the Category of Receipt"
+                      flag = false
+                  }*/
 
-            /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
-              Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
-              Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
+                if (!amountIn.text.isNullOrEmpty()) {
+                    amountExpense = amountIn.text.toString()
+                    outAmountManually.error = null
+                } else {
+                    outAmountManually.error = "Please enter the amount of Receipt"
+                    flag = false
+                }
 
-            // for(item in date)
-            //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
+                if (!dateIn.text.isNullOrEmpty()) {
+                    outDate1.error = null
+                    date = dateIn.text.toString().split("/").toTypedArray()
+                    dayInt = date[0].toInt()
+                    monthInt = date[1].toInt()
+                    yearInt = date[2].toInt()
 
-            /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
-             Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
+                    dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
+                    Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
+                    /*
+                    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+                    val date: Date = dateFormat.parse("2020-1-1")
+                    val m = Expense(date, 200.00, "Clothes", "shop", recEnum.Daily)
+                    Database.addNewExpense("+962791558798",m.toDBExpense())
+                    */
+                } else {
+                    outDate1.error = "Please Enter The Date Of Receipt"
+                    flag = false
+                }
+
+                recSelected = spinner.selectedItem as recEnum
+                catSelected = spinnerCat.selectedItem as String
+
+                /* Toast.makeText(this@AddManually, recSelected.toString(), Toast.LENGTH_SHORT).show()
+                 Toast.makeText(this@AddManually,catSelected, Toast.LENGTH_SHORT).show()*/
+
+                /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
+                  Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
+                  Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
+
+                // for(item in date)
+                //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
+
+                /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
+                 Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
+                 Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
 
                 if (flag) {
                     var newExpense =
                         Expense(dateExp, amountExpense.toDouble(), catExpense, name, recSelected)
 
-                    Database.addNewExpense(CURRENT_USER!!.phoneNumber,newExpense.toDBExpense())
+                    Database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
                 }
 
             }
         }
     }
-
 
 
     private fun showDatePicker() {
