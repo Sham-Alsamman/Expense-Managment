@@ -3,6 +3,7 @@ package com.example.scanningreceiptstest.Controller
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.example.scanningreceiptstest.R
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -19,36 +20,47 @@ class Report : NavDrawerActivity(), IFilterSheet {
 
     lateinit var pieChart: PieChart;
     var valuesList = ArrayList<PieEntry>();
+    var valuesList2 = ArrayList<PieEntry>();
+
     private val filterSheet = BottomSheet_Filter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         onCreateDrawer()
-
-
         pieChart = findViewById(R.id.piechart);
 
 //        valuesList.add(PieEntry(40f, "Jan"));
 //        valuesList.add(PieEntry(60f, "Feb"));
+
+        if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
+            if(CURRENT_GROUP!!.partners!=null)
+                for(i in CURRENT_GROUP!!.partners!!)
+                    Database.getAllExpenses(i, ::ExpensesDBResult)
+
+        } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
+
+
+            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResult)
+
+        }
+
+
+        pieChart.setUsePercentValues(true);
+        generate(valuesList)
 
 
         filter_btn.setOnClickListener {
             filterSheet.show(supportFragmentManager, "BottomSheetDialog")
         }
 
-        generate(valuesList)
+//        generate(valuesList)
     }
 
     fun generate(values : ArrayList<PieEntry>){
-
-        pieChart.setUsePercentValues(true);
-
-
         var dataset = PieDataSet(values,".");
-
         var pd = PieData(dataset);
-        pieChart.setData (pd);
+        pieChart.setData(pd);
 
         dataset.setColors( Color.CYAN, Color.LTGRAY, Color.BLUE)
         dataset.setValueTextSize(20f)
@@ -61,9 +73,9 @@ class Report : NavDrawerActivity(), IFilterSheet {
     override fun applyFilterChanges() {
 
         if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
-
-            for(i in CURRENT_GROUP!!.partners)
-                Database.getAllExpenses(i, ::ExpensesDBResult)
+            if(CURRENT_GROUP!!.partners!=null)
+                for(i in CURRENT_GROUP!!.partners!!)
+                    Database.getAllExpenses(i, ::ExpensesDBResult)
 
         } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
 
@@ -71,30 +83,45 @@ class Report : NavDrawerActivity(), IFilterSheet {
         }
 
 
-        generate(valuesList)
+        //generate(valuesList)
     }
 
     private fun ExpensesDBResult(list: List<DBExpense>) {
-        var TransList : ArrayList <Transaction> = ArrayList<Transaction>()
+        var TransList: ArrayList<Transaction> = ArrayList()
 
-        for ( i in list ) {
-            //i as Transaction
-            TransList.add(i.toExpense())
+
+        for (i in list) {
+            var e = i.toExpense()
+            TransList.add(e as Transaction)
+
         }
 
         filterByTime(TransList, filterSheet.periodFilter)
+        var total = list.size
 
-        for (i in list) {
-            val expense = i.toExpense()
-            var total = list.size
+        var frequenciesByCategory = TransList.groupingBy { (it as Expense).category }.eachCount()
 
-            val frequenciesByCategory = list.groupingBy { expense.category }.eachCount()
 
-            for (key in frequenciesByCategory.keys) {
-                var value = frequenciesByCategory.getValue(key) / total * 1.0f
-                valuesList.add(PieEntry(value, key))
-            }
+
+
+        var k = frequenciesByCategory.keys.size
+
+        Toast.makeText(applicationContext, "$k" ,Toast.LENGTH_SHORT).show()
+
+        var count = 1
+
+
+        if (count == 1) {
+            valuesList2.add(PieEntry(40f, "Jan"));
+            valuesList2.add(PieEntry(60f, "Feb"));
+
+            count++
         }
 
+        for ((k,v) in frequenciesByCategory){
+            var value = v / total * 1.0f
+            valuesList.add(PieEntry(value, k))
+        }
+        generate(valuesList)
     }
 }
