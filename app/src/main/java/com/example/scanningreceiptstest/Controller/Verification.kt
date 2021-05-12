@@ -11,14 +11,13 @@ import com.chaos.view.PinView
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
-import com.example.scanningreceiptstest.database.DBExpenseGroup
-import com.example.scanningreceiptstest.database.Database
-import com.example.scanningreceiptstest.database.toExpenseGroup
+import com.example.scanningreceiptstest.database.*
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_verification.*
 import java.util.concurrent.TimeUnit
 
@@ -126,6 +125,14 @@ class Verification() : NavDrawerActivity () {
         }
 
         startPhoneNumberVerification(userPhoneNum)
+    }
+    private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
+        CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
+        if(CURRENT_GROUP!=null) {
+            Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
@@ -245,6 +252,7 @@ class Verification() : NavDrawerActivity () {
                         0.0,
                         list
                     )
+                    CURRENT_USER=newPerson
                     Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
 
 
@@ -255,9 +263,9 @@ class Verification() : NavDrawerActivity () {
 
     fun onUserAdded(successful: Boolean) {
         if (successful){
-            Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
+           // Database.getUser(userPhoneNum, ::DbResultPerson)
+            Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+
         }
     }
 

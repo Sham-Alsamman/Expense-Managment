@@ -8,10 +8,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.R
-import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.DBPerson
-import com.example.scanningreceiptstest.database.Database
-import com.example.scanningreceiptstest.database.toPerson
+import com.example.scanningreceiptstest.database.*
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -110,11 +107,25 @@ class Login : NavDrawerActivity() {
         }
     }
 
-    private fun DbResultPerson(person: DBPerson) {
+    private fun DbResultPerson(person: DBPerson ) {
         CURRENT_USER = person.toPerson()
-        val i = Intent(applicationContext,Home::class.java)
-        startActivity(i)
-        finish()
+        if(CURRENT_USER!= null) {
+            val i = Intent(applicationContext, Home::class.java)
+            startActivity(i)
+            finish()
+
+        }
+    }
+    private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
+        CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
+        /*
+        if(CURRENT_GROUP!=null) {
+            val i = Intent(applicationContext, Home::class.java)
+            startActivity(i)
+            finish()
+        }
+
+         */
     }
 
 
@@ -155,6 +166,8 @@ class Login : NavDrawerActivity() {
     private fun onDBResult(exist: Boolean){
         if(exist) {
             Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+            Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+
         }else {
             Toast.makeText(
                 applicationContext,

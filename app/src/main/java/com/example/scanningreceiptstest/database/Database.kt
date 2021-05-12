@@ -96,8 +96,6 @@ object Database {
 
     }
 
-
-
     /****Sign up****/
 
     fun checkIfUserExist(phoneNum: String, onDataRetrieved: (Boolean) -> Unit) {
