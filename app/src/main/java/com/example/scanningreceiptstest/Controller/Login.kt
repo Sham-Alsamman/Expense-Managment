@@ -109,11 +109,12 @@ class Login : NavDrawerActivity() {
 
     private fun DbResultPerson(person: DBPerson ) {
         CURRENT_USER = person.toPerson()
+        Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+
         if(CURRENT_USER!= null) {
             val i = Intent(applicationContext, Home::class.java)
             startActivity(i)
             finish()
-
         }
     }
     private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
@@ -166,7 +167,7 @@ class Login : NavDrawerActivity() {
     private fun onDBResult(exist: Boolean){
         if(exist) {
             Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
-            Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+            //Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
 
         }else {
             Toast.makeText(
