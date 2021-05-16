@@ -26,6 +26,12 @@ class AddManually : NavDrawerActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
 
+        val vendorFromScan= intent.getStringExtra("venName").toString()
+        val totalFromScan= intent.getDoubleExtra("Total",0.0).toString()
+
+        NameIn.setText(vendorFromScan)
+        amountIn.setText(totalFromScan)
+
         var recSelected: recEnum
         var catSelected: String
         val categoryItems = resources.getStringArray(R.array.Category)
@@ -84,7 +90,6 @@ class AddManually : NavDrawerActivity() {
 
 
             var name = ""
-            var catExpense = ""
             var amountExpense = ""
             var date = arrayOf<String>()
             var dateExp: Date = Date()
@@ -97,9 +102,6 @@ class AddManually : NavDrawerActivity() {
             outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
                 outlinedTextField.error = null
             }
-            /* outCat2.editText?.doOnTextChanged { text, start, before, count ->
-                 outCat2.error = null
-             }*/
 
             outDate1.editText?.doOnTextChanged { text, start, before, count ->
                 outDate1.error = null
@@ -108,9 +110,7 @@ class AddManually : NavDrawerActivity() {
             outAmountManually.editText?.doOnTextChanged { text, start, before, count ->
                 outAmountManually.error = null
             }
-            /*  outDate1.editText?.doOnTextChanged { text, start, before, count ->
-                outlinedTextField.error=null
-            }*/
+
             outDate1.setEndIconOnClickListener(View.OnClickListener {
                 showDatePicker()
             })
@@ -147,7 +147,7 @@ class AddManually : NavDrawerActivity() {
                     yearInt = date[2].toInt()
 
                     dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
-                    Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
+                   // Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
                     /*
                     val dateFormat = SimpleDateFormat("dd-MM-yyyy")
                     val date: Date = dateFormat.parse("2020-1-1")
@@ -178,7 +178,7 @@ class AddManually : NavDrawerActivity() {
 
                 if (flag) {
                     var newExpense =
-                        Expense(dateExp, amountExpense.toDouble(), catExpense, name, recSelected)
+                        Expense(dateExp, amountExpense.toDouble(), catSelected, name, recSelected)
 
                     Database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
                 }

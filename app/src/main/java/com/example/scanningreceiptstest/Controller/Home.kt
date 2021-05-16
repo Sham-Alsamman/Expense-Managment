@@ -61,7 +61,7 @@ class Home : NavDrawerActivity() {
 
 
         mScanFab!!.setOnClickListener{
-            val intent = Intent("android.media.action.IMAGE_CAPTURE")
+            val intent = Intent(this,Scan::class.java)
             startActivity(intent)
             hideFabs()
         }
