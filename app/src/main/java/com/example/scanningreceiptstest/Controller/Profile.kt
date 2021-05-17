@@ -7,10 +7,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.Transaction
+
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
@@ -79,6 +81,7 @@ class Profile : NavDrawerActivity() {
             )
             Database.updateUserInfo("+962791558798",m.toDBPerson())
  */
+
 
         }
     }
