@@ -3,6 +3,7 @@ package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
 import android.widget.EditText
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
@@ -42,14 +43,24 @@ class Profile : NavDrawerActivity() {
             )
             Database.updateUserInfo("+962791558798",m.toDBPerson())
  */
+
             var userName2=findViewById<EditText>(R.id.edit_text).text.toString()
 
             var phone2=findViewById<EditText>(R.id.phoneNum).text.toString()
 
-            var person=Person(phone2,userName2, CURRENT_USER!!.password, CURRENT_USER!!.groupId,CURRENT_USER!!.monthlySalary,CURRENT_USER!!.totalIncome,
-                CURRENT_USER!!.savingAmount,CURRENT_USER!!.savingWallet,CURRENT_USER!!.transactions)
+            var pass =findViewById<EditText>(R.id.filledTextField4).text.toString()
 
-            Database.updateUserInfo(phone2,person.toDBPerson())
+            CURRENT_USER!!.name=userName2;
+            CURRENT_USER!!.password= BCrypt.withDefaults().hashToString(12,pass.toCharArray());
+
+
+            Database.updateUserInfo(CURRENT_USER!!.phoneNumber,CURRENT_USER!!.toDBPerson())
+
+           // var person=Person(phone2,userName2, CURRENT_USER!!.password, CURRENT_USER!!.groupId,CURRENT_USER!!.monthlySalary,CURRENT_USER!!.totalIncome,
+             //   CURRENT_USER!!.savingAmount,CURRENT_USER!!.savingWallet,CURRENT_USER!!.transactions)
+
+           // Database.updateUserInfo(phone2,person.toDBPerson())
+
 
         }
     }
