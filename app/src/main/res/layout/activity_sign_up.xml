@@ -46,6 +46,7 @@
                 app:endIconMode="custom">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_inner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -62,6 +63,7 @@
                 app:endIconMode="custom">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_inner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone" />
@@ -78,6 +80,7 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pass_inner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -93,6 +96,7 @@
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/retype_inner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

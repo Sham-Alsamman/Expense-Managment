@@ -157,7 +157,7 @@
                             android:layout_marginTop="380dp"
                             android:background="@drawable/spinn"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></Spinner>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Spinner
                             android:id="@+id/spinner"
@@ -167,7 +167,7 @@
                             android:layout_marginTop="500dp"
                             android:background="@drawable/spinn"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></Spinner>
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/textView13"

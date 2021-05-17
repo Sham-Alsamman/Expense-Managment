@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -25,7 +26,7 @@
                 android:layout_marginStart="70dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                android:text="JD 1,893.45"
+                tools:text="JD 1,893.45"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"

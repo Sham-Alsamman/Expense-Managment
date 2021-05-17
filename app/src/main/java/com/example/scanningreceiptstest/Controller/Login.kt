@@ -18,7 +18,6 @@ import java.util.regex.Pattern
 
 class Login : NavDrawerActivity() {
 
-
     val reg: String = "\\p{Punct}"
 
     @RequiresApi(Build.VERSION_CODES.O)
