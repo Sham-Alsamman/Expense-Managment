@@ -265,6 +265,7 @@ object Database {
         hashMap.put("savingAmount",user.savingAmount)
         hashMap.put("savingWallet",user.savingWallet)
         hashMap.put("totalIncome",user.totalIncome)
+        hashMap.put("password",user.password)
 
         userRef.child(phoneNum).updateChildren(hashMap)
     }

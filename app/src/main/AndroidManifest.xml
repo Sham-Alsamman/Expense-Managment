@@ -19,6 +19,7 @@
             android:name=".Controller.Verification"
             android:label="Verification" />
         <activity android:name=".Controller.WelcomePage" />
+        <activity android:name=".Controller.Scan" />
         <activity android:name=".Controller.MainActivity" />
         <activity android:name=".Controller.welcomPage2" />
         <activity android:name=".Controller.TestActivity" />
