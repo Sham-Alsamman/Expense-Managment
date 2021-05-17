@@ -15,7 +15,8 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
         totalIncome: Double,
         savingAmount: Double,
         savingWallet: Double,
-        transactions: List<Transaction>
+        transactions: List<Transaction>,
+        remaining: Double
     )
             : this(userName, phoneNum,Password) {
         this.groupId = groupId
@@ -23,6 +24,7 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
         this.totalIncome = totalIncome
         this.savingAmount = savingAmount
         this.savingWallet = savingWallet
+        this.remaining = remaining
         this._transactions = transactions as MutableList<Transaction>
     }
 
@@ -39,7 +41,7 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
             if (value >= 0)
                 field = value
         }
-
+    var remaining: Double = 0.0
     var totalIncome: Double = 0.0 // should be always positive num??
     var savingAmount: Double = 0.0
         set(value) { // instead of setSavingAmount() method
@@ -128,6 +130,7 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
             totalIncome,
             savingAmount,
             savingWallet,
+            remaining
         )
     }
 
