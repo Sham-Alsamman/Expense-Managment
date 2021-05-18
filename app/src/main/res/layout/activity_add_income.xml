@@ -36,15 +36,15 @@
               -->
                 <RelativeLayout
                     android:id="@+id/relativeLayout"
-                    android:layout_width="350dp"
-                    android:layout_height="450dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="400dp"
                     android:layout_marginTop="50dp"
-                    android:background="@drawable/whitegrayback"
+                    android:background="@drawable/rounded_panel"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.308">
+                    app:layout_constraintVertical_bias="0.37">
 
 
                     <TextView
@@ -62,6 +62,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginTop="120dp"
                         android:hint="Name">
 
@@ -79,6 +80,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginTop="210dp"
                         android:hint="dd/mm/yyyy"
                         android:onClick="clickDataPicker"
@@ -98,6 +100,7 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
+                        android:layout_marginEnd="30dp"
                         android:layout_marginTop="300dp"
                         android:hint="Amount">
 

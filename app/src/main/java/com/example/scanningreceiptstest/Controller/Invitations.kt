@@ -40,8 +40,7 @@ class Invitations : NavDrawerActivity() {
     private fun onJoinClicked(invitation: Invitation) {
         invitation.invitationStatus = InvitationStatus.REVIEWED
         Database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())
-        CURRENT_USER!!.changeGroup(invitation.groupID)
-        Database.updateUserInfo(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.toDBPerson())
+
         Database.getExpenseGroup(invitation.groupID, ::onDBExpenseGroupResult)
     }
 
@@ -51,9 +50,20 @@ class Invitations : NavDrawerActivity() {
     }
 
     private fun onDBExpenseGroupResult(newGroup: DBExpenseGroup) {
+        //remove user from the current group:
+        CURRENT_GROUP!!.removePartner(CURRENT_USER!!.phoneNumber)
+        Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
+        /*******delete group if empty?********/
+
+        CURRENT_USER!!.changeGroup(newGroup.groupID)
+        Database.updateUserInfo(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.toDBPerson())
+
+        //change the current group:
         CURRENT_GROUP = newGroup.toExpenseGroup()
         CURRENT_GROUP!!.addPartner(CURRENT_USER!!.phoneNumber)
         Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
         Toast.makeText(this, "Expense group changed successfully", Toast.LENGTH_SHORT).show()
+
+        SaveSharedPreference.saveUserData(this)
     }
 }

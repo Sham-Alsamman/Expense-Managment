@@ -12,11 +12,12 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
         Password: String,
         groupId: String,
         monthlySal: Double,
-        totalIncome: Double,
-        savingAmount: Double,
-        savingWallet: Double,
+        totalIncome: Double, // balance for this month + additional income
+        savingAmount: Double, // saving rate
+        savingWallet: Double, // saving amount + remaining from previous months
         transactions: List<Transaction>,
         remaining: Double
+
     )
             : this(userName, phoneNum,Password) {
         this.groupId = groupId

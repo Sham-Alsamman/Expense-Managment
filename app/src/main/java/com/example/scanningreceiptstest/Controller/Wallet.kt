@@ -14,6 +14,8 @@ class Wallet : NavDrawerActivity() {
         setContentView(R.layout.wallet)
         onCreateDrawer()
 
+        /// set text textView2
+
         if(!CURRENT_USER!!.totalIncome.isNaN())
             textView2.setText( CURRENT_USER!!.savingWallet.toString() )
 

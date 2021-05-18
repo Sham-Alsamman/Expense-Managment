@@ -67,7 +67,7 @@ class SignUp : NavDrawerActivity() {
             val pattern = Pattern.compile(reg)
             val matcher: Matcher = pattern.matcher(text)
             if (matcher.find()) {
-               // pass.setEndIconActivated(false)
+                // pass.setEndIconActivated(false)
                 // PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 pass.error = "Password should contain only characters and numbers"
             } else if (text.isNullOrEmpty()) {
@@ -97,25 +97,26 @@ class SignUp : NavDrawerActivity() {
 
 
     fun SignInTextView(view: View) {
- /*
-        val listTransaction = mutableListOf<Transaction>()
-        val m = Person("+962791558798","Malak","1",2000.500,3000.00,500.00,100.00,listTransaction)
-        Database.addNewUser(m.toDBPerson())
-  */
+        /*
+               val listTransaction = mutableListOf<Transaction>()
+               val m = Person("+962791558798","Malak","1",2000.500,3000.00,500.00,100.00,listTransaction)
+               Database.addNewUser(m.toDBPerson())
+         */
         val i = Intent(applicationContext, Login::class.java)
         startActivity(i)
     }
+
     private fun checkIfPartnerExist(phoneNum: String) {
         //check if the phone number exists in the database
         Database.checkIfUserExist(phoneNum, ::onDBResult)
     }
 
-    private fun onDBResult(exist: Boolean){
-        if(exist) {
+    private fun onDBResult(exist: Boolean) {
+        if (exist) {
             phoneNumExist = true
             PhoneETSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
             PhoneETSignUp.error = "This phone number already registered in the app"
-        }else {
+        } else {
             phoneNumExist = false
             PasswordETSignUp.setEndIconDrawable(0)
             PhoneETSignUp.error = null
@@ -139,10 +140,7 @@ class SignUp : NavDrawerActivity() {
             Toast.makeText(applicationContext, "Please Re-type password ", Toast.LENGTH_LONG).show()
         } else if (PhoneETSignUp.error != null) {
             Toast.makeText(applicationContext, PhoneETSignUp.error, Toast.LENGTH_LONG).show()
-
-        }
-
-        else if (NameET.error != null) {
+        } else if (NameET.error != null) {
             Toast.makeText(applicationContext, NameET.error, Toast.LENGTH_LONG).show()
 
         } else if (PasswordETSignUp.error != null) {
@@ -154,20 +152,20 @@ class SignUp : NavDrawerActivity() {
         } else {
             //open verification page:
 
-                var username=NameET.editText?.text!!.toString()
-                var phoneNUMBER=PhoneETSignUp.editText?.text!!.toString()
-                var password=PasswordETSignUp.editText?.text!!.toString()
-                var hashPass= BCrypt.withDefaults().hashToString(12,password.toCharArray())
+            var username = NameET.editText?.text!!.toString()
+            var phoneNUMBER = PhoneETSignUp.editText?.text!!.toString()
+            var password = PasswordETSignUp.editText?.text!!.toString()
+            var hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
 
-                // error when add person
-                var person = Person(
-                    username,
-                    phoneNUMBER,
-                    hashPass
-                )
-               // Database.addNewUser(person.toDBPerson())
+            // error when add person
+            var person = Person(
+                username,
+                phoneNUMBER,
+                hashPass
+            )
+            // Database.addNewUser(person.toDBPerson())
 
-           // val intent2 = Intent(applicationContext, Verification::class.java)
+            // val intent2 = Intent(applicationContext, Verification::class.java)
             val intent = Intent(applicationContext, Verification::class.java)
             intent.putExtra(PHONE_NUMBER_EXTRA, PhoneETSignUp.editText?.text.toString())
             intent.putExtra("Person", person)
