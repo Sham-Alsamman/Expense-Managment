@@ -2,7 +2,10 @@
 package com.example.scanningreceiptstest.Controller
 
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -22,12 +25,13 @@ import java.util.*
 
 
 class AddManually : NavDrawerActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
 
-        val vendorFromScan= intent.getStringExtra("venName")
-        val totalFromScan= intent.getDoubleExtra("Total",0.0)
+        val vendorFromScan = intent.getStringExtra("venName")
+        val totalFromScan = intent.getDoubleExtra("Total", 0.0)
 
         if (vendorFromScan != null) {
             NameIn.setText(vendorFromScan)
@@ -90,17 +94,6 @@ class AddManually : NavDrawerActivity() {
                 }
             }
 
-
-            var name = ""
-            var amountExpense = ""
-            var date = arrayOf<String>()
-            var dateExp: Date = Date()
-            var dayInt: Int = 0
-            var monthInt: Int = 0
-            var yearInt: Int = 0
-            var flag = true
-
-
             outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
                 outlinedTextField.error = null
             }
@@ -113,11 +106,20 @@ class AddManually : NavDrawerActivity() {
                 outAmountManually.error = null
             }
 
-            outDate1.setEndIconOnClickListener(View.OnClickListener {
+            outDate1.setEndIconOnClickListener {
                 showDatePicker()
-            })
+            }
 
             saveExpense.setOnClickListener {
+                var name = ""
+                var amountExpense = ""
+                var date = arrayOf<String>()
+                var dateExp: Date = Date()
+                var dayInt: Int = 0
+                var monthInt: Int = 0
+                var yearInt: Int = 0
+                var flag = true
+
                 if (!NameIn.text.isNullOrEmpty()) {
                     name = NameIn.text.toString()
                     outlinedTextField.error = null
@@ -149,7 +151,7 @@ class AddManually : NavDrawerActivity() {
                     yearInt = date[2].toInt()
 
                     dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
-                   // Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
                     /*
                     val dateFormat = SimpleDateFormat("dd-MM-yyyy")
                     val date: Date = dateFormat.parse("2020-1-1")
@@ -179,16 +181,46 @@ class AddManually : NavDrawerActivity() {
                  Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
 
                 if (flag) {
-                    var newExpense =
+                    val newExpense =
                         Expense(dateExp, amountExpense.toDouble(), catSelected, name, recSelected)
 
-                    Database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
+                    saveNewExpense(newExpense)
                 }
 
             }
         }
     }
 
+    private fun saveNewExpense(newExpense: Expense) {
+
+        if (CURRENT_USER!!.addExpenseIfPossible(newExpense.amount)) {
+            addExpenseToDB(newExpense)
+        }
+        else if (CURRENT_USER!!.canWithdrawFromSavings(newExpense.amount)) {
+            AlertDialog.Builder(this)
+                .setTitle("Withdraw from savings")
+                .setMessage("Your current balance is not enough, Do you want to use your savings?")
+                .setPositiveButton("Yes") { dialog, id ->
+                    CURRENT_USER!!.withdrawFromSaving(newExpense.amount)
+                    addExpenseToDB(newExpense)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.cancel()
+                }
+                .show()
+        } else
+            Toast.makeText(this, "Your balance in not enough!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun addExpenseToDB(newExpense: Expense) {
+        Database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
+        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+        Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this, Home::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent)
+    }
 
     private fun showDatePicker() {
         //get current date:

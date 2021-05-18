@@ -1,6 +1,7 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -82,6 +83,10 @@ class AddIncome : NavDrawerActivity() {
                 Database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
                 Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
                 Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, Home::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent)
             }
         }
     }
