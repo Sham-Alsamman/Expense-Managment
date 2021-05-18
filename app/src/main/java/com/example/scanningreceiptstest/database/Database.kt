@@ -1,6 +1,5 @@
 package com.example.scanningreceiptstest.database
 
-import android.widget.Toast
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.example.scanningreceiptstest.Model.Person
@@ -254,7 +253,7 @@ object Database {
     /****Profile****/
     /***called when any field in Person obj changes
      * (in Wallet screen and when adding new expense or income, etc..)****/
-    fun updateUserInfo(phoneNum: String, user: DBPerson) {
+    fun updateUserInfo(user: DBPerson) {
         //update this user's data
         ////update: ref.users.phoneNum
         val hashMap = HashMap<String, Any>()
@@ -268,7 +267,7 @@ object Database {
         hashMap.put("password",user.password)
         hashMap.put("remaining", user.remaining)
 
-        userRef.child(phoneNum).updateChildren(hashMap)
+        userRef.child(user.phoneNumber).updateChildren(hashMap)
     }
 
     fun updateInvitation(phoneNum: String, invitation: DBInvitation) {

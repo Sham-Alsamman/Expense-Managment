@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.InvitationAdapter
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.InvitationClickListener
-import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
-import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_invitations.*
@@ -56,7 +54,7 @@ class Invitations : NavDrawerActivity() {
         /*******delete group if empty?********/
 
         CURRENT_USER!!.changeGroup(newGroup.groupID)
-        Database.updateUserInfo(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.toDBPerson())
+        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
         //change the current group:
         CURRENT_GROUP = newGroup.toExpenseGroup()

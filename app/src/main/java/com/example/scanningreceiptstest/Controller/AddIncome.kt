@@ -20,15 +20,6 @@ class AddIncome : NavDrawerActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_income)
 
-        var name = ""
-        var amountIN = ""
-        var date = arrayOf<String>()
-        var DateIncome = Date()
-        var dayInt = 0
-        var monthInt = 0
-        var yearInt = 0
-        var flag = true
-
         outName.editText?.doOnTextChanged { text, start, before, count ->
             outName.error = null
         }
@@ -46,7 +37,14 @@ class AddIncome : NavDrawerActivity() {
         }
 
         saveIncome.setOnClickListener {
-            flag = true
+            var name = ""
+            var amountIN = ""
+            var date = arrayOf<String>()
+            var DateIncome = Date()
+            var dayInt = 0
+            var monthInt = 0
+            var yearInt = 0
+            var flag = true
 
             if (!nameIncome.text.isNullOrEmpty()) {
                 name = nameIncome.text.toString()
@@ -80,7 +78,9 @@ class AddIncome : NavDrawerActivity() {
 
             if (flag) {
                 val newIncome = Income(DateIncome, amountIN.toDouble(), name)
+                CURRENT_USER!!.addIncome(newIncome.amount)
                 Database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
+                Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
                 Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
             }
         }

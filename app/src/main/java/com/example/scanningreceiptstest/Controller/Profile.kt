@@ -4,20 +4,16 @@ package com.example.scanningreceiptstest.Controller
 
 //import android.app.Person
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import at.favre.lib.crypto.bcrypt.BCrypt
-import com.example.scanningreceiptstest.Model.Transaction
 
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
-import com.example.scanningreceiptstest.Model.Person
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.profile_activity.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -105,7 +101,7 @@ class Profile : NavDrawerActivity() {
 
             CURRENT_USER!!.name=newUserName
             CURRENT_USER!!.password=BCrypt.withDefaults().hashToString(12,newPass.toCharArray())
-            Database.updateUserInfo(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.toDBPerson())
+            Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
             Toast.makeText(applicationContext, "Update Successful", Toast.LENGTH_LONG).show()
 

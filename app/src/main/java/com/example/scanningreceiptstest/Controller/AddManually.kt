@@ -26,11 +26,13 @@ class AddManually : NavDrawerActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_manually)
 
-        val vendorFromScan= intent.getStringExtra("venName").toString()
-        val totalFromScan= intent.getDoubleExtra("Total",0.0).toString()
+        val vendorFromScan= intent.getStringExtra("venName")
+        val totalFromScan= intent.getDoubleExtra("Total",0.0)
 
-        NameIn.setText(vendorFromScan)
-        amountIn.setText(totalFromScan)
+        if (vendorFromScan != null) {
+            NameIn.setText(vendorFromScan)
+            amountIn.setText(totalFromScan.toString())
+        }
 
         var recSelected: recEnum
         var catSelected: String

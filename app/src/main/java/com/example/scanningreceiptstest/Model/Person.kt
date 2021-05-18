@@ -3,8 +3,7 @@ package com.example.scanningreceiptstest.Model
 import com.example.scanningreceiptstest.database.DBPerson
 import java.io.Serializable;
 
-
-class Person(userName: String, phoneNum: String,Password: String) :Serializable {
+class Person(userName: String, phoneNum: String, password: String) : Serializable {
 
     constructor(
         phoneNum: String,
@@ -12,114 +11,83 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
         Password: String,
         groupId: String,
         monthlySal: Double,
-        totalIncome: Double, // balance for this month + additional income
+        totalIncome: Double, // total income for current month
         savingAmount: Double, // saving rate
         savingWallet: Double, // saving amount + remaining from previous months
-        transactions: List<Transaction>,
-        remaining: Double
-
+        remaining: Double // the remaining from totalIncome for current month (after adding expenses)
     )
-            : this(userName, phoneNum,Password) {
+            : this(userName, phoneNum, Password) {
         this.groupId = groupId
         this.monthlySalary = monthlySal
         this.totalIncome = totalIncome
         this.savingAmount = savingAmount
         this.savingWallet = savingWallet
         this.remaining = remaining
-        this._transactions = transactions as MutableList<Transaction>
     }
 
     var name: String = userName
-    var password: String = Password
+    var password: String = password
 
     // the phone number is the ID of person
     var phoneNumber: String = phoneNum
-
     var groupId: String = ""
-
     var monthlySalary: Double = 0.0
-        set(value) { //instead of setMonthlySalary() method
+        set(value) {
             if (value >= 0)
                 field = value
         }
     var remaining: Double = 0.0
-    var totalIncome: Double = 0.0 // should be always positive num??
+        set(value) {
+            if (value >= 0)
+                field = value
+        }
+    var totalIncome: Double = 0.0
+        set(value) {
+            if (value >= 0)
+                field = value
+        }
     var savingAmount: Double = 0.0
         set(value) { // instead of setSavingAmount() method
             if (value >= 0)
                 field = value
         }
-
     var savingWallet: Double = 0.0
         set(value) {
             if (value >= 0)
                 field = value
         }
-    private var _transactions = mutableListOf<Transaction>()
-
-    /**instead of getTransactions method**/
-    val transactions: List<Transaction>
-        get() = _transactions
 
 
-    //not here?
     fun changeGroup(newGroupId: String) {
         groupId = newGroupId
     }
 
-    //not here?
-    fun receiveInvite(homeId: String) {
-
-    }
-   /*
-    fun CheckPassword(Phone :String ,Pass:String){
-
-        var p: Person?=null
-        var passval = Pass.toString().trim()
-        Database.userRef.orderByChild("phoneNumber").equalTo(Phone).addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (postSnapshot in snapshot.children) {
-                        p= postSnapshot.getValue(Person::class.java)
-
-                    }
-                    val l = p?.password.toString()
-                    val result = BCrypt.verifyer().verify(passval.toCharArray(), l)
-                    if (result.verified) {
-                        // correct password
-                    } else {
-                        //not correct password
-                    }
-                }
-                else{
-                    // phone number not exist
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
+    fun addExpenseIfPossible(expense: Double): Boolean {
+        if (expense > 0 && remaining - expense >= 0) {
+            remaining -= expense
+            return true
+        }
+        return false
     }
 
-    */
-    fun addExpense(expense: Expense) {
-        _transactions.add(expense)
-        /****edit total***/
+    fun canWithdrawFromSavings(expense: Double): Boolean {
+        return expense > 0 && (remaining + savingWallet) - expense >= 0
     }
 
-    fun addIncome(income: Income) {
-        incrementIncome(income)
-        _transactions.add(income)
+    fun withdrawFromSaving(expense: Double) {
+        if (canWithdrawFromSavings(expense)) {
+            val amount = expense - remaining
+            remaining = 0.0
+            savingWallet -= amount
+        }
     }
 
-    private fun incrementIncome(income: Income) {
-        totalIncome += income.amount
+    fun addIncome(income: Double) {
+        if (income > 0) {
+            totalIncome += income
+            remaining += income
+        }
     }
-
-
 
     fun toDBPerson(): DBPerson {
         return DBPerson(
@@ -134,5 +102,4 @@ class Person(userName: String, phoneNum: String,Password: String) :Serializable 
             remaining
         )
     }
-
 }

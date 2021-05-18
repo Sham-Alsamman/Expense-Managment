@@ -133,6 +133,7 @@
                 android:backgroundTint="@color/purple_light"
                 android:src="@drawable/ic_baseline_add_24"
                 app:fabSize="normal"
+                app:borderWidth="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -144,6 +145,7 @@
                 android:backgroundTint="@color/purple_light"
                 android:src="@drawable/ic_baseline_photo_camera_24"
                 app:fabSize="normal"
+                app:borderWidth="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/add_fab"
                 app:layout_constraintEnd_toEndOf="@+id/add_fab"
                 app:layout_constraintStart_toStartOf="@+id/add_fab" />
@@ -155,6 +157,7 @@
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/purple_light"
                 android:src="@drawable/ic_baseline_manually"
+                app:borderWidth="0dp"
                 app:fabSize="normal"
                 app:layout_constraintBottom_toTopOf="@+id/scan_fab"
                 app:layout_constraintEnd_toEndOf="@+id/scan_fab"
@@ -166,6 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Scan"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/scan_fab"
                 app:layout_constraintEnd_toStartOf="@+id/scan_fab"
                 app:layout_constraintTop_toTopOf="@+id/scan_fab" />
@@ -176,6 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Manually"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/manually_fab"
                 app:layout_constraintEnd_toStartOf="@+id/manually_fab"
                 app:layout_constraintTop_toTopOf="@+id/manually_fab" />

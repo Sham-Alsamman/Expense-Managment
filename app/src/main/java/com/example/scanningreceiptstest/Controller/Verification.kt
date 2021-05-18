@@ -239,7 +239,6 @@ class Verification() : NavDrawerActivity () {
             STATE_SIGNIN_SUCCESS -> {
                 /******* automatically go to the next page ***/
                 // get the person object from sign up page
-                val list: List<Transaction> = mutableListOf()
                 val person2 = intent?.extras?.get("Person") as Person?
                 if (person2 != null) {
                     var dbExpe = DBExpenseGroup()
@@ -254,7 +253,6 @@ class Verification() : NavDrawerActivity () {
                         0.0,
                         0.0,
                         0.0,
-                        list,
                         0.0
                     )
                     CURRENT_USER=newPerson

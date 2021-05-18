@@ -2,7 +2,6 @@ package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
 import android.os.Bundle
-import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.wallet.*
@@ -41,12 +40,12 @@ class Wallet : NavDrawerActivity() {
         CURRENT_USER!!.totalIncome += monthlyInc
         CURRENT_USER!!.remaining += monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
-        Database.updateUserInfo(CURRENT_USER!!.phoneNumber, DBPerson(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.name, CURRENT_USER!!.password, CURRENT_USER!!.groupId, CURRENT_USER!!.monthlySalary, CURRENT_USER!!.totalIncome, CURRENT_USER!!.savingAmount, CURRENT_USER!!.savingWallet, CURRENT_USER!!.remaining) )
+        Database.updateUserInfo(DBPerson(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.name, CURRENT_USER!!.password, CURRENT_USER!!.groupId, CURRENT_USER!!.monthlySalary, CURRENT_USER!!.totalIncome, CURRENT_USER!!.savingAmount, CURRENT_USER!!.savingWallet, CURRENT_USER!!.remaining))
     }
 
 
     private fun onPerson(p : DBPerson) {
-        Database.updateUserInfo(CURRENT_USER!!.phoneNumber, p)
+        Database.updateUserInfo(p)
     }
 
 }

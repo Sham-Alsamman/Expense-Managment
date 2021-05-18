@@ -91,8 +91,6 @@ class Scan : AppCompatActivity() {
                 intent.putExtra("Total", total)
                 startActivity(intent)
             }
-
-
         })
 
         task.addOnFailureListener(object : OnFailureListener {
