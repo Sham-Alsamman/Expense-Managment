@@ -17,50 +17,63 @@
 
         <activity
             android:name=".Controller.Verification"
-            android:label="Verification" />
-        <activity android:name=".Controller.Scan" />
-        <activity android:name=".Controller.MainActivity" />
-        <activity android:name=".Controller.TestActivity" />
+            android:label="Verification"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Scan"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.AddIncome"
-            android:label="Add Income" />
+            android:label="Add Income"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.About"
-            android:label="About" />
+            android:label="About"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.AddManually"
-            android:label="Add Expense" />
+            android:label="Add Expense"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Report"
-            android:label="Report" />
+            android:label="Report"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Wallet"
-            android:label="Wallet" />
+            android:label="Wallet"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.InvitePartner"
-            android:label="Invite Partner" />
+            android:label="Invite Partner"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Invitations"
-            android:label="Invitations" />
+            android:label="Invitations"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.TransactionHistory"
-            android:label="Transaction History" />
+            android:label="Transaction History"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Profile"
-            android:label="Profile" />
+            android:label="Profile"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.SignUp"
-            android:label="Sign up" />
+            android:label="Sign up"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Home"
-            android:label="Home" />
+            android:label="Home"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Login"
             android:label="Login"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Controller.welcomPage2"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
