@@ -254,7 +254,8 @@ class Verification() : NavDrawerActivity () {
                         0.0,
                         0.0,
                         0.0,
-                        list
+                        list,
+                        0.0
                     )
                     CURRENT_USER=newPerson
                     Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)

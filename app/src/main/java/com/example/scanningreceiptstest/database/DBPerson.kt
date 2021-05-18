@@ -5,9 +5,9 @@ import com.example.scanningreceiptstest.Model.Transaction
 
 data class DBPerson(
     val phoneNumber: String, val name: String, val password :String, val groupId: String, val monthlySalary: Double,
-    val totalIncome: Double, val savingAmount: Double, val savingWallet: Double
+    val totalIncome: Double, val savingAmount: Double, val savingWallet: Double, val remaining: Double
 ) {
-    constructor() : this("", "", "","", 0.0, 0.0, 0.0, 0.0)
+    constructor() : this("", "", "","", 0.0, 0.0, 0.0, 0.0, 0.0)
 }
 
 fun DBPerson.toPerson(): Person {
@@ -27,6 +27,7 @@ fun DBPerson.toPerson(): Person {
         totalIncome,
         savingAmount,
         savingWallet,
-        transactions
+        transactions,
+        remaining
     )
 }

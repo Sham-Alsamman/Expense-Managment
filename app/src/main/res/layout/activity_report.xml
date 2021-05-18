@@ -40,22 +40,24 @@
                 android:background="@drawable/box"
                 android:text="filter"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="1dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
                 android:text="Expenses Distribution"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/total"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.567" />
 
             <TextView
                 android:id="@+id/total"
@@ -69,7 +71,7 @@
                 android:textColor="#8E8D8D"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filter_btn"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_btn" />
 
             <TextView
                 android:id="@+id/totalValue"
@@ -79,27 +81,29 @@
                 android:layout_marginEnd="135dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                tools:text="JD 1800.00"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/total"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="JD 1800.00" />
 
             <TextView
                 android:id="@+id/Remaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="5dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
                 android:text="Remaining"
                 android:textColor="#8E8D8D"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/avg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/total" />
+                app:layout_constraintTop_toBottomOf="@+id/total"
+                app:layout_constraintVertical_bias="0.038" />
 
             <TextView
                 android:id="@+id/RemainingValue"
@@ -109,57 +113,30 @@
                 android:layout_marginEnd="135dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                tools:text="JD 800.00"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/Remaining"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/expected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:elevation="20dp"
-                android:shadowColor="#12531111"
-                android:text="Expected Remaining"
-                android:textColor="#8E8D8D"
-                android:textSize="15sp"
+                app:layout_constraintHorizontal_bias="0.026"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Remaining"/>
-
-            <TextView
-                android:id="@+id/expectedValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="170dp"
-                android:layout_marginEnd="135dp"
-                android:elevation="20dp"
-                android:shadowColor="#12531111"
-                tools:text="JD 900.00"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/expected"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                tools:text="JD 800.00" />
 
             <TextView
                 android:id="@+id/avg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginEnd="324dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
                 android:text="Average"
                 android:textColor="#8E8D8D"
                 android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/expected" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/avgValue"
@@ -169,13 +146,13 @@
                 android:layout_marginEnd="135dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                tools:text="JD 30 / Day"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/avg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="JD 30 / Day" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
