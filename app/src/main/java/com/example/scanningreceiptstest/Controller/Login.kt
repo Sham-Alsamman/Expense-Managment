@@ -10,15 +10,13 @@ import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_invite_partner.*
 import kotlinx.android.synthetic.main.activity_login.*
-import java.text.SimpleDateFormat
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class Login : NavDrawerActivity() {
 
-    val reg: String = "\\p{Punct}"
+    private val reg: String = "\\p{Punct}"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,16 +114,10 @@ class Login : NavDrawerActivity() {
             finish()
         }
     }
+
     private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
         CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
-        /*
-        if(CURRENT_GROUP!=null) {
-            val i = Intent(applicationContext, Home::class.java)
-            startActivity(i)
-            finish()
-        }
-
-         */
+        SaveSharedPreference.saveUserData(this)
     }
 
 

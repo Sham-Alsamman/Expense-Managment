@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_verification.*
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.timer
 
 
 const val PHONE_NUMBER_EXTRA = "phoneNum"
@@ -132,6 +133,8 @@ class Verification() : NavDrawerActivity () {
             Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, Home::class.java)
             startActivity(intent)
+            SaveSharedPreference.saveUserData(this)
+            finish()
         }
     }
 
@@ -184,6 +187,7 @@ class Verification() : NavDrawerActivity () {
                     textView10.text = "$tick Code verified"
                     textView10.setTextColor(Color.GREEN)
                     pinView!!.setTextColor(Color.GREEN)
+                    countDown.cancel()
                     updateUI(STATE_SIGNIN_SUCCESS, user)
                 } else {
                     // Sign in failed, display a message and update the UI
@@ -265,9 +269,9 @@ class Verification() : NavDrawerActivity () {
         if (successful){
            // Database.getUser(userPhoneNum, ::DbResultPerson)
             Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
-
         }
     }
+
 
     companion object {
         private const val TAG = "PhoneAuthActivity"

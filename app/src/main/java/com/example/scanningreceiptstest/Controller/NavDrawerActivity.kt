@@ -5,16 +5,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import kotlinx.android.synthetic.main.main_menu_test.*
 import kotlinx.android.synthetic.main.main_menu_test.navView
-import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.android.synthetic.main.nav_header.view.*
-import kotlinx.android.synthetic.main.navigtion_drawer.*
-import java.util.*
 
 open class NavDrawerActivity : AppCompatActivity() {
 
@@ -74,6 +70,7 @@ open class NavDrawerActivity : AppCompatActivity() {
             }
             R.id.navMenu_logout -> {
                 /***********logout form the current account************/
+                SaveSharedPreference.clearUserData(this)
                 CURRENT_USER = null
                 CURRENT_GROUP = null
                 intent = Intent(applicationContext, Login::class.java)

@@ -37,7 +37,7 @@ class Home : NavDrawerActivity() {
         onCreateDrawer()
 
         lastRecord.adapter = recyclerAdapter
-        /****getTransactions()*****/
+        getTransactions()
 
         // Register all the FABs with their IDs
         // This FAB button is the Parent
@@ -96,7 +96,7 @@ class Home : NavDrawerActivity() {
     }
 
 
-    /*********
+    /******************/
 
     private fun getTransactions() {
         transactionsList.clear()
@@ -114,7 +114,7 @@ class Home : NavDrawerActivity() {
         transactionsList.addAll(list.toIncomeList())
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
-    }*********/
+    }
 }
 
 

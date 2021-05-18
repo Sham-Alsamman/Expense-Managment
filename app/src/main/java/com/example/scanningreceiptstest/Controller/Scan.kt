@@ -55,8 +55,10 @@ class Scan : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         var bundle = data?.extras
 
-        var bitmap = bundle?.get("data") as Bitmap
+        var bitmap = bundle?.get("data") as Bitmap?
 
+        if (bitmap == null)
+            return
 
         var visionImage = FirebaseVisionImage.fromBitmap(bitmap)
 
@@ -80,14 +82,14 @@ class Scan : AppCompatActivity() {
                     i++
                 }
 
-             //  Toast.makeText(this@Scan,"vendor:"+stringSplits[0], Toast.LENGTH_LONG).show()
-              //  Toast.makeText(this@Scan,"Date: "+date, Toast.LENGTH_LONG).show()
-               // Toast.makeText(this@Scan,"total: "+total, Toast.LENGTH_LONG).show()
+                //  Toast.makeText(this@Scan,"vendor:"+stringSplits[0], Toast.LENGTH_LONG).show()
+                //  Toast.makeText(this@Scan,"Date: "+date, Toast.LENGTH_LONG).show()
+                // Toast.makeText(this@Scan,"total: "+total, Toast.LENGTH_LONG).show()
 
-               val intent = Intent(this@Scan, AddManually::class.java)
-               intent.putExtra("venName", stringSplits[0])
-                intent.putExtra("Total",total)
-        startActivity(intent)
+                val intent = Intent(this@Scan, AddManually::class.java)
+                intent.putExtra("venName", stringSplits[0])
+                intent.putExtra("Total", total)
+                startActivity(intent)
             }
 
 
