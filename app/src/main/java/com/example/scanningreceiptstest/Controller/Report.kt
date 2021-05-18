@@ -77,6 +77,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
         pieChart.getDescription().text = ""; //the text which will be displayed.
         pieChart.setUsePercentValues(true);
         pieChart.getLegend().setEnabled(false);
+        pieChart.invalidate()
     }
 
     fun applyFirstChanges(){
