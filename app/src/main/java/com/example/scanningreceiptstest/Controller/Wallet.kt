@@ -37,12 +37,9 @@ class Wallet : NavDrawerActivity() {
 
     private fun saveData(monthlyInc : Double, savingRa : Double){
         CURRENT_USER!!.monthlySalary = monthlyInc
-        CURRENT_USER!!.totalIncome += monthlyInc
-        CURRENT_USER!!.remaining += monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
         Database.updateUserInfo(DBPerson(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.name, CURRENT_USER!!.password, CURRENT_USER!!.groupId, CURRENT_USER!!.monthlySalary, CURRENT_USER!!.totalIncome, CURRENT_USER!!.savingAmount, CURRENT_USER!!.savingWallet, CURRENT_USER!!.remaining))
     }
-
 
     private fun onPerson(p : DBPerson) {
         Database.updateUserInfo(p)
