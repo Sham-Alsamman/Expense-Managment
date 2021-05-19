@@ -8,8 +8,8 @@ interface IFilterSheet {
     fun applyFilterChanges()
 }
 
-fun filterByTime(list: List<Transaction>, periodFilter: PeriodTransactionFilter): List<Transaction> {
-    val selectedTransactions = mutableListOf<Transaction>()
+fun filterByTime(list: List<Transaction>, periodFilter: PeriodTransactionFilter): ArrayList<Transaction> {
+    val selectedTransactions = ArrayList<Transaction>()
     for (i in list) {
         if (periodFilter == PeriodTransactionFilter.CurrentMonth) {
             if (inCurrentMonth(i.date)) {
