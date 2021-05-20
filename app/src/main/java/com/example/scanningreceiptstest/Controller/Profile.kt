@@ -28,21 +28,21 @@ class Profile : NavDrawerActivity() {
        var userName=findViewById<EditText>(R.id.edit_text)
         userName.setText(CURRENT_USER!!.name)
 
-        changePass.doOnTextChanged { text, start, before, count ->
+        filledTextField4.editText?.doOnTextChanged { text, start, before, count ->
                 val pattern = Pattern.compile(reg)
                 val matcher: Matcher = pattern.matcher(text)
                 if (matcher.find()) {
                    // filledTextField4.setEndIconActivated(false)
                     //filledTextField4.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-                    changePass.error = "Password should contain only characters and numbers"
+                    filledTextField4.error = "Password should contain only characters and numbers"
                 } else if (text.isNullOrEmpty()) {
                   //  filledTextField4.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-                    changePass.error = "Enter Password"
+                    filledTextField4.error = "Enter Password"
                 } else if (text.length < 8) {
-                    changePass.error = "Password must at least 8 characters"
+                    filledTextField4.error = "Password must at least 8 characters"
                 } else {
                     //filledTextField4.setEndIconDrawable(0)
-                    changePass.error = null
+                    filledTextField4.error = null
                 }
             }
         ConfirmPass.doOnTextChanged { text, start, before, count ->
