@@ -53,7 +53,7 @@
                 android:layout_height="57dp"
                 android:layout_gravity="center"
                 android:lineSpacingExtra="10dp"
-                android:text="Enter A 6 Digit Number That Was Sent To (Num) "
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="#5C0B0909"
                 android:textSize="18sp" />

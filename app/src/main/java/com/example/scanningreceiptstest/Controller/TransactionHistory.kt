@@ -8,6 +8,8 @@ import com.example.scanningreceiptstest.Model.*
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_transation_history.*
+import kotlinx.android.synthetic.main.activity_verification.*
+import kotlinx.android.synthetic.main.profile_activity.view.*
 import java.sql.Date
 
 class TransactionHistory : NavDrawerActivity(), IFilterSheet {
@@ -22,6 +24,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         onCreateDrawer()
 
         transactionRecyclerView.adapter = recyclerAdapter
+
 
         getTransactions()
 
