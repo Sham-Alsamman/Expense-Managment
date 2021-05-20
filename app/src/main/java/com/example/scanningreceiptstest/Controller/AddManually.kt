@@ -24,6 +24,7 @@ import com.example.scanningreceiptstest.SalaryAlarmReceiver
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
+import java.lang.NumberFormatException
 import java.util.*
 
 
@@ -151,10 +152,14 @@ class AddManually : NavDrawerActivity() {
                 if (!dateIn.text.isNullOrEmpty()) {
                     outDate1.error = null
                     date = dateIn.text.toString().split("/").toTypedArray()
-                    dayInt = date[0].toInt()
-                    monthInt = date[1].toInt()
-                    yearInt = date[2].toInt()
-
+                    try {
+                        dayInt = date[0].toInt()
+                        monthInt = date[1].toInt()
+                        yearInt = date[2].toInt()
+                    }catch (e: Exception){
+                        outDate1.error = "Incorrect date"
+                        flag = false
+                    }
                     dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
                     // Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
                     /*

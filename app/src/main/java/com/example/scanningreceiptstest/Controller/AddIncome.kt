@@ -12,6 +12,7 @@ import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_income.*
+import java.lang.NumberFormatException
 import java.util.*
 
 
@@ -66,10 +67,14 @@ class AddIncome : NavDrawerActivity() {
             if (!dateIncome.text.isNullOrEmpty()) {
                 outDate.error = null
                 date = dateIncome.text.toString().split("/").toTypedArray()
-                dayInt = date[0].toInt()
-                monthInt = date[1].toInt()
-                yearInt = date[2].toInt()
-
+                try {
+                    dayInt = date[0].toInt()
+                    monthInt = date[1].toInt()
+                    yearInt = date[2].toInt()
+                }catch (e: Exception){
+                    outDate.error = "Incorrect date"
+                    flag = false
+                }
                 DateIncome = Date(yearInt - 1900, monthInt - 1, dayInt)
                 Toast.makeText(this, "date: " + DateIncome, Toast.LENGTH_SHORT).show()
             } else {
