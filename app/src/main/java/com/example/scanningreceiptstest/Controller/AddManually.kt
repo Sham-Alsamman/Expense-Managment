@@ -2,29 +2,34 @@
 package com.example.scanningreceiptstest.Controller
 
 
+import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.DialogInterface
+import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
+import android.text.format.DateUtils
+import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
+import androidx.core.content.getSystemService
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.SalaryAlarmReceiver
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
 class AddManually : NavDrawerActivity() {
+
+    private val REQUEST_CODE = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -195,8 +200,7 @@ class AddManually : NavDrawerActivity() {
 
         if (CURRENT_USER!!.addExpenseIfPossible(newExpense.amount)) {
             addExpenseToDB(newExpense)
-        }
-        else if (CURRENT_USER!!.canWithdrawFromSavings(newExpense.amount)) {
+        } else if (CURRENT_USER!!.canWithdrawFromSavings(newExpense.amount)) {
             AlertDialog.Builder(this)
                 .setTitle("Withdraw from savings")
                 .setMessage("Your current balance is not enough, Do you want to use your savings?")
@@ -217,9 +221,40 @@ class AddManually : NavDrawerActivity() {
         Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
         Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show()
 
+        /***********
+        if (newExpense.recurrent != recEnum.None)
+            setAlarm(newExpense)
+        **********/
         val intent = Intent(this, Home::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent)
+    }
+
+    private fun setAlarm(newExpense: Expense) {
+        Log.i("Alarm", "setAlarm called")
+        val interval = when (newExpense.recurrent) {
+            recEnum.Daily -> DateUtils.SECOND_IN_MILLIS * 5//DateUtils.DAY_IN_MILLIS
+            recEnum.Weekly -> DateUtils.WEEK_IN_MILLIS
+            recEnum.Monthly -> DateUtils.WEEK_IN_MILLIS * 7
+            else -> DateUtils.YEAR_IN_MILLIS
+        }
+
+        val alarmManager = getSystemService<AlarmManager>() //getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val triggerTime = SystemClock.elapsedRealtime() + interval
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            application,
+            REQUEST_CODE,
+            Intent(this, SalaryAlarmReceiver::class.java),
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        alarmManager?.setInexactRepeating(
+            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            triggerTime,
+            interval,
+            pendingIntent
+        )
     }
 
     private fun showDatePicker() {

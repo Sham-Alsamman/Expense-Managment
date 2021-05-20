@@ -12,6 +12,7 @@ import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
+import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -127,16 +128,7 @@ class Verification() : NavDrawerActivity () {
 
         startPhoneNumberVerification(userPhoneNum)
     }
-    private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
-        CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
-        if(CURRENT_GROUP!=null) {
-            Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Home::class.java)
-            startActivity(intent)
-            SaveSharedPreference.saveUserData(this)
-            finish()
-        }
-    }
+
 
     override fun onDestroy() {
         countDown.cancel()
@@ -241,10 +233,10 @@ class Verification() : NavDrawerActivity () {
                 // get the person object from sign up page
                 val person2 = intent?.extras?.get("Person") as Person?
                 if (person2 != null) {
-                    var dbExpe = DBExpenseGroup()
+                    val dbExpe = DBExpenseGroup()
                     dbExpe.partners.add(person2.phoneNumber)
-                    var ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
-                    var newPerson = Person(
+                    val ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+                    val newPerson = Person(
                         person2.phoneNumber,
                         person2.name,
                         person2.password,
@@ -257,8 +249,8 @@ class Verification() : NavDrawerActivity () {
                     )
                     CURRENT_USER=newPerson
                     Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
-
-
+                    /**************/
+                    setSalaryAlarmIfNotExist(this)
                 }
             }
         }
@@ -271,6 +263,17 @@ class Verification() : NavDrawerActivity () {
         }
     }
 
+    private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
+        CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
+        if(CURRENT_GROUP!=null) {
+            Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+            SaveSharedPreference.saveUserData(this)
+            finish()
+        }
+    }
+
 
     companion object {
         private const val TAG = "PhoneAuthActivity"
@@ -280,22 +283,4 @@ class Verification() : NavDrawerActivity () {
         private const val STATE_SIGNIN_FAILED = 5
         private const val STATE_SIGNIN_SUCCESS = 6
     }
-
-/***
-fun VerificationOnClick(view: View) {
-
-        val string: String = getString(R.string.true_tick)
-        val OTP = pinView!!.text.toString()
-        if (OTP == "654321") {
-            PinVew.setLineColor(Color.GREEN)
-            textView10.setText(string+" OTP Verified")
-            textView10.setTextColor(Color.GREEN)
-            pinView!!.setTextColor(Color.GREEN)
-        } else {
-            PinVew.setLineColor(Color.RED)
-            textView10.setText("X Incorrect OTP")
-            textView10.setTextColor(Color.RED)
-            pinView!!.setTextColor(Color.RED)
-        }
-    }*/
 }

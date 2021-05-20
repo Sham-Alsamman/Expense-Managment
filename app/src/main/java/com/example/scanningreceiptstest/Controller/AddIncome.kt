@@ -85,12 +85,11 @@ class AddIncome : NavDrawerActivity() {
                 Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, Home::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
         }
     }
-
 
     private fun showDatePicker() {
         //get current date:

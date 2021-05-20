@@ -6,14 +6,11 @@ import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.wallet.*
 
-
 class Wallet : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wallet)
         onCreateDrawer()
-
-        /// set text textView2
 
         if(!CURRENT_USER!!.totalIncome.isNaN())
             textView2.setText( CURRENT_USER!!.savingWallet.toString() )
@@ -26,23 +23,20 @@ class Wallet : NavDrawerActivity() {
 
         saveIncome.setOnClickListener {
             saveData(monthlyIncome.text.toString().toDouble(), savingRate.text.toString().toDouble()  )
-            var intent = Intent(applicationContext, Home::class.java)
-            intent?.let {startActivity(it)}
-
+            val intent = Intent(applicationContext, Home::class.java)
+            startActivity(intent)
         }
 
         Database.getUser(CURRENT_USER!!.phoneNumber, ::onPerson)
-
     }
 
     private fun saveData(monthlyInc : Double, savingRa : Double){
         CURRENT_USER!!.monthlySalary = monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
-        Database.updateUserInfo(DBPerson(CURRENT_USER!!.phoneNumber, CURRENT_USER!!.name, CURRENT_USER!!.password, CURRENT_USER!!.groupId, CURRENT_USER!!.monthlySalary, CURRENT_USER!!.totalIncome, CURRENT_USER!!.savingAmount, CURRENT_USER!!.savingWallet, CURRENT_USER!!.remaining))
+        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
     }
 
     private fun onPerson(p : DBPerson) {
         Database.updateUserInfo(p)
     }
-
 }

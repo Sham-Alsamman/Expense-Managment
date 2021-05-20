@@ -8,11 +8,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.SalaryAlarmReceiver
 import com.example.scanningreceiptstest.database.*
+import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
+var alarmReceiver: SalaryAlarmReceiver? = null
 
 class Login : NavDrawerActivity() {
 
@@ -118,6 +122,8 @@ class Login : NavDrawerActivity() {
     private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
         CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
         SaveSharedPreference.saveUserData(this)
+        /***********/
+        setSalaryAlarmIfNotExist(this)
     }
 
 
