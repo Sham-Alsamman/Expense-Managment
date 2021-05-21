@@ -152,7 +152,6 @@ class SignUp : NavDrawerActivity() {
             val intent = Intent(applicationContext, Verification::class.java)
             intent.putExtra(PHONE_NUMBER_EXTRA, PhoneETSignUp.editText?.text.toString())
             intent.putExtra("Person", person)
-
             startActivity(intent)
         }
 

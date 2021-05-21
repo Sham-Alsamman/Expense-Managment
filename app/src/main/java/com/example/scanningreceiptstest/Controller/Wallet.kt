@@ -25,6 +25,7 @@ class Wallet : NavDrawerActivity() {
             saveData(monthlyIncome.text.toString().toDouble(), savingRate.text.toString().toDouble()  )
             val intent = Intent(applicationContext, Home::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

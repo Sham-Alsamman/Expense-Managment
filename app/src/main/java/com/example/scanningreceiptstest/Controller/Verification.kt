@@ -249,7 +249,7 @@ class Verification() : NavDrawerActivity () {
                         0.0,
                         0.0
                     )
-                    CURRENT_USER=newPerson
+                    CURRENT_USER = newPerson
                     Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
                     /**************/
                     setSalaryAlarmIfNotExist(this)
@@ -270,6 +270,7 @@ class Verification() : NavDrawerActivity () {
         if(CURRENT_GROUP!=null) {
             Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, Wallet::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             SaveSharedPreference.saveUserData(this)
             finish()

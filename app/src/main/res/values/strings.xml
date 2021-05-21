@@ -19,10 +19,8 @@
         <item>Education</item>
         <item>Housing</item>
         <item>Entertainment</item>
-        <item>Transposition</item>
+        <item>Transportation</item>
         <item>Other</item>
-
-
     </string-array>
 
     <string-array name="TimePeriod">

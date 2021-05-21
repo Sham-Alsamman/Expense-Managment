@@ -158,7 +158,7 @@ class Login : NavDrawerActivity() {
     }
     private fun checkIfPasswordExist(phoneNum: String, Pass :String) {
         //check if the phone number and password exists in the database or not
-        Database.CheckPassword(phoneNum,Pass,::onDBResult)
+        Database.checkPassword(phoneNum,Pass,::onDBResult)
     }
 
     private fun onDBResult(exist: Boolean){

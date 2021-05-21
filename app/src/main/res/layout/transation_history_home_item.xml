@@ -7,7 +7,8 @@
     android:background="@drawable/rounded_history_list_item"
     android:backgroundTint="@color/aa"
     android:layout_marginBottom="10dp"
-    android:padding="3dp">
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp">
 
     <ImageView
         android:id="@+id/imageViewItem"
