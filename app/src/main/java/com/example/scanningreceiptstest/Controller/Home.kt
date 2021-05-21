@@ -36,6 +36,10 @@ class Home : NavDrawerActivity() {
         setContentView(R.layout.activity_home)
         onCreateDrawer()
 
+        var totalB=findViewById<TextView>(R.id.totalBalance)
+
+        totalB.setText(CURRENT_USER!!.remaining.toString()+" JD")
+
         lastRecord.adapter = recyclerAdapter
         getTransactions()
 

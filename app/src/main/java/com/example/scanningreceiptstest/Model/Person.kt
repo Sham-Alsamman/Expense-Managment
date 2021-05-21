@@ -1,5 +1,6 @@
 package com.example.scanningreceiptstest.Model
 
+import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.DBPerson
 import java.io.Serializable;
 
@@ -101,5 +102,19 @@ class Person(userName: String, phoneNum: String, password: String) : Serializabl
             savingWallet,
             remaining
         )
+    }
+
+    fun atEndOfMonth() {
+        savingWallet += remaining
+        remaining = 0.0
+        totalIncome = 0.0
+    }
+
+    fun addSalaryAndCalculateSaving() {
+        addIncome(monthlySalary)
+
+        val saving = monthlySalary * (savingAmount / 100)
+        remaining -= saving
+        savingWallet += saving
     }
 }

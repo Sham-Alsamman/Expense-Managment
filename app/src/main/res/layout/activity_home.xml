@@ -70,9 +70,9 @@
                     android:id="@+id/totalBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="70dp"
                     android:layout_marginTop="42dp"
-                    tools:text="JD 4500.00"
+                    tools:text="JD 4500"
                     android:textColor="#3F51B5"
                     android:textSize="26dp" />
 

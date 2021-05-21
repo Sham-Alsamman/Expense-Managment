@@ -1,16 +1,19 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.cancelSalaryAlarm
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import kotlinx.android.synthetic.main.main_menu_test.*
-import kotlinx.android.synthetic.main.main_menu_test.navView
 import kotlinx.android.synthetic.main.nav_header.view.*
+import kotlinx.android.synthetic.main.navigtion_drawer.*
 
 open class NavDrawerActivity : AppCompatActivity() {
 
@@ -32,8 +35,9 @@ open class NavDrawerActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
         //set the user name in the navigation view header:
-        navView.getHeaderView(0).userNameTV.text = CURRENT_USER!!.name
+        CURRENT_USER?.let { navView.getHeaderView(0).userNameTV.text = CURRENT_USER!!.name }
 
         navView.setNavigationItemSelectedListener {
             navDrawerClickListener(it)
@@ -69,8 +73,9 @@ open class NavDrawerActivity : AppCompatActivity() {
                 intent = Intent(applicationContext, About::class.java)
             }
             R.id.navMenu_logout -> {
-                /***********logout form the current account************/
                 SaveSharedPreference.clearUserData(this)
+                /************/
+                cancelSalaryAlarm(this)
                 CURRENT_USER = null
                 CURRENT_GROUP = null
                 intent = Intent(applicationContext, Login::class.java)
