@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/aa"
-    android:layout_marginBottom="10dp">
+    android:background="@drawable/rounded_history_list_item"
+    android:backgroundTint="@color/aa"
+    android:layout_marginBottom="10dp"
+    android:padding="3dp">
 
     <ImageView
         android:id="@+id/imageViewItem"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,32 +20,36 @@
         app:tint="#000000" />
 
     <TextView
-        android:id="@+id/transactionN"
+        android:id="@+id/transactionNameTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         tools:text="Grocery / Shopping"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/transactionAmountHome"
+        app:layout_constraintEnd_toStartOf="@+id/transactionAmountTv"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageViewItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/transactionDateHome"
+        android:id="@+id/transactionDateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
         tools:text="05/10/2020"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewItem"
-        app:layout_constraintTop_toBottomOf="@+id/transactionN" />
+        app:layout_constraintTop_toBottomOf="@+id/transactionNameTv" />
 
     <TextView
-        android:id="@+id/transactionAmountHome"
+        android:id="@+id/transactionAmountTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

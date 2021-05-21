@@ -10,7 +10,6 @@ import android.view.Gravity
 import android.widget.Toast
 import com.chaos.view.PinView
 import com.example.scanningreceiptstest.Model.Person
-import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
@@ -19,10 +18,8 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_verification.*
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.timer
 
 
 const val PHONE_NUMBER_EXTRA = "phoneNum"
@@ -34,7 +31,7 @@ class Verification() : NavDrawerActivity () {
     private lateinit var auth: FirebaseAuth
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
-    var person2 : Person? = null;
+    private var person2 : Person? = null
     private var storedVerificationId: String? = ""
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
 
@@ -60,7 +57,7 @@ class Verification() : NavDrawerActivity () {
         textView10.text="Enter a 6 digit number that will be sent to " + person2!!.phoneNumber ;
         textView10.gravity=Gravity.CENTER
 
-        pinView = findViewById(R.id.PinVew);
+        pinView = findViewById(R.id.PinVew)
         verify_button.setOnClickListener{
             verifyPhoneNumberWithCode(storedVerificationId, pinView!!.text.toString())
         }
@@ -236,13 +233,12 @@ class Verification() : NavDrawerActivity () {
             STATE_SIGNIN_SUCCESS -> {
                 /******* automatically go to the next page ***/
                 // get the person object from sign up page
-               // val person2 = intent?.extras?.get("Person") as Person?
                 if (person2 != null) {
 
-                    var dbExpe = DBExpenseGroup()
+                    val dbExpe = DBExpenseGroup()
                     dbExpe.partners.add(person2!!.phoneNumber)
-                    var ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
-                    var newPerson = Person(
+                    val ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+                    val newPerson = Person(
                         person2!!.phoneNumber,
                         person2!!.name,
                         person2!!.password,
@@ -262,7 +258,7 @@ class Verification() : NavDrawerActivity () {
         }
     }
 
-    fun onUserAdded(successful: Boolean) {
+    private fun onUserAdded(successful: Boolean) {
         if (successful){
            // Database.getUser(userPhoneNum, ::DbResultPerson)
             Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)

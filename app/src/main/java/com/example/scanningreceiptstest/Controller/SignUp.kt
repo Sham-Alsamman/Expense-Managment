@@ -7,29 +7,21 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.Person
-import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
-import com.example.scanningreceiptstest.database.DBExpenseGroup
 import com.example.scanningreceiptstest.database.Database
-import com.example.scanningreceiptstest.database.toExpenseGroup
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class SignUp : NavDrawerActivity() {
-    private var validPhoneNum = false
 
     private var phoneNumExist = false
-        set(value) {
-            field = value
-
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        val reg: String = "\\p{Punct}"
+        val reg = "\\p{Punct}"
         val Name = findViewById<TextInputLayout>(R.id.NameET)
         val PhoneSignUp = findViewById<TextInputLayout>(R.id.PhoneETSignUp)
         val pass = findViewById<TextInputLayout>(R.id.PasswordETSignUp)
@@ -83,7 +75,7 @@ class SignUp : NavDrawerActivity() {
         RePass.editText?.doOnTextChanged { text, start, before, count ->
             val match: String = pass.editText?.text.toString()
             val match2: String = RePass.editText?.text.toString()
-            if (!match2!!.equals(match)) {
+            if (match2 != match) {
                 RePass.error = "Password are not matching"
             } else if (text.isNullOrEmpty()) {
                 // PasswordET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
@@ -97,11 +89,6 @@ class SignUp : NavDrawerActivity() {
 
 
     fun SignInTextView(view: View) {
-        /*
-               val listTransaction = mutableListOf<Transaction>()
-               val m = Person("+962791558798","Malak","1",2000.500,3000.00,500.00,100.00,listTransaction)
-               Database.addNewUser(m.toDBPerson())
-         */
         val i = Intent(applicationContext, Login::class.java)
         startActivity(i)
     }
@@ -120,11 +107,9 @@ class SignUp : NavDrawerActivity() {
             phoneNumExist = false
             PasswordETSignUp.setEndIconDrawable(0)
             PhoneETSignUp.error = null
-
         }
     }
 
-    /********************************/
     fun goToVerification(view: View) {
         /***check if all fields are correct..**/
         if (NameET.editText?.text!!.isEmpty() && PhoneETSignUp.editText?.text!!.isEmpty() && PasswordETSignUp.editText?.text!!.isEmpty() && RepasswordET.editText?.text!!.isEmpty()) {
@@ -152,20 +137,18 @@ class SignUp : NavDrawerActivity() {
         } else {
             //open verification page:
 
-            var username = NameET.editText?.text!!.toString()
-            var phoneNUMBER = PhoneETSignUp.editText?.text!!.toString()
-            var password = PasswordETSignUp.editText?.text!!.toString()
-            var hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
+            val username = NameET.editText?.text!!.toString()
+            val phoneNUMBER = PhoneETSignUp.editText?.text!!.toString()
+            val password = PasswordETSignUp.editText?.text!!.toString()
+            val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
 
             // error when add person
-            var person = Person(
+            val person = Person(
                 username,
                 phoneNUMBER,
                 hashPass
             )
-            // Database.addNewUser(person.toDBPerson())
 
-            // val intent2 = Intent(applicationContext, Verification::class.java)
             val intent = Intent(applicationContext, Verification::class.java)
             intent.putExtra(PHONE_NUMBER_EXTRA, PhoneETSignUp.editText?.text.toString())
             intent.putExtra("Person", person)
@@ -174,34 +157,6 @@ class SignUp : NavDrawerActivity() {
         }
 
     }
-/*
-    fun CheckForPhoneNumber(phone: String): Boolean { // to check if phone number if exist or not in fire base
-        var flag: Boolean = true;
-        /*
-    database.orderByChild("phoneNumber").equalTo(PhoneSignUp).addValueEventListener(object : ValueEventListener {
-
-        override fun onDataChange(snapshot: DataSnapshot) {
-
-            if (snapshot.exists()) {//phone number exist
-                flag=true;
-            }
-            else {
-                flag=false;
-            }
-        }
-
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-
-    })
-
-         */
-        return flag
-    }
-
- */
 
 }
 

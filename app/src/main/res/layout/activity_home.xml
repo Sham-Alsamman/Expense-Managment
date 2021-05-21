@@ -70,11 +70,13 @@
                     android:id="@+id/totalBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="42dp"
-                    tools:text="JD 4500"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_toStartOf="@+id/addincome"
                     android:textColor="#3F51B5"
-                    android:textSize="26dp" />
+                    android:textSize="26sp"
+                    tools:text="JD 4500" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -88,10 +90,13 @@
 
                 <ImageView
                     android:id="@+id/addincome"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="200dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="45dp"
+                    android:layout_marginEnd="68dp"
                     android:background="@drawable/ic_baseline_add_circle_24"
                     android:onClick="openAddIncome" />
             </RelativeLayout>

@@ -4,9 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.TransactionHistoryAdapter
-import com.example.scanningreceiptstest.Model.GroupTransactionFilter
 import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
@@ -14,7 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : NavDrawerActivity() {
-    private val recyclerAdapter = TransactionHistoryAdapter()
+    private val recyclerAdapter = TransactionHistoryAdapter(R.layout.transation_history_home_item)
     private var transactionsList = mutableListOf<Transaction>()
 
 

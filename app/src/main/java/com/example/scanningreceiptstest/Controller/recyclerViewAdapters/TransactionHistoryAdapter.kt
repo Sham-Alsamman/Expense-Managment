@@ -13,9 +13,8 @@ import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.transaction_history_list_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.reflect.jvm.internal.impl.utils.CollectionsKt
 
-class TransactionHistoryAdapter :
+class TransactionHistoryAdapter(private val layoutID: Int) :
     RecyclerView.Adapter<TransactionHistoryAdapter.TransactionViewHolder>() {
 
     var transactionsList = listOf<Transaction>()
@@ -32,10 +31,10 @@ class TransactionHistoryAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(
-            R.layout.transaction_history_list_item,
+            layoutID,
             parent,
             false
-        )/* as TextView*/
+        )
         return TransactionViewHolder(view)
     }
 
@@ -44,7 +43,12 @@ class TransactionHistoryAdapter :
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = transactionsList.size
+    override fun getItemCount(): Int {
+        if (layoutID == R.layout.transation_history_home_item && transactionsList.size > 10)
+            return 10
+
+        return transactionsList.size
+    }
 
     class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

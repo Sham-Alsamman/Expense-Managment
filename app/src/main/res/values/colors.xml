@@ -15,6 +15,7 @@
     <color name="blue">#FF1537E4</color>
     <color name="red">#FF0000</color>
     <color name="purple_light">#717DC1</color>
+    <color name="toolbar_color">#374EEE</color>
 
     <color name="aa">#A9A489D3</color>
 </resources>

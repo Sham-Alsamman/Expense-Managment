@@ -8,13 +8,10 @@ import com.example.scanningreceiptstest.Model.*
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_transation_history.*
-import kotlinx.android.synthetic.main.activity_verification.*
-import kotlinx.android.synthetic.main.profile_activity.view.*
-import java.sql.Date
 
 class TransactionHistory : NavDrawerActivity(), IFilterSheet {
 
-    private val recyclerAdapter = TransactionHistoryAdapter()
+    private val recyclerAdapter = TransactionHistoryAdapter(R.layout.transaction_history_list_item)
     private val filterSheet = BottomSheet_Filter(this)
     private var transactionsList = mutableListOf<Transaction>()
 
@@ -24,22 +21,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         onCreateDrawer()
 
         transactionRecyclerView.adapter = recyclerAdapter
-
-
         getTransactions()
-
-//        /***testing***/
-//        val transactions = listOf(
-//            Income(Date.valueOf("2020-3-8"), 25.2, "salary"),
-//            Expense(Date.valueOf("2005-12-15"), 30.0, "category1", "shopping", recEnum.None)
-//        )
-
-//        val e = Expense(java.util.Date(),0.0, "cat", "vendor", recEnum.None)
-//        val e2 = Expense(java.util.Date(),5.0, "cat2", "vendor2", recEnum.None)
-
-//        val i = Income(java.util.Date(), 200.0, "salary")
-//        val i2 = Income(java.util.Date(), 270.0, "bonus")
-
     }
 
     private fun getTransactions() {
@@ -58,7 +40,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
     private fun onExpenseDBResult(list: List<DBExpense>){
         transactionsList.addAll(list.toExpenseList())
 
-        transactionsList = filterByTime(transactionsList, filterSheet.periodFilter) as MutableList<Transaction>
+        transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
@@ -68,7 +50,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
     private fun onIncomeDBResult(list: List<DBIncome>) {
         transactionsList.addAll(list.toIncomeList())
 
-        transactionsList = filterByTime(transactionsList, filterSheet.periodFilter) as MutableList<Transaction>
+        transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
