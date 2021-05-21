@@ -11,11 +11,13 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import kotlinx.android.synthetic.main.activity_report.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
+
 
 class Report : NavDrawerActivity(), IFilterSheet {
 
@@ -59,7 +61,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
         val y = currentDate.get(1)
         val today = "$x$y"
         val res = (CURRENT_USER!!.totalIncome - CURRENT_USER!!.remaining).div(today.toDouble())
-        val number2digits: Double = (res.toDouble() * 100.0).roundToInt() / 100.0
+        val number2digits: Double = (res * 100.0).roundToInt() / 100.0
 
         val d = "JD" + number2digits.toString() + " / Day"
         avgValue.text = d
@@ -74,24 +76,26 @@ class Report : NavDrawerActivity(), IFilterSheet {
         pieChart.data = pd;
 
         dataset.setColors(
-            Color.CYAN,
-            Color.LTGRAY,
-            Color.BLUE,
-            Color.GREEN,
-            Color.DKGRAY,
-            Color.YELLOW,
-            Color.MAGENTA,
-            Color.GRAY
+            Color.rgb(153, 204, 255),
+            Color.rgb(153, 153, 255),
+            Color.rgb(153, 255, 255),
+            Color.rgb(153, 255, 153),
+            Color.rgb(255, 204, 153),
+            Color.rgb(255, 255, 153),
+            Color.rgb(255, 153, 153),
+            Color.rgb(255, 0, 127),
         )
 
         dataset.setValueTextSize(20f)
         pd.setValueTextSize(20f)
-
+        pd.setValueFormatter(PercentFormatter())
         pieChart.getDescription().text = ""; //the text which will be displayed.
         pieChart.setUsePercentValues(true);
         pieChart.getLegend().setEnabled(false);
         pieChart.invalidate()
         pieChart.animateXY(5000, 5000)
+        pieChart.setEntryLabelColor(Color.BLACK);
+
     }
 
     override fun applyFilterChanges() {
@@ -145,25 +149,55 @@ class Report : NavDrawerActivity(), IFilterSheet {
         var totalPrices =
             Food.toFloat() + Shopping.toFloat() + Medical_and_Health.toFloat() + Education.toFloat() + Housing.toFloat() + Entertainment.toFloat() + Transposition.toFloat() + Other.toFloat()
 
+        //(res * 100.0).roundToInt() / 100.0
 
-
-
+        var p = PieEntry((Food.toFloat() / totalPrices), "Food")
         if (Food != 0.0)
-            valuesList.add(PieEntry((Food.toFloat() / totalPrices), "Food"))
+            valuesList.add(PieEntry((((Food / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Food"))
         if (Shopping != 0.0)
-            valuesList.add(PieEntry((Shopping.toFloat() / totalPrices), "Shopping"))
+            valuesList.add(
+                PieEntry(
+                    (((Shopping / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Shopping"
+                )
+            )
         if (Medical_and_Health != 0.0)
-            valuesList.add( PieEntry((Medical_and_Health.toFloat() / totalPrices), "Medical and Health"))
+            valuesList.add(
+                PieEntry(
+                    (((Medical_and_Health / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Medical and Health"
+                )
+            )
         if (Education != 0.0)
-            valuesList.add(PieEntry((Education.toFloat() / totalPrices), "Education"))
+            valuesList.add(
+                PieEntry(
+                    (((Education / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Education"
+                )
+            )
         if (Housing != 0.0)
-            valuesList.add(PieEntry((Housing.toFloat() / totalPrices), "Housing"))
+            valuesList.add(
+                PieEntry(
+                    (((Housing / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Housing"
+                )
+            )
         if (Entertainment != 0.0)
-            valuesList.add(PieEntry((Entertainment.toFloat() / totalPrices), "Entertainment"))
+            valuesList.add(
+                PieEntry(
+                    (((Entertainment / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Entertainment"
+                )
+            )
         if (Transposition != 0.0)
-            valuesList.add(PieEntry((Transposition.toFloat() / totalPrices), "Transposition"))
+            valuesList.add(
+                PieEntry(
+                    (((Transposition / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
+                    "Transposition"
+                )
+            )
         if (Other != 0.0)
-            valuesList.add(PieEntry((Other.toFloat() / totalPrices), "Other"))
+            valuesList.add(PieEntry((((Other / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Other"))
 
         System.out.println("list len at the end of addValues = " + valuesList.size)
     }
@@ -207,7 +241,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
 
             count++
             if(count == max){
-                System.out.println("user number = "+ count)
+                System.out.println("user number = " + count)
                 addValues(filteredTransactions)
                 generate(valuesList)
             }
