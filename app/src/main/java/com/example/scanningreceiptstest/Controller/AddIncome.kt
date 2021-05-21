@@ -21,6 +21,7 @@ class AddIncome : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_income)
+        onCreateDrawer()
 
         outName.editText?.doOnTextChanged { text, start, before, count ->
             outName.error = null
