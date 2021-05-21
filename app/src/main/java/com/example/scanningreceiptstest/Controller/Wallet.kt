@@ -26,17 +26,11 @@ class Wallet : NavDrawerActivity() {
             val intent = Intent(applicationContext, Home::class.java)
             startActivity(intent)
         }
-
-        Database.getUser(CURRENT_USER!!.phoneNumber, ::onPerson)
     }
 
     private fun saveData(monthlyInc : Double, savingRa : Double){
         CURRENT_USER!!.monthlySalary = monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
         Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
-    }
-
-    private fun onPerson(p : DBPerson) {
-        Database.updateUserInfo(p)
     }
 }

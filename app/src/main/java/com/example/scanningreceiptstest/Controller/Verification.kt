@@ -267,13 +267,12 @@ class Verification() : NavDrawerActivity () {
         CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
         if(CURRENT_GROUP!=null) {
             Toast.makeText(this, "Sign up success", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, Wallet::class.java)
             startActivity(intent)
             SaveSharedPreference.saveUserData(this)
             finish()
         }
     }
-
 
     companion object {
         private const val TAG = "PhoneAuthActivity"

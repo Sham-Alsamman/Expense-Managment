@@ -12,12 +12,17 @@ import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import kotlinx.android.synthetic.main.transaction_history_list_item.view.*
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.reflect.jvm.internal.impl.utils.CollectionsKt
 
 class TransactionHistoryAdapter :
     RecyclerView.Adapter<TransactionHistoryAdapter.TransactionViewHolder>() {
 
     var transactionsList = listOf<Transaction>()
         set(value) {
+            Collections.sort(value){ o1, o2 ->
+                return@sort o2.date.compareTo(o1.date)
+            }
             field = value
             //tell the recycler view to redraw the list
             notifyDataSetChanged()
