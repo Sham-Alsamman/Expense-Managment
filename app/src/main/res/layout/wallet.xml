@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
@@ -26,14 +25,15 @@
                 android:layout_marginStart="70dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
-                tools:text="JD 1,893.45"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.522"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.139" />
+                app:layout_constraintVertical_bias="0.137"
+                tools:text="1,893.45" />
 
             <Button
                 android:id="@+id/saveIncome"
@@ -100,6 +100,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+            <TextView
+                android:id="@+id/percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="122dp"
+                android:layout_marginTop="110dp"
+                android:elevation="20dp"
+                android:shadowColor="#12531111"
+                android:text="%"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/SavingAmount"
                 android:layout_width="0dp"
@@ -118,14 +132,30 @@
                     android:layout_height="match_parent"
                     android:inputType="numberDecimal" />
 
+
+
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="JD"
+                android:textColor="@color/Black"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.42"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.138" />
 
             <TextView
                 android:id="@+id/SavingWalletLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="84dp"
+                android:layout_marginTop="70dp"
                 android:elevation="20dp"
                 android:shadowColor="#12531111"
                 android:text="Saving Wallet"

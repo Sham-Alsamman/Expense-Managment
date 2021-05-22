@@ -2,9 +2,14 @@ package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.widget.EditText
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.wallet.*
+
 
 class Wallet : NavDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,23 +18,28 @@ class Wallet : NavDrawerActivity() {
         onCreateDrawer()
 
         if(!CURRENT_USER!!.totalIncome.isNaN())
-            textView2.setText( CURRENT_USER!!.savingWallet.toString() )
+            textView2.setText(CURRENT_USER!!.savingWallet.toString())
 
         if(!CURRENT_USER!!.monthlySalary.isNaN())
-            monthlyIncome.setText( CURRENT_USER!!.monthlySalary.toString())
+            monthlyIncome.setText(CURRENT_USER!!.monthlySalary.toString())
 
         if(!CURRENT_USER!!.savingAmount.isNaN())
-            savingRate.setText( CURRENT_USER!!.savingAmount.toString() )
+            savingRate.setText(CURRENT_USER!!.savingAmount.toString())
 
         saveIncome.setOnClickListener {
-            saveData(monthlyIncome.text.toString().toDouble(), savingRate.text.toString().toDouble()  )
+            saveData(
+                monthlyIncome.text.toString().toDouble(),
+                savingRate.text.toString().toDouble()
+            )
             val intent = Intent(applicationContext, Home::class.java)
             startActivity(intent)
             finish()
         }
+
+
     }
 
-    private fun saveData(monthlyInc : Double, savingRa : Double){
+    private fun saveData(monthlyInc: Double, savingRa: Double){
         CURRENT_USER!!.monthlySalary = monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
         Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
