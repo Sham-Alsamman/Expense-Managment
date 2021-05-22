@@ -9,6 +9,7 @@ import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+//import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : NavDrawerActivity() {
@@ -34,6 +35,9 @@ class Home : NavDrawerActivity() {
         setContentView(R.layout.activity_home)
         onCreateDrawer()
 
+        /***********subscribe to firebase notifications***********/
+        //FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications")
+
         var totalB=findViewById<TextView>(R.id.totalBalance)
 
         totalB.setText(CURRENT_USER!!.remaining.toString()+" JD")
@@ -56,7 +60,6 @@ class Home : NavDrawerActivity() {
         mAddFab!!.setOnClickListener {
 
             if (!isAllFabsVisible!!) {
-
                 mScanFab!!.show()
                 mManuallyFab!!.show()
                 addManuallyActionText!!.visibility = View.VISIBLE

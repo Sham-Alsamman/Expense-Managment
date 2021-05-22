@@ -43,8 +43,7 @@ class AddManually : NavDrawerActivity() {
             amountIn.setText(totalFromScan.toString())
         }
 
-        var recSelected: recEnum
-        var catSelected: String
+
         val categoryItems = resources.getStringArray(R.array.Category)
 
         val spinnerRecurrent = findViewById<Spinner>(R.id.spinner)
@@ -116,89 +115,66 @@ class AddManually : NavDrawerActivity() {
             }
 
             saveExpense.setOnClickListener {
-                var name = ""
-                var amountExpense = ""
-                var date = arrayOf<String>()
-                var dateExp: Date = Date()
-                var dayInt: Int = 0
-                var monthInt: Int = 0
-                var yearInt: Int = 0
-                var flag = true
-
-                if (!NameIn.text.isNullOrEmpty()) {
-                    name = NameIn.text.toString()
-                    outlinedTextField.error = null
-                } else {
-                    outlinedTextField.error = "Please enter the Name of Receipt"
-                    flag = false
-                }
-                /*  if (!catIn.text.isNullOrEmpty()) {
-                      catExpense = catIn.text.toString()
-                      outCat2.error = null
-                  } else {
-                      outCat2.error = "Please enter the Category of Receipt"
-                      flag = false
-                  }*/
-
-                if (!amountIn.text.isNullOrEmpty()) {
-                    amountExpense = amountIn.text.toString()
-                    outAmountManually.error = null
-                } else {
-                    outAmountManually.error = "Please enter the amount of Receipt"
-                    flag = false
-                }
-
-                if (!dateIn.text.isNullOrEmpty()) {
-                    outDate1.error = null
-                    date = dateIn.text.toString().split("/").toTypedArray()
-                    try {
-                        dayInt = date[0].toInt()
-                        monthInt = date[1].toInt()
-                        yearInt = date[2].toInt()
-                    }catch (e: Exception){
-                        outDate1.error = "Incorrect date"
-                        flag = false
-                    }
-                    dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
-                    // Toast.makeText(this, "date: " + dateExp, Toast.LENGTH_LONG).show()
-                    /*
-                    val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-                    val date: Date = dateFormat.parse("2020-1-1")
-                    val m = Expense(date, 200.00, "Clothes", "shop", recEnum.Daily)
-                    Database.addNewExpense("+962791558798",m.toDBExpense())
-                    */
-                } else {
-                    outDate1.error = "Please Enter The Date Of Receipt"
-                    flag = false
-                }
-
-                recSelected = spinner.selectedItem as recEnum
-                catSelected = spinnerCat.selectedItem as String
-
-                /* Toast.makeText(this@AddManually, recSelected.toString(), Toast.LENGTH_SHORT).show()
-                 Toast.makeText(this@AddManually,catSelected, Toast.LENGTH_SHORT).show()*/
-
-                /*  Toast.makeText(this,"year: "+date[2].toString(),Toast.LENGTH_SHORT).show()
-                  Toast.makeText(this,"month: "+date[1].toString(),Toast.LENGTH_SHORT).show()
-                  Toast.makeText(this,"day: "+date[0].toString(),Toast.LENGTH_SHORT).show()*/
-
-                // for(item in date)
-                //Toast.makeText(this,"date : "+item,Toast.LENGTH_SHORT).show()
-
-                /* Toast.makeText(this,"year: "+yearInt,Toast.LENGTH_SHORT).show()
-                 Toast.makeText(this,"month: "+monthInt,Toast.LENGTH_SHORT).show()
-                 Toast.makeText(this,"day: "+dayInt,Toast.LENGTH_SHORT).show()*/
-
-                if (flag) {
-                    val newExpense =
-                        Expense(dateExp, amountExpense.toDouble(), catSelected, name, recSelected)
-
-                    saveNewExpense(newExpense)
-                }
-
+                getExpenseDataAndSave()
             }
         }
     }
+
+    private fun getExpenseDataAndSave() {
+        var name = ""
+        var amountExpense = ""
+        var date = arrayOf<String>()
+        var dateExp: Date = Date()
+        var dayInt: Int = 0
+        var monthInt: Int = 0
+        var yearInt: Int = 0
+        var flag = true
+
+        if (!NameIn.text.isNullOrEmpty()) {
+            name = NameIn.text.toString()
+            outlinedTextField.error = null
+        } else {
+            outlinedTextField.error = "Please enter the Name of Receipt"
+            flag = false
+        }
+        if (!amountIn.text.isNullOrEmpty()) {
+            amountExpense = amountIn.text.toString()
+            outAmountManually.error = null
+        } else {
+            outAmountManually.error = "Please enter the amount of Receipt"
+            flag = false
+        }
+
+        if (!dateIn.text.isNullOrEmpty()) {
+            outDate1.error = null
+            date = dateIn.text.toString().split("/").toTypedArray()
+            try {
+                dayInt = date[0].toInt()
+                monthInt = date[1].toInt()
+                yearInt = date[2].toInt()
+            }catch (e: Exception){
+                outDate1.error = "Incorrect date"
+                flag = false
+            }
+            dateExp = Date(yearInt - 1900, monthInt - 1, dayInt)
+
+        } else {
+            outDate1.error = "Please Enter The Date Of Receipt"
+            flag = false
+        }
+
+        val recSelected: recEnum = spinner.selectedItem as recEnum
+        val catSelected: String = spinnerCat.selectedItem as String
+
+        if (flag) {
+            val newExpense =
+                Expense(dateExp, amountExpense.toDouble(), catSelected, name, recSelected)
+
+            saveNewExpense(newExpense)
+        }
+    }
+
+
 
     private fun saveNewExpense(newExpense: Expense) {
 
@@ -230,36 +206,36 @@ class AddManually : NavDrawerActivity() {
             setAlarm(newExpense)
         **********/
         val intent = Intent(this, Home::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
     }
 
-    private fun setAlarm(newExpense: Expense) {
-        Log.i("Alarm", "setAlarm called")
-        val interval = when (newExpense.recurrent) {
-            recEnum.Daily -> DateUtils.SECOND_IN_MILLIS * 5//DateUtils.DAY_IN_MILLIS
-            recEnum.Weekly -> DateUtils.WEEK_IN_MILLIS
-            recEnum.Monthly -> DateUtils.WEEK_IN_MILLIS * 7
-            else -> DateUtils.YEAR_IN_MILLIS
-        }
-
-        val alarmManager = getSystemService<AlarmManager>() //getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val triggerTime = SystemClock.elapsedRealtime() + interval
-
-        val pendingIntent = PendingIntent.getBroadcast(
-            application,
-            REQUEST_CODE,
-            Intent(this, SalaryAlarmReceiver::class.java),
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
-        alarmManager?.setInexactRepeating(
-            AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            triggerTime,
-            interval,
-            pendingIntent
-        )
-    }
+//    private fun setAlarm(newExpense: Expense) {
+//        Log.i("Alarm", "setAlarm called")
+//        val interval = when (newExpense.recurrent) {
+//            recEnum.Daily -> DateUtils.SECOND_IN_MILLIS * 5//DateUtils.DAY_IN_MILLIS
+//            recEnum.Weekly -> DateUtils.WEEK_IN_MILLIS
+//            recEnum.Monthly -> DateUtils.WEEK_IN_MILLIS * 7
+//            else -> DateUtils.YEAR_IN_MILLIS
+//        }
+//
+//        val alarmManager = getSystemService<AlarmManager>() //getSystemService(Context.ALARM_SERVICE) as AlarmManager
+//        val triggerTime = SystemClock.elapsedRealtime() + interval
+//
+//        val pendingIntent = PendingIntent.getBroadcast(
+//            application,
+//            REQUEST_CODE,
+//            Intent(this, SalaryAlarmReceiver::class.java),
+//            PendingIntent.FLAG_UPDATE_CURRENT
+//        )
+//
+//        alarmManager?.setInexactRepeating(
+//            AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//            triggerTime,
+//            interval,
+//            pendingIntent
+//        )
+//    }
 
     private fun showDatePicker() {
         //get current date:

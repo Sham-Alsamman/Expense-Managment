@@ -78,6 +78,12 @@ dependencies {
     // Declare the dependency for the Realtime Database library
     implementation 'com.google.firebase:firebase-database-ktx:19.7.0'
 
+    //firebase cloud functions:
+    implementation 'com.google.firebase:firebase-functions:19.0.2'
+
+    //firebase messaging service:
+    //implementation 'com.google.firebase:firebase-messaging:22.0.0'
+
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //firebase ML kit

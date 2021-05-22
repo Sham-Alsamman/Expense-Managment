@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Simple and most easy way to track your expenses "
+                android:text="Simple and easy way to track your expenses "
                 android:textColor="#5367F0"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="malakkhasawneh99@outlook.com"
+                android:text="expensemanagement21@gmail.com"
                 android:textColor="#072B4F"
                 android:textSize="20sp" />
         </LinearLayout>
