@@ -44,7 +44,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
-        Toast.makeText(this, "expense updated", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "expense updated", Toast.LENGTH_SHORT).show()
     }
 
     private fun onIncomeDBResult(list: List<DBIncome>) {
@@ -54,7 +54,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 
-        Toast.makeText(this, "income updated", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "income updated", Toast.LENGTH_SHORT).show()
     }
 
 

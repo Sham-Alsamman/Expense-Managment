@@ -31,7 +31,7 @@ class Invitations : NavDrawerActivity() {
 
     private fun onDBResult(list: List<DBInvitation>) {
         recyclerAdapter.invitationsList = list.toInvitationList()
-        Toast.makeText(this, "invitations updated ${list.size}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "invitations updated ${list.size}", Toast.LENGTH_SHORT).show()
     }
 
 
