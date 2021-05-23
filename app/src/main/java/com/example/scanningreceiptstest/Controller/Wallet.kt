@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.wallet.*
@@ -20,13 +21,18 @@ class Wallet : NavDrawerActivity() {
         displayIncomeInfo();
 
         saveIncome.setOnClickListener {
-            saveData(
-                monthlyIncome.text.toString().toDouble(),
-                savingRate.text.toString().toDouble()
-            )
-            val intent = Intent(applicationContext, Home::class.java)
-            startActivity(intent)
-            finish()
+
+            var a = monthlyIncome.text.toString()
+            var b = savingRate.text.toString()
+            if (a.isNotEmpty() && b.isNotEmpty()) {
+                saveData(a.toDouble(), b.toDouble())
+                val intent = Intent(applicationContext, Home::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+                Toast.makeText(applicationContext, "Please make sure to fill all data!", Toast.LENGTH_SHORT).show()
+
         }
 
 
