@@ -3,6 +3,7 @@ package com.example.scanningreceiptstest
 import android.app.Application
 import android.util.Log
 import androidx.work.*
+import com.example.scanningreceiptstest.Controller.SaveSharedPreference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,22 +19,27 @@ class App : Application() {
         setUpInvitationWorker()
     }
 
-    private fun setUpInvitationWorker() = appScope.launch{
+    private fun setUpInvitationWorker() = appScope.launch {
         Log.i("worker", "setUpInvitationWorker called")
 
-        val constraint = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresBatteryNotLow(true)
-            .build()
+        //if there is logged-in user schedule the work:
+        val user = SaveSharedPreference.getUserId(this@App)
+        if (user != null) {
 
-        val repeatingRequest = PeriodicWorkRequestBuilder<InvitationWorker>(5, TimeUnit.SECONDS)
-            .setConstraints(constraint)
-            .build()
+            val constraint = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .setRequiresBatteryNotLow(true)
+                .build()
 
-        WorkManager.getInstance(this@App).enqueueUniquePeriodicWork(
-            InvitationWorker.WORK_NAME,
-            ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest
-        )
+            val repeatingRequest = PeriodicWorkRequestBuilder<InvitationWorker>(5, TimeUnit.SECONDS)
+                .setConstraints(constraint)
+                .build()
+
+            WorkManager.getInstance(this@App).enqueueUniquePeriodicWork(
+                InvitationWorker.WORK_NAME,
+                ExistingPeriodicWorkPolicy.KEEP,
+                repeatingRequest
+            )
+        }
     }
 }

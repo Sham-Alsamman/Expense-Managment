@@ -21,27 +21,27 @@ import kotlin.math.roundToInt
 
 class Report : NavDrawerActivity(), IFilterSheet {
 
-    lateinit var pieChart: PieChart;
-    var valuesList: ArrayList<PieEntry> = ArrayList<PieEntry>();
-    var filteredTransactions: ArrayList<Transaction> = ArrayList<Transaction>();
+    private lateinit var pieChart: PieChart
+    private var valuesList: ArrayList<PieEntry> = ArrayList()
+    private var filteredTransactions: ArrayList<Transaction> = ArrayList()
     private val filterSheet = BottomSheet_Filter(this)
-    var Food = 0.0
-    var Shopping = 0.0
-    var Medical_and_Health = 0.0
-    var Education = 0.0
-    var Housing = 0.0
-    var Entertainment = 0.0
-    var Transposition = 0.0
-    var Other = 0.0
+    private var Food = 0.0
+    private var Shopping = 0.0
+    private var Medical_and_Health = 0.0
+    private var Education = 0.0
+    private var Housing = 0.0
+    private var Entertainment = 0.0
+    private var Transposition = 0.0
+    private var Other = 0.0
 
-    var count = 0
-    var max = CURRENT_GROUP!!.partners.size
+    private var count = 0
+    private var max = CURRENT_GROUP!!.partners.size
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         onCreateDrawer()
-        pieChart = findViewById(R.id.piechart);
+        pieChart = findViewById(R.id.piechart)
         Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultFirst)
 
         filter_btn.setOnClickListener {
@@ -57,8 +57,8 @@ class Report : NavDrawerActivity(), IFilterSheet {
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date()).toString()
 
-        val x = currentDate.get(0)
-        val y = currentDate.get(1)
+        val x = currentDate[0]
+        val y = currentDate[1]
         val today = "$x$y"
         val res = (CURRENT_USER!!.totalIncome - CURRENT_USER!!.remaining).div(today.toDouble())
         val number2digits: Double = (res * 100.0).roundToInt() / 100.0
@@ -66,14 +66,14 @@ class Report : NavDrawerActivity(), IFilterSheet {
         val d = "JD" + number2digits.toString() + " / Day"
         avgValue.text = d
 
-        System.out.println(today)
+        println(today)
     }
 
-    fun generate(list: ArrayList<PieEntry>) {
-        System.out.println("list to print in generate . size = " + list.size)
-        var dataset = PieDataSet(list, ".");
-        var pd = PieData(dataset);
-        pieChart.data = pd;
+    private fun generate(list: ArrayList<PieEntry>) {
+        println("list to print in generate . size = " + list.size)
+        val dataset = PieDataSet(list, ".")
+        val pd = PieData(dataset)
+        pieChart.data = pd
 
         dataset.setColors(
             Color.rgb(153, 204, 255),
@@ -86,16 +86,15 @@ class Report : NavDrawerActivity(), IFilterSheet {
             Color.rgb(255, 0, 127),
         )
 
-        dataset.setValueTextSize(20f)
+        dataset.valueTextSize = 20f
         pd.setValueTextSize(20f)
         pd.setValueFormatter(PercentFormatter())
-        pieChart.getDescription().text = ""; //the text which will be displayed.
-        pieChart.setUsePercentValues(true);
-        pieChart.getLegend().setEnabled(false);
+        pieChart.description.text = "" //the text which will be displayed.
+        pieChart.setUsePercentValues(true)
+        pieChart.legend.isEnabled = false
         pieChart.invalidate()
         pieChart.animateXY(5000, 5000)
-        pieChart.setEntryLabelColor(Color.BLACK);
-
+        pieChart.setEntryLabelColor(Color.BLACK)
     }
 
     override fun applyFilterChanges() {
@@ -120,11 +119,11 @@ class Report : NavDrawerActivity(), IFilterSheet {
             Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultFirst)
         }
 
-        System.out.println("last edit = " + filteredTransactions.size)
+        println("last edit = " + filteredTransactions.size)
     }
 
     private fun addValues(list: List<Transaction>) {
-        System.out.println("list len at the start of addValues = " + valuesList.size)
+        println("list len at the start of addValues = " + valuesList.size)
 
         for (i in list) {
             i as Expense
@@ -146,7 +145,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
                 Other += i.amount
         }
 
-        var totalPrices =
+        val totalPrices =
             Food.toFloat() + Shopping.toFloat() + Medical_and_Health.toFloat() + Education.toFloat() + Housing.toFloat() + Entertainment.toFloat() + Transposition.toFloat() + Other.toFloat()
 
         //(res * 100.0).roundToInt() / 100.0
@@ -199,21 +198,21 @@ class Report : NavDrawerActivity(), IFilterSheet {
         if (Other != 0.0)
             valuesList.add(PieEntry((((Other / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Other"))
 
-        System.out.println("list len at the end of addValues = " + valuesList.size)
+        println("list len at the end of addValues = " + valuesList.size)
     }
 
     private fun ExpensesDBResultFirst(list: List<DBExpense>) {
-        System.out.println("list for individual from data base = " + list.size)
+        println("list for individual from data base = " + list.size)
 
-        var TransList: ArrayList<Transaction> = ArrayList()
+        val TransList: ArrayList<Transaction> = ArrayList()
         for (i in list) {
-            var e = i.toExpense()
+            val e = i.toExpense()
             TransList.add(e as Transaction)
         }
 
-        System.out.println("size before for individual should be 0 = " + filteredTransactions.size)
+        println("size before for individual should be 0 = " + filteredTransactions.size)
         filteredTransactions = filterByTime(TransList, filterSheet.periodFilter)
-        System.out.println("size after for individual should be > 0 = " + filteredTransactions.size)
+        println("size after for individual should be > 0 = " + filteredTransactions.size)
 
         addValues(filteredTransactions)
         generate(valuesList)
@@ -222,31 +221,27 @@ class Report : NavDrawerActivity(), IFilterSheet {
     private fun ExpensesDBResult(list: List<DBExpense>) {
         if (count <= max) {
 
-            System.out.println("list from data base = " + list.size)
+            println("list from data base = " + list.size)
 
-            var TransList: ArrayList<Transaction> = ArrayList()
+            val TransList: ArrayList<Transaction> = ArrayList()
             for (i in list) {
-                var e = i.toExpense()
+                val e = i.toExpense()
                 TransList.add(e as Transaction)
             }
 
-            var temp = filterByTime(TransList, filterSheet.periodFilter)
-            System.out.println("size before" + filteredTransactions.size)
+            val temp = filterByTime(TransList, filterSheet.periodFilter)
+            println("size before" + filteredTransactions.size)
             filteredTransactions.addAll(temp)
-            System.out.println("size after" + filteredTransactions.size)
+            println("size after" + filteredTransactions.size)
 
-            System.out.println("user number = " + count)
-
-
+            println("user number = " + count)
 
             count++
             if(count == max){
-                System.out.println("user number = " + count)
+                println("user number = " + count)
                 addValues(filteredTransactions)
                 generate(valuesList)
             }
         }
-
     }
-
 }

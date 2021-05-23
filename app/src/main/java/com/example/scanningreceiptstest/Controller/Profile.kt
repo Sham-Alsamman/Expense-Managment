@@ -34,7 +34,7 @@ class Profile : NavDrawerActivity() {
 
         Profile.editText?.doOnTextChanged { text, start, before, count ->
             val pattern = Pattern.compile(reg)
-            val matcher: Matcher = pattern.matcher(text)
+            val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
                 Profile.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 Profile.error = "Name Should Contain Only Characters and Numbers"
@@ -68,7 +68,7 @@ class Profile : NavDrawerActivity() {
         confirm.editText?.doOnTextChanged { text, start, before, count ->
             val match: String = changePass.text.toString()
             val match2: String = ConfirmPass.text.toString()
-            if (!match2!!.equals(match)) {
+            if (match2 != match) {
                 confirm.error = "Password are not matching"
             } else if (text.isNullOrEmpty()) {
                // filledTextField5.setEndIconDrawable(R.drawable.ic_baseline_error_24)

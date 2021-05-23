@@ -51,7 +51,7 @@ object Database {
     }
 
     fun checkPassword(Phone: String, Pass: String, onDataRetrieved: (Boolean) -> Unit) {
-        var flag = true
+        var flag: Boolean
         var p: DBPerson? = null
         val passval = Pass.trim()
         userRef.orderByChild("phoneNumber").equalTo(Phone).addListenerForSingleValueEvent(object :

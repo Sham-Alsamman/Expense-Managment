@@ -29,7 +29,7 @@ class SignUp : NavDrawerActivity() {
 
         Name.editText?.doOnTextChanged { text, start, before, count ->
             val pattern = Pattern.compile(reg)
-            val matcher: Matcher = pattern.matcher(text)
+            val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
                 Name.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 Name.error = "Name Should Contain Only Characters and Numbers"
@@ -57,7 +57,7 @@ class SignUp : NavDrawerActivity() {
         }
         pass.editText?.doOnTextChanged { text, start, before, count ->
             val pattern = Pattern.compile(reg)
-            val matcher: Matcher = pattern.matcher(text)
+            val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
                 // pass.setEndIconActivated(false)
                 // PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)

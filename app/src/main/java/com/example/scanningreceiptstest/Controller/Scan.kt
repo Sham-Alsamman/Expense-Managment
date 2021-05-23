@@ -47,7 +47,7 @@ class Scan : AppCompatActivity() {
     fun doProcess() {
 
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        ActivityCompat.startActivityForResult(this!!, intent, 101, null)
+        ActivityCompat.startActivityForResult(this, intent, 101, null)
 
     }
 
@@ -106,7 +106,7 @@ class Scan : AppCompatActivity() {
 
 
     private fun findTotal(l1: List<String>, index: Int): Double {
-        var t: Double? = 0.0
+        var t: Double?
         var i = index
         while (i < l1.size) {
             t = l1[i].trim('$').toDoubleOrNull()

@@ -1,12 +1,16 @@
 package com.example.scanningreceiptstest.Controller
 
+import android.app.NotificationManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.core.content.getSystemService
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.TransactionHistoryAdapter
-import com.example.scanningreceiptstest.Model.*
+import com.example.scanningreceiptstest.Model.GroupTransactionFilter
+import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.createChannel
 import com.example.scanningreceiptstest.database.*
+import com.example.scanningreceiptstest.sendNotification
 import kotlinx.android.synthetic.main.activity_transation_history.*
 
 class TransactionHistory : NavDrawerActivity(), IFilterSheet {

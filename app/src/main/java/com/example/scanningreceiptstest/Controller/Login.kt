@@ -93,7 +93,7 @@ class Login : NavDrawerActivity() {
 
         Password.editText?.doOnTextChanged { text, start, before, count ->
             val pattern = Pattern.compile(reg)
-            val matcher: Matcher = pattern.matcher(text)
+            val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
                 Password.setEndIconActivated(false)
                 // PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)

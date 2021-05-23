@@ -35,9 +35,6 @@ class Home : NavDrawerActivity() {
         setContentView(R.layout.activity_home)
         onCreateDrawer()
 
-        /***********subscribe to firebase notifications***********/
-        //FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications")
-
         var totalB=findViewById<TextView>(R.id.totalBalance)
 
         totalB.setText(CURRENT_USER!!.remaining.toString()+" JD")
