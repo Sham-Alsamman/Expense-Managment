@@ -39,60 +39,64 @@ class AddIncome : NavDrawerActivity() {
         }
 
         saveIncome.setOnClickListener {
-            var name = ""
-            var amountIN = ""
-            var date = arrayOf<String>()
-            var DateIncome = Date()
-            var dayInt = 0
-            var monthInt = 0
-            var yearInt = 0
-            var flag = true
+            addAdditionalIncome();
+        }
+    }
 
-            if (!nameIncome.text.isNullOrEmpty()) {
-                name = nameIncome.text.toString()
-                outName.error = null
-            } else {
-                nameIncome.error = "Please enter the Name of the Income"
+    private fun addAdditionalIncome(){
+        var name = ""
+        var amountIN = ""
+        var date = arrayOf<String>()
+        var DateIncome = Date()
+        var dayInt = 0
+        var monthInt = 0
+        var yearInt = 0
+        var flag = true
+
+        if (!nameIncome.text.isNullOrEmpty()) {
+            name = nameIncome.text.toString()
+            outName.error = null
+        } else {
+            nameIncome.error = "Please enter the Name of the Income"
+            flag = false
+        }
+
+        if (!amountIncome.text.isNullOrEmpty()) {
+            amountIN = amountIncome.text.toString()
+            outAmount.error = null
+        } else {
+            outAmount.error = "Please enter the amount of the Income"
+            flag = false
+        }
+
+        if (!dateIncome.text.isNullOrEmpty()) {
+            outDate.error = null
+            date = dateIncome.text.toString().split("/").toTypedArray()
+            try {
+                dayInt = date[0].toInt()
+                monthInt = date[1].toInt()
+                yearInt = date[2].toInt()
+            }catch (e: Exception){
+                outDate.error = "Incorrect date"
                 flag = false
             }
+            DateIncome = Date(yearInt - 1900, monthInt - 1, dayInt)
+            Toast.makeText(this, "date: " + DateIncome, Toast.LENGTH_SHORT).show()
+        } else {
+            outDate.error = "Please Enter The Date of the Income"
+            flag = false
+        }
 
-            if (!amountIncome.text.isNullOrEmpty()) {
-                amountIN = amountIncome.text.toString()
-                outAmount.error = null
-            } else {
-                outAmount.error = "Please enter the amount of the Income"
-                flag = false
-            }
+        if (flag) {
+            val newIncome = Income(DateIncome, amountIN.toDouble(), name)
+            CURRENT_USER!!.addIncome(newIncome.amount)
+            Database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
+            Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+            Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
 
-            if (!dateIncome.text.isNullOrEmpty()) {
-                outDate.error = null
-                date = dateIncome.text.toString().split("/").toTypedArray()
-                try {
-                    dayInt = date[0].toInt()
-                    monthInt = date[1].toInt()
-                    yearInt = date[2].toInt()
-                }catch (e: Exception){
-                    outDate.error = "Incorrect date"
-                    flag = false
-                }
-                DateIncome = Date(yearInt - 1900, monthInt - 1, dayInt)
-                Toast.makeText(this, "date: " + DateIncome, Toast.LENGTH_SHORT).show()
-            } else {
-                outDate.error = "Please Enter The Date of the Income"
-                flag = false
-            }
-
-            if (flag) {
-                val newIncome = Income(DateIncome, amountIN.toDouble(), name)
-                CURRENT_USER!!.addIncome(newIncome.amount)
-                Database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
-                Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
-                Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
-
-                val intent = Intent(this, Home::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-            }
+            val intent = Intent(this, Home::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
     }
 

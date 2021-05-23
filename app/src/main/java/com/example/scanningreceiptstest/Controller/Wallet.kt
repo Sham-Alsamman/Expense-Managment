@@ -17,14 +17,7 @@ class Wallet : NavDrawerActivity() {
         setContentView(R.layout.wallet)
         onCreateDrawer()
 
-        if(!CURRENT_USER!!.totalIncome.isNaN())
-            textView2.setText(CURRENT_USER!!.savingWallet.toString())
-
-        if(!CURRENT_USER!!.monthlySalary.isNaN())
-            monthlyIncome.setText(CURRENT_USER!!.monthlySalary.toString())
-
-        if(!CURRENT_USER!!.savingAmount.isNaN())
-            savingRate.setText(CURRENT_USER!!.savingAmount.toString())
+        displayIncomeInfo();
 
         saveIncome.setOnClickListener {
             saveData(
@@ -36,6 +29,18 @@ class Wallet : NavDrawerActivity() {
             finish()
         }
 
+
+    }
+
+    private fun displayIncomeInfo(){
+        if(!CURRENT_USER!!.totalIncome.isNaN())
+            textView2.setText(CURRENT_USER!!.savingWallet.toString())
+
+        if(!CURRENT_USER!!.monthlySalary.isNaN())
+            monthlyIncome.setText(CURRENT_USER!!.monthlySalary.toString())
+
+        if(!CURRENT_USER!!.savingAmount.isNaN())
+            savingRate.setText(CURRENT_USER!!.savingAmount.toString())
 
     }
 
