@@ -23,6 +23,7 @@ class InvitationWorker(appContext: Context, workerParams: WorkerParameters) :
 
     override fun doWork(): Result {
         Log.i("worker", "triggered")
+        createChannel(applicationContext)
 
         val user = SaveSharedPreference.getUserId(applicationContext)
         //if user is logged in get all invitations
@@ -38,7 +39,6 @@ class InvitationWorker(appContext: Context, workerParams: WorkerParameters) :
             //if the invitation is new, send a notification:
             if (invitation.invitationStatus == InvitationStatus.NEW) {
                 //send notification
-                createChannel(applicationContext)
                 val notificationManager = applicationContext.getSystemService<NotificationManager>()
                 notificationManager?.sendNotification(invitation.message, applicationContext)
             }
