@@ -3,11 +3,9 @@ package com.example.scanningreceiptstest
 import android.app.NotificationManager
 import android.content.Context
 import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.getSystemService
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.example.scanningreceiptstest.Controller.SaveSharedPreference
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.database.DBInvitation
 import com.example.scanningreceiptstest.database.Database
@@ -41,6 +39,7 @@ class InvitationWorker(appContext: Context, workerParams: WorkerParameters) :
                 //send notification
                 val notificationManager = applicationContext.getSystemService<NotificationManager>()
                 notificationManager?.sendNotification(invitation.message, applicationContext)
+                return
             }
         }
     }

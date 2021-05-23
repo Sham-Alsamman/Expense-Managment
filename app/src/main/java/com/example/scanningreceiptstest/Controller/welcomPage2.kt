@@ -1,13 +1,11 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
-import java.util.*
 
 class welcomPage2 : NavDrawerActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {

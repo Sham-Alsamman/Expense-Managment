@@ -7,6 +7,7 @@ import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.Invitati
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_invitations.*
 
@@ -50,9 +51,13 @@ class Invitations : NavDrawerActivity() {
     private fun onDBExpenseGroupResult(newGroup: DBExpenseGroup) {
         //remove user from the current group:
         CURRENT_GROUP!!.removePartner(CURRENT_USER!!.phoneNumber)
-        Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
-        /*******delete group if empty?********/
+        //delete group if empty
+        if (CURRENT_GROUP!!.partners.isEmpty())
+            Database.deleteExpenseGroup(CURRENT_GROUP!!.groupID)
+        else
+            Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
 
+        //change the user's group
         CURRENT_USER!!.changeGroup(newGroup.groupID)
         Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 

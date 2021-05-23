@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.SalaryAlarmReceiver
+import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
 import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
 import com.google.android.material.textfield.TextInputLayout

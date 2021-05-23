@@ -13,16 +13,14 @@ import com.example.scanningreceiptstest.Controller.Invitations
 import java.util.*
 
 private const val NOTIFICATION_CHANNEL_ID = "invitation_channel"
-//private const val NOTIFICATION_ID = 0
+private const val NOTIFICATION_ID = 0
 
 fun NotificationManager.sendNotification(messageBody: String, appContext: Context) {
-    val notificationId = (Date().time / 1000L % Int.MAX_VALUE).toInt()
-
     //intent to open Invitations page when notification clicked:
     val intent = Intent(appContext, Invitations::class.java)
     val pendingIntent = PendingIntent.getActivity(
         appContext,
-        notificationId,
+        NOTIFICATION_ID,
         intent,
         PendingIntent.FLAG_ONE_SHOT
     )
@@ -38,7 +36,7 @@ fun NotificationManager.sendNotification(messageBody: String, appContext: Contex
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
-    notify(notificationId, builder.build())
+    notify(NOTIFICATION_ID, builder.build())
 }
 
 // the name the user see in the sittings

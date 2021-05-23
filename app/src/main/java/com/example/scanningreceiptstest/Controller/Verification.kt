@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.chaos.view.PinView
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
+import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
 import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
 import com.google.firebase.FirebaseException

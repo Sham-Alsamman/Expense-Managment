@@ -3,7 +3,6 @@ package com.example.scanningreceiptstest
 import android.app.Application
 import android.util.Log
 import androidx.work.*
-import com.example.scanningreceiptstest.Controller.SaveSharedPreference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

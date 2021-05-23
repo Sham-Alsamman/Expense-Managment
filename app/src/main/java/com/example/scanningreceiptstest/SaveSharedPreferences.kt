@@ -1,4 +1,4 @@
-package com.example.scanningreceiptstest.Controller
+package com.example.scanningreceiptstest
 
 import android.content.Context
 import android.content.SharedPreferences

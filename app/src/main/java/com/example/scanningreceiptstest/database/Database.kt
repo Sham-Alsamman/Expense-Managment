@@ -240,4 +240,8 @@ object Database {
 
         expenseGroupRef.child(group.groupID).updateChildren(hashMap)
     }
+
+    fun deleteExpenseGroup(groupId: String) {
+        expenseGroupRef.child(groupId).removeValue()
+    }
 }
