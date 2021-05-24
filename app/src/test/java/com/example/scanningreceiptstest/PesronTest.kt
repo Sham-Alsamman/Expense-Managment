@@ -100,9 +100,6 @@ class PersonTest {
 
     @Test
     fun changeGroupTest() {
-        /*****personTest.groupId="123"
-
-        val result= personTest.groupId********/
 
         personTest.changeGroup("123")
         assertEquals("123", personTest.groupId)
@@ -112,13 +109,6 @@ class PersonTest {
     fun addExpenseIfPossibleTest1() {
         val expense = 10.0
         personTest.remaining = 100.0
-        /*******var result=false
-        if (expense > 0 && personTest.remaining - expense >= 0) {
-        personTest.remaining -= expense
-        result = true
-        }
-        else
-        result=false*****/
 
         val result = personTest.addExpenseIfPossible(expense)
         assertEquals(90.0, personTest.remaining, .001)
@@ -130,12 +120,7 @@ class PersonTest {
         val expense = 120.0
         personTest.remaining = 100.0
 
-        var result = false
-        if (expense > 0 && personTest.remaining - expense >= 0) {
-            personTest.remaining -= expense
-            result = true
-        } else
-            result = false
+        val result =personTest.addExpenseIfPossible(expense)
 
         assertEquals(100.0, personTest.remaining, .001)
         assertFalse(result)
@@ -147,62 +132,52 @@ class PersonTest {
         personTest.remaining = 100.0
         personTest.savingWallet = 100.0
 
-        var result = false
-        if (expense > 0 && (personTest.remaining + personTest.savingWallet) - expense >= 0)
-            result = true
+        val result = personTest.canWithdrawFromSavings(expense)
 
         assertTrue(result)
     }
 
     @Test
     fun canWithdrawFromSavingsTest2() {
-        val expense = 150
+        val expense = 150.0
         personTest.remaining = 50.0
         personTest.savingWallet = 20.0
 
-        var result = false
-        if (expense > 0 && (personTest.remaining + personTest.savingWallet) - expense >= 0)
-            result = true
+        val result = personTest.canWithdrawFromSavings(expense)
 
         assertFalse(result)
     }
 
     @Test
     fun canWithdrawFromSavingsTest3() {
-        val expense = -150
+        val expense = -150.0
         personTest.remaining = 50.0
         personTest.savingWallet = 20.0
 
-        var result = false
-        if (expense > 0 && (personTest.remaining + personTest.savingWallet) - expense >= 0)
-            result = true
+        val result = personTest.canWithdrawFromSavings(expense)
 
         assertFalse(result)
     }
 
     @Test
     fun withdrawFromSavingTest() {
-        val expense = 150
+        val expense = 150.0
         personTest.remaining = 50.0
         personTest.savingWallet = 200.0
 
-        if (expense > 0 && (personTest.remaining + personTest.savingWallet) - expense >= 0) {
-            val amount = expense - personTest.remaining //100.0
-            personTest.remaining = 0.0
-            personTest.savingWallet -= amount //100.00
-        }
+        personTest.withdrawFromSaving(expense)
 
         assertEquals(100.0, personTest.savingWallet, .001)
+        assertEquals(0.0, personTest.remaining, .001)
     }
 
     @Test
     fun addIncomeTest1() {
-        val income = 150
+        val income = 150.0
         personTest.totalIncome = 500.0
         personTest.remaining = 150.0
 
-        personTest.totalIncome += income
-        personTest.remaining += income
+        personTest.addIncome(income)
 
         assertEquals(300.0, personTest.remaining, .001)
         assertEquals(650.0, personTest.totalIncome, .001)
@@ -214,6 +189,7 @@ class PersonTest {
         personTest.totalIncome = 500.0
         personTest.remaining = 150.0
 
+        personTest.addIncome(income)
         assertEquals(150.0, personTest.remaining, .001)
         assertEquals(500.0, personTest.totalIncome, .001)
     }
@@ -223,9 +199,7 @@ class PersonTest {
         personTest.remaining = 100.0
         personTest.savingWallet = 200.0
 
-        personTest.savingWallet += personTest.remaining
-        personTest.remaining = 0.0
-        personTest.totalIncome = 0.0
+        personTest.atEndOfMonth()
 
         assertEquals(300.0, personTest.savingWallet, .001)
         assertEquals(0.0, personTest.remaining, .001)
@@ -241,13 +215,7 @@ class PersonTest {
         personTest.remaining = 100.0
         personTest.savingWallet = 200.0
 
-        personTest.remaining += personTest.monthlySalary //add income >>900
-        personTest.totalIncome += personTest.monthlySalary //add income
-
-        val saving = personTest.monthlySalary * (personTest.savingAmount / 100) // 120.0
-
-        personTest.remaining -= saving
-        personTest.savingWallet += saving
+        personTest.addSalaryAndCalculateSaving()
 
         assertEquals(320.0, personTest.savingWallet, .001)
         assertEquals(780.0, personTest.remaining, .001)
@@ -257,8 +225,7 @@ class PersonTest {
 
     @Test
     fun toDBPersonTest() {
-        val personTest2 = Person("Sham", "+16505553435", "12345678")
-        val result = personTest2.toDBPerson()
+        val result = personTest.toDBPerson()
 
         assertEquals(result.phoneNumber, result.phoneNumber)
         assertEquals(result.name, result.name)
