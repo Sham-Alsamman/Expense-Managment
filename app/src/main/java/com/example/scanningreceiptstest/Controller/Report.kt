@@ -42,7 +42,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
         setContentView(R.layout.activity_report)
         onCreateDrawer()
         pieChart = findViewById(R.id.piechart)
-        Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultFirst)
+        Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultIndividual)
 
         filter_btn.setOnClickListener {
             filterSheet.show(supportFragmentManager, "BottomSheetDialog")
@@ -112,11 +112,11 @@ class Report : NavDrawerActivity(), IFilterSheet {
         if (filterSheet.groupFilter == GroupTransactionFilter.Group) {
             count = 0
             for (i in CURRENT_GROUP!!.partners) {
-                    Database.getAllExpenses(i, ::ExpensesDBResult)
+                    Database.getAllExpenses(i, ::ExpensesDBResultGroup)
             }
 
         } else if (filterSheet.groupFilter == GroupTransactionFilter.Individual) {
-            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultFirst)
+            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::ExpensesDBResultIndividual)
         }
 
         println("last edit = " + filteredTransactions.size)
@@ -201,7 +201,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
         println("list len at the end of addValues = " + valuesList.size)
     }
 
-    private fun ExpensesDBResultFirst(list: List<DBExpense>) {
+    private fun ExpensesDBResultIndividual(list: List<DBExpense>) {
         println("list for individual from data base = " + list.size)
 
         val TransList: ArrayList<Transaction> = ArrayList()
@@ -218,7 +218,7 @@ class Report : NavDrawerActivity(), IFilterSheet {
         generate(valuesList)
     }
 
-    private fun ExpensesDBResult(list: List<DBExpense>) {
+    private fun ExpensesDBResultGroup(list: List<DBExpense>) {
         if (count <= max) {
 
             println("list from data base = " + list.size)
