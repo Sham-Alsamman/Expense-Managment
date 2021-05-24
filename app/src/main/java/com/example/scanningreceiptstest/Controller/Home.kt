@@ -9,8 +9,9 @@ import com.example.scanningreceiptstest.Model.Transaction
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-//import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.noData
+import kotlinx.android.synthetic.main.activity_transation_history.*
 
 class Home : NavDrawerActivity() {
     private val recyclerAdapter = TransactionHistoryAdapter(R.layout.transation_history_home_item)
@@ -107,13 +108,23 @@ class Home : NavDrawerActivity() {
 
     private fun onExpenseDBResult(list: List<DBExpense>) {
         transactionsList.addAll(list.toExpenseList())
-        //update the adapter list:
-        recyclerAdapter.transactionsList = transactionsList
+        if (transactionsList.isEmpty()) {
+            noData.visibility = View.VISIBLE
+        }else {
+            noData.visibility = View.GONE
+            //update the adapter list:
+            recyclerAdapter.transactionsList = transactionsList
+        }
     }
 
     private fun onIncomeDBResult(list: List<DBIncome>) {
         transactionsList.addAll(list.toIncomeList())
-        //update the adapter list:
-        recyclerAdapter.transactionsList = transactionsList
+        if (transactionsList.isEmpty()) {
+            noData.visibility = View.VISIBLE
+        }else {
+            noData.visibility = View.GONE
+            //update the adapter list:
+            recyclerAdapter.transactionsList = transactionsList
+        }
     }
 }

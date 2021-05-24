@@ -30,6 +30,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/invitation_list_item"/>
+
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Data Found"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/invitationRecyclerView"
+                app:layout_constraintStart_toStartOf="@+id/invitationRecyclerView"
+                app:layout_constraintTop_toTopOf="@+id/invitationRecyclerView"
+                app:layout_constraintVertical_bias="0.371" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

@@ -129,6 +129,20 @@
                 app:layout_constraintVertical_bias="1.0"
                 tools:listitem="@layout/transation_history_home_item"/>
 
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Data Found"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/lastRecord"
+                app:layout_constraintStart_toStartOf="@+id/lastRecord"
+                app:layout_constraintTop_toTopOf="@+id/lastRecord"
+                app:layout_constraintVertical_bias="0.371" />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_fab"
                 android:layout_width="wrap_content"

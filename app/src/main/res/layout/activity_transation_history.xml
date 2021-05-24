@@ -62,6 +62,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/filter_btn"
                 tools:listitem="@layout/transaction_history_list_item"/>
 
+            <TextView
+                android:id="@+id/noData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No Data Found"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/transactionRecyclerView"
+                app:layout_constraintStart_toStartOf="@+id/transactionRecyclerView"
+                app:layout_constraintTop_toTopOf="@+id/transactionRecyclerView"
+                app:layout_constraintVertical_bias="0.371" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

@@ -41,9 +41,13 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         transactionsList.addAll(list.toExpenseList())
 
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
-        //update the adapter list:
-        recyclerAdapter.transactionsList = transactionsList
-
+        if (transactionsList.isEmpty()) {
+            noData.visibility = View.VISIBLE
+        }else {
+            noData.visibility = View.GONE
+            //update the adapter list:
+            recyclerAdapter.transactionsList = transactionsList
+        }
         //Toast.makeText(this, "expense updated", Toast.LENGTH_SHORT).show()
     }
 
@@ -51,6 +55,14 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         transactionsList.addAll(list.toIncomeList())
 
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
+
+        if (transactionsList.isEmpty()) {
+            noData.visibility = View.VISIBLE
+        }else {
+            noData.visibility = View.GONE
+            //update the adapter list:
+            recyclerAdapter.transactionsList = transactionsList
+        }
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
 

@@ -1,6 +1,7 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.InvitationAdapter
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.InvitationClickListener
@@ -10,6 +11,8 @@ import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_invitations.*
+import kotlinx.android.synthetic.main.activity_invitations.noData
+import kotlinx.android.synthetic.main.activity_transation_history.*
 
 class Invitations : NavDrawerActivity() {
 
@@ -31,8 +34,12 @@ class Invitations : NavDrawerActivity() {
     }
 
     private fun onDBResult(list: List<DBInvitation>) {
-        recyclerAdapter.invitationsList = list.toInvitationList()
-        //Toast.makeText(this, "invitations updated ${list.size}", Toast.LENGTH_SHORT).show()
+        if (list.isEmpty()) {
+            noData.visibility = View.VISIBLE
+        } else {
+            noData.visibility = View.GONE
+            recyclerAdapter.invitationsList = list.toInvitationList()
+        }
     }
 
     private fun onJoinClicked(invitation: Invitation) {
