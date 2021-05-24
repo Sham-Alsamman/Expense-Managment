@@ -59,16 +59,13 @@ class SignUp : NavDrawerActivity() {
             val pattern = Pattern.compile(reg)
             val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
-                // pass.setEndIconActivated(false)
-                // PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 pass.error = "Password should contain only characters and numbers"
             } else if (text.isNullOrEmpty()) {
-                // PasswordET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 pass.error = "Enter Password"
             } else if (text.length < 8) {
                 pass.error = "Password must at least 8 characters"
             } else {
-                //PasswordETSignUp.setEndIconDrawable(0)
+                PasswordETSignUp.setEndIconActivated(true)
                 pass.error = null
             }
         }
@@ -78,10 +75,8 @@ class SignUp : NavDrawerActivity() {
             if (match2 != match) {
                 RePass.error = "Password are not matching"
             } else if (text.isNullOrEmpty()) {
-                // PasswordET.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 RePass.error = "Re-type Password"
             } else {
-                //PasswordETSignUp.setEndIconDrawable(0)
                 RePass.error = null
             }
         }
