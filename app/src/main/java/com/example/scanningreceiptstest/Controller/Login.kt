@@ -62,7 +62,7 @@ class Login : NavDrawerActivity() {
 
     private fun DbResultPerson(person: DBPerson ) {
         CURRENT_USER = person.toPerson()
-        Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+        database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
 
         if(CURRENT_USER!= null) {
             val i = Intent(applicationContext, Home::class.java)
@@ -110,12 +110,12 @@ class Login : NavDrawerActivity() {
     }
     private fun checkIfPasswordExist(phoneNum: String, Pass :String) {
         //check if the phone number and password exists in the database or not
-        Database.checkPassword(phoneNum,Pass,::onDBResult)
+        database.checkPassword(phoneNum,Pass,::onDBResult)
     }
 
     private fun onDBResult(exist: Boolean){
         if(exist) {
-            Database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
+            database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
             //Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
 
         }else {

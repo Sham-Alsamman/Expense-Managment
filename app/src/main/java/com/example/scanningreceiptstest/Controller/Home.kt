@@ -101,8 +101,8 @@ class Home : NavDrawerActivity() {
 
     private fun getTransactions() {
         transactionsList.clear()
-        Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::onExpenseDBResult)
-        Database.getAllIncomes(CURRENT_USER!!.phoneNumber, ::onIncomeDBResult)
+        database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::onExpenseDBResult)
+        database.getAllIncomes(CURRENT_USER!!.phoneNumber, ::onIncomeDBResult)
     }
 
     private fun onExpenseDBResult(list: List<DBExpense>) {

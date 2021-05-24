@@ -238,7 +238,7 @@ class Verification() : NavDrawerActivity () {
 
                     val dbExpe = DBExpenseGroup()
                     dbExpe.partners.add(person2!!.phoneNumber)
-                    val ExpenseGroup = Database.addNewExpenseGroup(dbExpe).toExpenseGroup()
+                    val ExpenseGroup = database.addNewExpenseGroup(dbExpe).toExpenseGroup()
                     val newPerson = Person(
                         person2!!.phoneNumber,
                         person2!!.name,
@@ -251,7 +251,7 @@ class Verification() : NavDrawerActivity () {
                         0.0
                     )
                     CURRENT_USER = newPerson
-                    Database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
+                    database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
                     /**************/
                     setSalaryAlarmIfNotExist(this)
                 }
@@ -262,7 +262,7 @@ class Verification() : NavDrawerActivity () {
     private fun onUserAdded(successful: Boolean) {
         if (successful){
            // Database.getUser(userPhoneNum, ::DbResultPerson)
-            Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+            database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
         }
     }
 

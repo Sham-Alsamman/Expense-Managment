@@ -23,7 +23,7 @@ import com.google.firebase.ml.vision.text.FirebaseVisionText
 
 import java.lang.Exception
 
-class Scan : AppCompatActivity() {
+class Scan : NavDrawerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

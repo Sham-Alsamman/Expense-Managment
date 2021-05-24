@@ -1,6 +1,5 @@
 package com.example.scanningreceiptstest.Controller.recyclerViewAdapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.R
-import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.invitation_list_item.view.*
 
 class InvitationAdapter(val clickListener: InvitationClickListener) :

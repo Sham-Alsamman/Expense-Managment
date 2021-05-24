@@ -13,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 var CURRENT_USER: Person? = null
 var CURRENT_GROUP: ExpenseGroup? = null
 
-object Database {
+object FirebaseDatabase : IDatabase {
 
     private val database = Firebase.database
     private val expenseGroupRef = database.getReference("expense_group")
@@ -24,7 +24,7 @@ object Database {
 
     /****Login*****/
     //this parameter is the function to call when the data changes
-    fun getUser(phoneNum: String, onDataRetrieved: (DBPerson) -> Unit) {
+    override fun getUser(phoneNum: String, onDataRetrieved: (DBPerson) -> Unit) {
 
         userRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -37,7 +37,7 @@ object Database {
         })
     }
 
-    fun getExpenseGroup(groupId: String, onDataRetrieved: (DBExpenseGroup) -> Unit) {
+    override fun getExpenseGroup(groupId: String, onDataRetrieved: (DBExpenseGroup) -> Unit) {
 
         expenseGroupRef.child(groupId).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -50,7 +50,7 @@ object Database {
         })
     }
 
-    fun checkPassword(Phone: String, Pass: String, onDataRetrieved: (Boolean) -> Unit) {
+    override fun checkPassword(Phone: String, Pass: String, onDataRetrieved: (Boolean) -> Unit) {
         var flag: Boolean
         var p: DBPerson? = null
         val passval = Pass.trim()
@@ -76,7 +76,7 @@ object Database {
     }
 
     /****Sign up****/
-    fun checkIfUserExist(phoneNum: String, onDataRetrieved: (Boolean) -> Unit) {
+    override fun checkIfUserExist(phoneNum: String, onDataRetrieved: (Boolean) -> Unit) {
 
         userRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -92,7 +92,7 @@ object Database {
     }
 
 
-    fun addNewUser(user: DBPerson, onAddedSuccessfully: (Boolean) -> Unit) {
+    override fun addNewUser(user: DBPerson, onAddedSuccessfully: (Boolean) -> Unit) {
 
         userRef.child(user.phoneNumber).setValue(user).addOnCompleteListener { task ->
             if (task.isSuccessful)
@@ -103,7 +103,7 @@ object Database {
     }
 
     //this method is called when a new user sign up, to put him in a new group
-    fun addNewExpenseGroup(group: DBExpenseGroup): DBExpenseGroup {
+    override fun addNewExpenseGroup(group: DBExpenseGroup): DBExpenseGroup {
 
         val id = expenseGroupRef.push().key
 
@@ -118,19 +118,19 @@ object Database {
     }
 
     /****Add expense****/
-    fun addNewExpense(phoneNum: String, expense: DBExpense) {
+    override fun addNewExpense(phoneNum: String, expense: DBExpense) {
 
         expenseRef.child(phoneNum).push().setValue(expense)
     }
 
     /****Add income****/
-    fun addNewIncome(phoneNum: String, income: DBIncome) {
+    override fun addNewIncome(phoneNum: String, income: DBIncome) {
 
         incomeRef.child(phoneNum).push().setValue(income)
     }
 
     /****Invite partner****/
-    fun sendInvitation(invitation: DBInvitation) {
+    override fun sendInvitation(invitation: DBInvitation) {
 
         val id = invitationRef.push().key
         if (id != null) {
@@ -140,7 +140,7 @@ object Database {
     }
 
     /****Transaction history and Report and Home?****/
-    fun getAllExpenses(phoneNum: String, onDataRetrievedFun: (list: List<DBExpense>) -> Unit) {
+    override fun getAllExpenses(phoneNum: String, onDataRetrievedFun: (list: List<DBExpense>) -> Unit) {
 
         expenseRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -159,7 +159,7 @@ object Database {
         })
     }
 
-    fun getAllIncomes(phoneNum: String, onDataRetrievedFun: (list: List<DBIncome>) -> Unit) {
+    override fun getAllIncomes(phoneNum: String, onDataRetrievedFun: (list: List<DBIncome>) -> Unit) {
 
         incomeRef.child(phoneNum).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -179,7 +179,7 @@ object Database {
 
     /****Invitations****/
     //this parameter is the function to call when the data changes
-    fun getAllInvitations(
+    override fun getAllInvitations(
         phoneNum: String,
         onDataRetrievedFun: (list: List<DBInvitation>) -> Unit
     ) {
@@ -206,7 +206,7 @@ object Database {
 
     /****Profile****/
     //called when any field in Person obj changes
-    fun updateUserInfo(user: DBPerson) {
+    override fun updateUserInfo(user: DBPerson) {
 
         val hashMap = HashMap<String, Any>()
         hashMap.put("groupId", user.groupId)
@@ -222,7 +222,7 @@ object Database {
         userRef.child(user.phoneNumber).updateChildren(hashMap)
     }
 
-    fun updateInvitation(phoneNum: String, invitation: DBInvitation) {
+    override fun updateInvitation(phoneNum: String, invitation: DBInvitation) {
         val hashMap = HashMap<String, Any>()
         hashMap["id"] = invitation.id
         hashMap["senderName"] = invitation.senderName
@@ -233,7 +233,7 @@ object Database {
         invitationRef.child(phoneNum).child(invitation.id).updateChildren(hashMap)
     }
 
-    fun updateExpenseGroup(group: DBExpenseGroup) {
+    override fun updateExpenseGroup(group: DBExpenseGroup) {
         val hashMap = HashMap<String, Any>()
         hashMap["groupID"] = group.groupID
         hashMap["partners"] = group.partners
@@ -241,7 +241,7 @@ object Database {
         expenseGroupRef.child(group.groupID).updateChildren(hashMap)
     }
 
-    fun deleteExpenseGroup(groupId: String) {
+    override fun deleteExpenseGroup(groupId: String) {
         expenseGroupRef.child(groupId).removeValue()
     }
 }

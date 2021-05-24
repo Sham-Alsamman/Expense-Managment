@@ -2,6 +2,7 @@ package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
 import android.view.MenuItem
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -10,12 +11,17 @@ import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.cancelSalaryAlarm
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.FirebaseDatabase
+import com.example.scanningreceiptstest.database.IDatabase
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import kotlinx.android.synthetic.main.navigtion_drawer.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 open class NavDrawerActivity : AppCompatActivity() {
+
+    var database: IDatabase = FirebaseDatabase
+        @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE) set
 
     override fun setContentView(layoutResID: Int) {
         super.setContentView(layoutResID)

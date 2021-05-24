@@ -94,4 +94,9 @@ dependencies {
 
     //work manager
     implementation "androidx.work:work-runtime-ktx:2.5.0"
+
+    //activity testing
+    androidTestImplementation "androidx.test:core:1.3.0"
+    //androidTestImplementation "androidx.test.ext:junit-ktx:1.1.2"
+    //androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
 }

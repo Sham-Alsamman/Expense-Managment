@@ -28,12 +28,12 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         transactionsList.clear()
         if (filterSheet.groupFilter == GroupTransactionFilter.Group){
             for (id in CURRENT_GROUP?.partners!!){
-                Database.getAllExpenses(id, ::onExpenseDBResult)
-                Database.getAllIncomes(id, ::onIncomeDBResult)
+                database.getAllExpenses(id, ::onExpenseDBResult)
+                database.getAllIncomes(id, ::onIncomeDBResult)
             }
         }else {
-            Database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::onExpenseDBResult)
-            Database.getAllIncomes(CURRENT_USER!!.phoneNumber, ::onIncomeDBResult)
+            database.getAllExpenses(CURRENT_USER!!.phoneNumber, ::onExpenseDBResult)
+            database.getAllIncomes(CURRENT_USER!!.phoneNumber, ::onIncomeDBResult)
         }
     }
 

@@ -27,7 +27,7 @@ class Invitations : NavDrawerActivity() {
     }
 
     private fun getInvitations() {
-        Database.getAllInvitations(CURRENT_USER!!.phoneNumber, ::onDBResult)
+        database.getAllInvitations(CURRENT_USER!!.phoneNumber, ::onDBResult)
     }
 
     private fun onDBResult(list: List<DBInvitation>) {
@@ -37,14 +37,14 @@ class Invitations : NavDrawerActivity() {
 
     private fun onJoinClicked(invitation: Invitation) {
         invitation.invitationStatus = InvitationStatus.REVIEWED
-        Database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())
+        database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())
 
-        Database.getExpenseGroup(invitation.groupID, ::onDBExpenseGroupResult)
+        database.getExpenseGroup(invitation.groupID, ::onDBExpenseGroupResult)
     }
 
     private fun onCancelClicked(invitation: Invitation) {
         invitation.invitationStatus = InvitationStatus.REVIEWED
-        Database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())
+        database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())
     }
 
     private fun onDBExpenseGroupResult(newGroup: DBExpenseGroup) {
@@ -52,18 +52,18 @@ class Invitations : NavDrawerActivity() {
         CURRENT_GROUP!!.removePartner(CURRENT_USER!!.phoneNumber)
         //delete group if empty
         if (CURRENT_GROUP!!.partners.isEmpty())
-            Database.deleteExpenseGroup(CURRENT_GROUP!!.groupID)
+            database.deleteExpenseGroup(CURRENT_GROUP!!.groupID)
         else
-            Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
+            database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
 
         //change the user's group
         CURRENT_USER!!.changeGroup(newGroup.groupID)
-        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+        database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
         //change the current group:
         CURRENT_GROUP = newGroup.toExpenseGroup()
         CURRENT_GROUP!!.addPartner(CURRENT_USER!!.phoneNumber)
-        Database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
+        database.updateExpenseGroup(CURRENT_GROUP!!.toDBExpenseGroup())
         Toast.makeText(this, "Expense group changed successfully", Toast.LENGTH_SHORT).show()
 
         SaveSharedPreference.saveUserData(this)

@@ -3,19 +3,16 @@ package com.example.scanningreceiptstest.Controller
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.VisibleForTesting
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_invite_partner.*
 
 class InvitePartner : NavDrawerActivity() {
 
     private var validPhoneNum = false
-
     private var phoneNumExist = false
         set(value) {
             field = value
@@ -52,7 +49,7 @@ class InvitePartner : NavDrawerActivity() {
 
     private fun checkIfPartnerExist(phoneNum: String) {
         //check if the phone number exists in the database
-        Database.checkIfUserExist(phoneNum, ::onDBResult)
+        database.checkIfUserExist(phoneNum, ::onDBResult)
     }
 
     private fun onDBResult(exist: Boolean){
@@ -68,7 +65,7 @@ class InvitePartner : NavDrawerActivity() {
     private fun sendToPartner(phoneNum: String) {
         if (CURRENT_USER != null && CURRENT_GROUP != null) {
             val invitation = Invitation("", CURRENT_USER!!.name, phoneNum, CURRENT_GROUP!!.groupID, InvitationStatus.NEW)
-            Database.sendInvitation(invitation.toDBInvitation())
+            database.sendInvitation(invitation.toDBInvitation())
 
             Toast.makeText(this, "Invitation sent successfully", Toast.LENGTH_SHORT).show()
 

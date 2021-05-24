@@ -2,10 +2,6 @@ package com.example.scanningreceiptstest.Controller
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.*
@@ -53,6 +49,6 @@ class Wallet : NavDrawerActivity() {
     private fun saveData(monthlyInc: Double, savingRa: Double){
         CURRENT_USER!!.monthlySalary = monthlyInc
         CURRENT_USER!!.savingAmount = savingRa
-        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+        database.updateUserInfo(CURRENT_USER!!.toDBPerson())
     }
 }

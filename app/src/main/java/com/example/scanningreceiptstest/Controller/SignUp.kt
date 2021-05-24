@@ -8,7 +8,6 @@ import androidx.core.widget.doOnTextChanged
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
-import com.example.scanningreceiptstest.database.Database
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Matcher
@@ -95,7 +94,7 @@ class SignUp : NavDrawerActivity() {
 
     private fun checkIfPartnerExist(phoneNum: String) {
         //check if the phone number exists in the database
-        Database.checkIfUserExist(phoneNum, ::onDBResult)
+        database.checkIfUserExist(phoneNum, ::onDBResult)
     }
 
     private fun onDBResult(exist: Boolean) {

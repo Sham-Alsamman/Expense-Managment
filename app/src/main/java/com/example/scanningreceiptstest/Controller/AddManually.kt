@@ -16,7 +16,6 @@ import com.example.scanningreceiptstest.Model.Expense
 import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_manually.*
 import java.util.*
 
@@ -186,8 +185,8 @@ class AddManually : NavDrawerActivity() {
     }
 
     private fun addExpenseToDB(newExpense: Expense) {
-        Database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
-        Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+        database.addNewExpense(CURRENT_USER!!.phoneNumber, newExpense.toDBExpense())
+        database.updateUserInfo(CURRENT_USER!!.toDBPerson())
         Toast.makeText(this, "Expense added successfully", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(this, Home::class.java)

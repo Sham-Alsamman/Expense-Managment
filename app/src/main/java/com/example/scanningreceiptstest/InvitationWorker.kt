@@ -8,7 +8,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.database.DBInvitation
-import com.example.scanningreceiptstest.database.Database
+import com.example.scanningreceiptstest.database.FirebaseDatabase
 import com.example.scanningreceiptstest.database.toInvitationList
 
 class InvitationWorker(appContext: Context, workerParams: WorkerParameters) :
@@ -26,7 +26,7 @@ class InvitationWorker(appContext: Context, workerParams: WorkerParameters) :
         val user = SaveSharedPreference.getUserId(applicationContext)
         //if user is logged in get all invitations
         if (user != null){
-            Database.getAllInvitations(user, ::onDBInvitationResult)
+            FirebaseDatabase.getAllInvitations(user, ::onDBInvitationResult)
         }
 
         return Result.success()

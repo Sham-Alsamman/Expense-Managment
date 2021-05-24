@@ -20,8 +20,8 @@ class welcomPage2 : NavDrawerActivity () {
         val groupId = SaveSharedPreference.getGroupId(this)
 
         if (userId != null && groupId != null){
-            Database.getUser(userId, ::onDBUserResult)
-            Database.getExpenseGroup(groupId, ::onDBGroupResult)
+            database.getUser(userId, ::onDBUserResult)
+            database.getExpenseGroup(groupId, ::onDBGroupResult)
         }
     }
 

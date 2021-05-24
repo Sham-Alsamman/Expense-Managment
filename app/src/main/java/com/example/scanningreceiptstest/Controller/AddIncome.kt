@@ -10,9 +10,7 @@ import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_add_income.*
-import java.lang.NumberFormatException
 import java.util.*
 
 
@@ -90,8 +88,8 @@ class AddIncome : NavDrawerActivity() {
         if (flag) {
             val newIncome = Income(DateIncome, amountIN.toDouble(), name)
             CURRENT_USER!!.addIncome(newIncome.amount)
-            Database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
-            Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+            database.addNewIncome(CURRENT_USER!!.phoneNumber, newIncome.toDBIncome())
+            database.updateUserInfo(CURRENT_USER!!.toDBPerson())
             Toast.makeText(this, "Income added successfully", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, Home::class.java)

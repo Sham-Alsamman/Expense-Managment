@@ -5,14 +5,11 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.SystemClock
-import android.text.format.DateUtils
 import android.util.Log
 import androidx.core.content.getSystemService
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.database.CURRENT_USER
-import com.example.scanningreceiptstest.database.Database
-import java.time.LocalDate
+import com.example.scanningreceiptstest.database.FirebaseDatabase
 import java.util.*
 
 class SalaryAlarmReceiver : BroadcastReceiver() {
@@ -27,11 +24,11 @@ class SalaryAlarmReceiver : BroadcastReceiver() {
 
             //add the new salary to DB:
             val salary = Income(Date(), CURRENT_USER!!.monthlySalary, "Monthly salary")
-            Database.addNewIncome(CURRENT_USER!!.phoneNumber, salary.toDBIncome())
+            FirebaseDatabase.addNewIncome(CURRENT_USER!!.phoneNumber, salary.toDBIncome())
             //save the remaining from the last month in the saving wallet and add the new salary:
             CURRENT_USER!!.addSalaryAndCalculateSaving()
 
-            Database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+            FirebaseDatabase.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
             if (context != null) {
                 setSalaryAlarmIfNotExist(context)
