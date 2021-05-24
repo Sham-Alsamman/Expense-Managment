@@ -23,16 +23,13 @@ import com.google.firebase.ml.vision.text.FirebaseVisionText
 
 import java.lang.Exception
 
-
 class Scan : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
 
         doProcess()
-
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -41,67 +38,56 @@ class Scan : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 101)
         }
-
     }
 
-    fun doProcess() {
-
+    private fun doProcess() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         ActivityCompat.startActivityForResult(this, intent, 101, null)
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var bundle = data?.extras
+        val bundle = data?.extras
 
-        var bitmap = bundle?.get("data") as Bitmap?
+        val bitmap = bundle?.get("data") as Bitmap?
 
         if (bitmap == null)
             return
 
-        var visionImage = FirebaseVisionImage.fromBitmap(bitmap)
+        val visionImage = FirebaseVisionImage.fromBitmap(bitmap)
 
-        var firebaseVision = FirebaseVision.getInstance()
+        val firebaseVision = FirebaseVision.getInstance()
 
-        var recogniz = firebaseVision.onDeviceTextRecognizer
+        val recogniz = firebaseVision.onDeviceTextRecognizer
 
         val task = recogniz.processImage(visionImage)
-        task.addOnSuccessListener(object : OnSuccessListener<FirebaseVisionText> {
-            override fun onSuccess(firebaseVisionText: FirebaseVisionText) {
-                var s = firebaseVisionText.text
-                var stringSplits = s.split('\n')
+        task.addOnSuccessListener { firebaseVisionText ->
+            val s = firebaseVisionText.text
+            val stringSplits = s.split('\n')
 
-                var total: Double = 0.0
+            var total = 0.0
 
-                var i = 0
-                while (i < stringSplits.size) {
+            var i = 0
+            while (i < stringSplits.size) {
 
-                    if (stringSplits[i] == "Total" || stringSplits[i] == "TOTAL" || stringSplits[i] == "TOTAL:" || stringSplits[i] == "Total:")
-                        total = findTotal(stringSplits, i)
-                    i++
-                }
-
-                //  Toast.makeText(this@Scan,"vendor:"+stringSplits[0], Toast.LENGTH_LONG).show()
-                //  Toast.makeText(this@Scan,"Date: "+date, Toast.LENGTH_LONG).show()
-                // Toast.makeText(this@Scan,"total: "+total, Toast.LENGTH_LONG).show()
-
-                val intent = Intent(this@Scan, AddManually::class.java)
-                intent.putExtra("venName", stringSplits[0])
-                intent.putExtra("Total", total)
-                startActivity(intent)
+                if (stringSplits[i] == "Total" || stringSplits[i] == "TOTAL" || stringSplits[i] == "TOTAL:" || stringSplits[i] == "Total:")
+                    total = findTotal(stringSplits, i)
+                i++
             }
-        })
 
-        task.addOnFailureListener(object : OnFailureListener {
-            override fun onFailure(p0: Exception) {
-                Toast.makeText(
-                    applicationContext,
-                    "failure ): " + p0.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+            val intent = Intent(this@Scan, AddManually::class.java)
+            intent.putExtra("venName", stringSplits[0])
+            intent.putExtra("Total", total)
+            startActivity(intent)
+        }
+
+        task.addOnFailureListener { p0 ->
+            Toast.makeText(
+                applicationContext,
+                "failure ): " + p0.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
 

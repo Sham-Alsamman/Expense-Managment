@@ -35,7 +35,6 @@ class Invitations : NavDrawerActivity() {
         //Toast.makeText(this, "invitations updated ${list.size}", Toast.LENGTH_SHORT).show()
     }
 
-
     private fun onJoinClicked(invitation: Invitation) {
         invitation.invitationStatus = InvitationStatus.REVIEWED
         Database.updateInvitation(CURRENT_USER!!.phoneNumber, invitation.toDBInvitation())

@@ -11,6 +11,7 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class PersonTest {
+
     private lateinit var personTest: Person
 
     @Before
@@ -100,7 +101,6 @@ class PersonTest {
 
     @Test
     fun changeGroupTest() {
-
         personTest.changeGroup("123")
         assertEquals("123", personTest.groupId)
     }
@@ -128,7 +128,7 @@ class PersonTest {
 
     @Test
     fun canWithdrawFromSavingsTest1() {
-        val expense = 10.0
+        val expense = 150.0
         personTest.remaining = 100.0
         personTest.savingWallet = 100.0
 
@@ -174,8 +174,8 @@ class PersonTest {
     @Test
     fun addIncomeTest1() {
         val income = 150.0
-        personTest.totalIncome = 500.0
         personTest.remaining = 150.0
+        personTest.totalIncome = 500.0
 
         personTest.addIncome(income)
 
@@ -185,9 +185,9 @@ class PersonTest {
 
     @Test
     fun addIncomeTest2() {
-        var income = -500.0
-        personTest.totalIncome = 500.0
+        val income = -500.0
         personTest.remaining = 150.0
+        personTest.totalIncome = 500.0
 
         personTest.addIncome(income)
         assertEquals(150.0, personTest.remaining, .001)
@@ -208,7 +208,6 @@ class PersonTest {
 
     @Test
     fun addSalaryAndCalculateSavingTest() {
-
         personTest.monthlySalary = 800.0
         personTest.totalIncome = 100.0
         personTest.savingAmount = 15.0
@@ -217,10 +216,9 @@ class PersonTest {
 
         personTest.addSalaryAndCalculateSaving()
 
-        assertEquals(320.0, personTest.savingWallet, .001)
-        assertEquals(780.0, personTest.remaining, .001)
-        assertEquals(900.0, personTest.totalIncome, .001)
-
+        assertEquals(420.0, personTest.savingWallet, .001)
+        assertEquals(680.0, personTest.remaining, .001)
+        assertEquals(800.0, personTest.totalIncome, .001)
     }
 
     @Test

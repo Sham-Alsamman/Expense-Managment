@@ -25,12 +25,10 @@ class SalaryAlarmReceiver : BroadcastReceiver() {
         if (CURRENT_USER != null) {
             Log.i("Alarm", "triggered")
 
-            //save the remaining from the last month in the saving wallet:
-            CURRENT_USER!!.atEndOfMonth()
-
-            //add the new salary:
+            //add the new salary to DB:
             val salary = Income(Date(), CURRENT_USER!!.monthlySalary, "Monthly salary")
             Database.addNewIncome(CURRENT_USER!!.phoneNumber, salary.toDBIncome())
+            //save the remaining from the last month in the saving wallet and add the new salary:
             CURRENT_USER!!.addSalaryAndCalculateSaving()
 
             Database.updateUserInfo(CURRENT_USER!!.toDBPerson())

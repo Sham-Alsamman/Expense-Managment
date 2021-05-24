@@ -30,55 +30,6 @@ class Login : NavDrawerActivity() {
         val PhoneNum = findViewById<TextInputLayout>(R.id.phoneNumET)
         val Password = findViewById<TextInputLayout>(R.id.PasswordEt)
 
-/*
-        var m =  SimpleDateFormat("MM/dd/yyyy").parse("2/5/2021")
-        var m2 =  SimpleDateFormat("MM/dd/yyyy").parse("2/3/2021")
-        var m3 =  SimpleDateFormat("MM/dd/yyyy").parse("2/2/2021")
-
-
-
-        val list: List<Transaction> = emptyList()
-        val list2: MutableList<String> = mutableListOf()
-        var pp :Person = Person("maalk", "+962791558798")
-        */
-        /*
-       pp.transactions[0].date=m;
-       pp.transactions[0].amount=900.00;
-       pp.transactions[1].date=m2;
-       pp.transactions[1].amount=600.00;
-       pp.transactions[2].date=m2;
-       pp.transactions[2].amount=345.00;
-
-
-         */
-        /*
-      val now = Calendar.getInstance()
-      val thisMonth = now.add(Calendar.MONTH,1)
-      Toast.makeText(this, "this  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
-      val twoMonthsAgo = now.add(Calendar.MONTH,-2)
-      Toast.makeText(this, "2  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
-      val threeMonth = now.add(Calendar.MONTH,-1)
-      Toast.makeText(this, "3  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
-      val fourMonth = now.add(Calendar.MONTH,-1)
-      Toast.makeText(this, "4  month  " + now.getTime().month, Toast.LENGTH_LONG).show()
-      now.add(Calendar.YEAR, -1)
-      Toast.makeText(this, "year is   " + now.get(Calendar.YEAR), Toast.LENGTH_LONG).show()
-
-
-         */
-        // val monthYearFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
-        /*
-        var intThisMonth =thisMonth.format(monthYearFormatter).toInt()
-        var intTwoMonth =twoMonthsAgo.format(monthYearFormatter).toInt()
-        var intThreeMonth =threeMonth.format(monthYearFormatter).toInt()
-        var intFourMonth =fourMonth.format(monthYearFormatter).toInt()
-
-         */
-
-        // var dd :ExpenseGroup =ExpenseGroup("1",list2)
-        //  var r = ExpenseGroup.filterTransactions(list, PeriodTransactionFilter.Last2Months)
-        // Toast.makeText(this, "list is " + r.toString(), Toast.LENGTH_LONG).show()
-
         PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
                 PhoneNum.setEndIconDrawable(R.drawable.ic_baseline_error_24)

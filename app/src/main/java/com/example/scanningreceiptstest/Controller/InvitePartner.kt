@@ -2,8 +2,8 @@ package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
 import android.view.View
-import android.widget.CursorAdapter
 import android.widget.Toast
+import androidx.annotation.VisibleForTesting
 import com.example.scanningreceiptstest.Model.Invitation
 import com.example.scanningreceiptstest.Model.InvitationStatus
 import com.example.scanningreceiptstest.R
@@ -11,7 +11,6 @@ import com.example.scanningreceiptstest.database.CURRENT_GROUP
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.Database
 import kotlinx.android.synthetic.main.activity_invite_partner.*
-import java.util.*
 
 class InvitePartner : NavDrawerActivity() {
 
@@ -67,11 +66,6 @@ class InvitePartner : NavDrawerActivity() {
     }
 
     private fun sendToPartner(phoneNum: String) {
-        //search for the number in the database
-        //https://www.youtube.com/watch?v=I84JmwBRJTY
-        //https://blog.usejournal.com/send-device-to-device-push-notifications-without-server-side-code-238611c143
-
-
         if (CURRENT_USER != null && CURRENT_GROUP != null) {
             val invitation = Invitation("", CURRENT_USER!!.name, phoneNum, CURRENT_GROUP!!.groupID, InvitationStatus.NEW)
             Database.sendInvitation(invitation.toDBInvitation())

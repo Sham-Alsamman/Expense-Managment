@@ -48,7 +48,7 @@ class Person(userName: String, phoneNum: String, password: String) : Serializabl
                 field = value
         }
     var savingAmount: Double = 0.0
-        set(value) { // instead of setSavingAmount() method
+        set(value) {
             if (value >= 0)
                 field = value
         }
@@ -111,6 +111,7 @@ class Person(userName: String, phoneNum: String, password: String) : Serializabl
     }
 
     fun addSalaryAndCalculateSaving() {
+        atEndOfMonth()
         addIncome(monthlySalary)
 
         val saving = monthlySalary * (savingAmount / 100)
