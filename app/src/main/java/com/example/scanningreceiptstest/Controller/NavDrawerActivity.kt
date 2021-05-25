@@ -80,8 +80,8 @@ open class NavDrawerActivity : AppCompatActivity() {
             }
             R.id.navMenu_logout -> {
                 SaveSharedPreference.clearUserData(this)
-                /************/
                 cancelSalaryAlarm(this)
+
                 CURRENT_USER = null
                 CURRENT_GROUP = null
                 intent = Intent(applicationContext, Login::class.java)

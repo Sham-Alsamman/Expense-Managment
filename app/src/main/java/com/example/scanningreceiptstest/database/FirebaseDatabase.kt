@@ -1,5 +1,6 @@
 package com.example.scanningreceiptstest.database
 
+import android.util.Log
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.Model.ExpenseGroup
 import com.example.scanningreceiptstest.Model.Person

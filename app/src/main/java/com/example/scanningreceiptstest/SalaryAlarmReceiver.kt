@@ -34,29 +34,14 @@ class SalaryAlarmReceiver : BroadcastReceiver() {
             database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
             if (context != null) {
-                setSalaryAlarmIfNotExist(context)
+                setSalaryAlarm(context)
             }
         }
     }
 }
 
-fun setSalaryAlarmIfNotExist(context: Context) {
-    Log.i("Alarm", "setSalaryAlarmIfNotExist called")
-
-//    // check if alarm already set:
-//    val alarmSet = PendingIntent.getBroadcast(
-//        context,
-//        SalaryAlarmReceiver.SALARY_ALARM_REQUEST_CODE,
-//        Intent(context, SalaryAlarmReceiver::class.java),
-//        PendingIntent.FLAG_NO_CREATE
-//    ) != null
-//
-//    if (alarmSet) return
-//
-//    Log.i("Alarm", "creating new alarm...")
-
-    // set new alarm:
-    //val interval = DateUtils.MINUTE_IN_MILLIS//DateUtils.WEEK_IN_MILLIS * 7
+fun setSalaryAlarm(context: Context) {
+    Log.i("Alarm", "setSalaryAlarm called")
 
     val calendar = Calendar.getInstance().apply {
         timeInMillis = System.currentTimeMillis()
@@ -72,7 +57,6 @@ fun setSalaryAlarmIfNotExist(context: Context) {
     }
 
     val alarmManager = context.getSystemService<AlarmManager>()
-    //val triggerTime = SystemClock.elapsedRealtime() + interval
 
     Log.i("Alarm", "setting alarm to ${calendar.get(Calendar.MONTH) + 1}, ${calendar.get(Calendar.DAY_OF_MONTH)}")
 
@@ -82,13 +66,6 @@ fun setSalaryAlarmIfNotExist(context: Context) {
         Intent(context, SalaryAlarmReceiver::class.java),
         PendingIntent.FLAG_UPDATE_CURRENT
     )
-
-//    alarmManager?.setRepeating(
-//        AlarmManager.ELAPSED_REALTIME_WAKEUP,
-//        triggerTime,
-//        interval,
-//        pendingIntent
-//    )
 
     alarmManager?.setExact(
         AlarmManager.RTC_WAKEUP,

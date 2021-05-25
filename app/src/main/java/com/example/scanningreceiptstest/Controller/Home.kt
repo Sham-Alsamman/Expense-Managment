@@ -97,7 +97,6 @@ class Home : NavDrawerActivity() {
         startActivity(intent)
     }
 
-    /******************/
 
     private fun getTransactions() {
         transactionsList.clear()

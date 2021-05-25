@@ -13,7 +13,7 @@ import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
-import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
+import com.example.scanningreceiptstest.setSalaryAlarm
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -225,14 +225,12 @@ class Verification() : NavDrawerActivity () {
             }
             STATE_VERIFY_SUCCESS -> {
                 // Verification has succeeded, proceed to firebase sign in
-                /********"verification succeeded"****/
 
             }
             STATE_SIGNIN_FAILED -> {
                 Toast.makeText(this, "sign up failed", Toast.LENGTH_SHORT).show()
             }
             STATE_SIGNIN_SUCCESS -> {
-                /******* automatically go to the next page ***/
                 // get the person object from sign up page
                 if (person2 != null) {
 
@@ -252,8 +250,8 @@ class Verification() : NavDrawerActivity () {
                     )
                     CURRENT_USER = newPerson
                     database.addNewUser(newPerson.toDBPerson(), ::onUserAdded)
-                    /**************/
-                    setSalaryAlarmIfNotExist(this)
+
+                    setSalaryAlarm(this)
                 }
             }
         }
@@ -261,7 +259,6 @@ class Verification() : NavDrawerActivity () {
 
     private fun onUserAdded(successful: Boolean) {
         if (successful){
-           // Database.getUser(userPhoneNum, ::DbResultPerson)
             database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
         }
     }

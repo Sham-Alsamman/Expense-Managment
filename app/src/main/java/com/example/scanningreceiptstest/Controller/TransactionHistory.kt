@@ -1,7 +1,9 @@
 package com.example.scanningreceiptstest.Controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.scanningreceiptstest.Controller.recyclerViewAdapters.TransactionHistoryAdapter
 import com.example.scanningreceiptstest.Model.GroupTransactionFilter
 import com.example.scanningreceiptstest.Model.Transaction
@@ -14,6 +16,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
     private val recyclerAdapter = TransactionHistoryAdapter(R.layout.transaction_history_list_item)
     private val filterSheet = BottomSheet_Filter(this)
     private var transactionsList = mutableListOf<Transaction>()
+    private var groupUpdated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,7 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
     private fun getTransactions() {
         transactionsList.clear()
         if (filterSheet.groupFilter == GroupTransactionFilter.Group){
+            checkIfGroupIsUpToDate()
             for (id in CURRENT_GROUP?.partners!!){
                 database.getAllExpenses(id, ::onExpenseDBResult)
                 database.getAllIncomes(id, ::onIncomeDBResult)
@@ -48,7 +52,6 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
             //update the adapter list:
             recyclerAdapter.transactionsList = transactionsList
         }
-        //Toast.makeText(this, "expense updated", Toast.LENGTH_SHORT).show()
     }
 
     private fun onIncomeDBResult(list: List<DBIncome>) {
@@ -65,8 +68,6 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         }
         //update the adapter list:
         recyclerAdapter.transactionsList = transactionsList
-
-        //Toast.makeText(this, "income updated", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -76,5 +77,21 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
 
     override fun applyFilterChanges() {
         getTransactions()
+    }
+
+
+    private fun checkIfGroupIsUpToDate() {
+        if (!groupUpdated) {
+            database.getExpenseGroup(CURRENT_USER!!.groupId, ::onExpenseGroupResult)
+            groupUpdated = true
+        }
+    }
+
+    private fun onExpenseGroupResult(dbExpenseGroup: DBExpenseGroup) {
+        val updatedGroup = dbExpenseGroup.toExpenseGroup()
+        if (updatedGroup.partners != CURRENT_GROUP!!.partners){
+            CURRENT_GROUP = updatedGroup
+            getTransactions()
+        }
     }
 }

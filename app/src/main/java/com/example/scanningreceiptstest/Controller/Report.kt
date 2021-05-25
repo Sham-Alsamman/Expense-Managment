@@ -148,8 +148,6 @@ class Report : NavDrawerActivity(), IFilterSheet {
         val totalPrices =
             Food.toFloat() + Shopping.toFloat() + Medical_and_Health.toFloat() + Education.toFloat() + Housing.toFloat() + Entertainment.toFloat() + Transposition.toFloat() + Other.toFloat()
 
-        //(res * 100.0).roundToInt() / 100.0
-
         var p = PieEntry((Food.toFloat() / totalPrices), "Food")
         if (Food != 0.0)
             valuesList.add(PieEntry((((Food / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Food"))

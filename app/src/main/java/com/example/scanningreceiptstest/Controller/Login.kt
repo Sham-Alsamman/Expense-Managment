@@ -11,7 +11,7 @@ import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.SalaryAlarmReceiver
 import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
-import com.example.scanningreceiptstest.setSalaryAlarmIfNotExist
+import com.example.scanningreceiptstest.setSalaryAlarm
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Matcher
@@ -48,13 +48,10 @@ class Login : NavDrawerActivity() {
             val matcher: Matcher = pattern.matcher(text!!)
             if (matcher.find()) {
                 Password.setEndIconActivated(false)
-                // PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 Password.error = "Password Should Contain Only Characters and Numbers"
             } else if (text.isNullOrEmpty()) {
-                //  PasswordEt.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 Password.error = "Enter Password"
             } else {
-                //PasswordEt.setEndIconDrawable(0)
                 Password.error = null
             }
         }
@@ -63,8 +60,8 @@ class Login : NavDrawerActivity() {
     private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
         CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
         SaveSharedPreference.saveUserData(this)
-        /***********/
-        setSalaryAlarmIfNotExist(this)
+
+        setSalaryAlarm(this)
     }
 
 
@@ -74,8 +71,6 @@ class Login : NavDrawerActivity() {
     }
 
     fun Login(view: View) {
-        // val i = Intent(applicationContext, ::class.java)
-        //startActivity(i)
         if (phoneNumET.editText?.text!!.isEmpty() && PasswordEt.editText?.text!!.isEmpty()) {
             Toast.makeText(
                 applicationContext,
@@ -105,7 +100,6 @@ class Login : NavDrawerActivity() {
     private fun onDBResult(exist: Boolean){
         if(exist) {
             database.getUser(phoneNumET.editText?.text!!.toString(), ::DbResultPerson)
-            //Database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
 
         }else {
             Toast.makeText(
