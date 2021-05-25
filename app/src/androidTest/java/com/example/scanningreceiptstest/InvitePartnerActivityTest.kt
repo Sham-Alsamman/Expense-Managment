@@ -1,21 +1,20 @@
 package com.example.scanningreceiptstest
 
-import com.example.scanningreceiptstest.database.IDatabase
-import org.junit.Before
-import org.junit.Test
 import androidx.test.core.app.ActivityScenario
-import com.example.scanningreceiptstest.Controller.InvitePartner
-import com.example.scanningreceiptstest.Model.Person
-import com.example.scanningreceiptstest.database.CURRENT_USER
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
+import com.example.scanningreceiptstest.Controller.InvitePartner
 import com.example.scanningreceiptstest.Model.ExpenseGroup
+import com.example.scanningreceiptstest.Model.Person
 import com.example.scanningreceiptstest.database.CURRENT_GROUP
+import com.example.scanningreceiptstest.database.CURRENT_USER
+import com.example.scanningreceiptstest.database.IDatabase
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
 
 class InvitePartnerActivityTest {
     private lateinit var fakeDatabase: IDatabase
@@ -46,7 +45,7 @@ class InvitePartnerActivityTest {
         }
 
         //enter empty phone num then click send, an error msg should appear
-        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(""))
+        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(""), closeSoftKeyboard())
         onView(withId(R.id.sendBtn)).perform(click())
         onView(withText("Enter your partner's phone number")).check(matches(isDisplayed()))
 
@@ -63,7 +62,7 @@ class InvitePartnerActivityTest {
         }
 
         val invalidNum = "07912345678"
-        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText("07912345678"))
+        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText("07912345678"), closeSoftKeyboard())
         onView(withId(R.id.sendBtn)).perform(click())
         onView(withText("Enter a complete phone number with country code (ex. +999795555555)")).check(
             matches(isDisplayed())
@@ -81,7 +80,7 @@ class InvitePartnerActivityTest {
         }
 
         val nonExistingNum = "+7912345678"
-        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(nonExistingNum))
+        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(nonExistingNum), closeSoftKeyboard())
         onView(withId(R.id.sendBtn)).perform(click())
         onView(withText("This phone number is not registered in the app")).check(
             matches(isDisplayed())
@@ -98,7 +97,7 @@ class InvitePartnerActivityTest {
             it.database = fakeDatabase
         }
 
-        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(otherUser.phoneNumber))
+        onView(withId(R.id.invitePhoneNumInnerET)).perform(typeText(otherUser.phoneNumber), closeSoftKeyboard())
         onView(withId(R.id.sendBtn)).perform(click())
 
         assertTrue((fakeDatabase as FakeDatabase).checkIfInvitationExists(otherUser.phoneNumber, CURRENT_USER!!.name))

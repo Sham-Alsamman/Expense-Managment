@@ -79,7 +79,6 @@ class AddIncome : NavDrawerActivity() {
                 flag = false
             }
             DateIncome = Date(yearInt - 1900, monthInt - 1, dayInt)
-            Toast.makeText(this, "date: " + DateIncome, Toast.LENGTH_SHORT).show()
         } else {
             outDate.error = "Please Enter The Date of the Income"
             flag = false

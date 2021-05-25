@@ -33,7 +33,7 @@ class Login : NavDrawerActivity() {
         PhoneNum.editText?.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
                 PhoneNum.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-                PhoneNum.error = "Enter Your Phone Number "
+                PhoneNum.error = "Enter Your Phone Number"
             } else if (!(text.startsWith("+"))) {
                 PhoneNum.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 PhoneNum.error = "Enter Country code also along with the phone number"
@@ -60,17 +60,6 @@ class Login : NavDrawerActivity() {
         }
     }
 
-    private fun DbResultPerson(person: DBPerson ) {
-        CURRENT_USER = person.toPerson()
-        database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
-
-        if(CURRENT_USER!= null) {
-            val i = Intent(applicationContext, Home::class.java)
-            startActivity(i)
-            finish()
-        }
-    }
-
     private fun DbResultExpenseGroup(ExpenseGroup: DBExpenseGroup) {
         CURRENT_GROUP = ExpenseGroup.toExpenseGroup()
         SaveSharedPreference.saveUserData(this)
@@ -90,14 +79,14 @@ class Login : NavDrawerActivity() {
         if (phoneNumET.editText?.text!!.isEmpty() && PasswordEt.editText?.text!!.isEmpty()) {
             Toast.makeText(
                 applicationContext,
-                "Please enter phone number and password ",
+                "Please enter phone number and password",
                 Toast.LENGTH_LONG
             ).show()
         } else if (phoneNumET.editText?.text!!.isEmpty()) {
-            Toast.makeText(applicationContext, "Please enter phone number ", Toast.LENGTH_LONG)
+            Toast.makeText(applicationContext, "Please enter phone number", Toast.LENGTH_LONG)
                 .show()
         } else if (PasswordEt.editText?.text!!.isEmpty()) {
-            Toast.makeText(applicationContext, "Please enter password ", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please enter password", Toast.LENGTH_LONG).show()
         } else if (phoneNumET.error != null) {
             Toast.makeText(applicationContext, phoneNumET.error, Toast.LENGTH_LONG).show()
 
@@ -127,4 +116,14 @@ class Login : NavDrawerActivity() {
         }
     }
 
+    private fun DbResultPerson(person: DBPerson ) {
+        CURRENT_USER = person.toPerson()
+        database.getExpenseGroup(CURRENT_USER!!.groupId, ::DbResultExpenseGroup)
+
+        if(CURRENT_USER!= null) {
+            val i = Intent(applicationContext, Home::class.java)
+            startActivity(i)
+            finish()
+        }
+    }
 }

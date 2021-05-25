@@ -11,8 +11,6 @@ import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.SaveSharedPreference
 import com.example.scanningreceiptstest.database.*
 import kotlinx.android.synthetic.main.activity_invitations.*
-import kotlinx.android.synthetic.main.activity_invitations.noData
-import kotlinx.android.synthetic.main.activity_transation_history.*
 
 class Invitations : NavDrawerActivity() {
 
@@ -35,9 +33,9 @@ class Invitations : NavDrawerActivity() {
 
     private fun onDBResult(list: List<DBInvitation>) {
         if (list.isEmpty()) {
-            noData.visibility = View.VISIBLE
+            noData_Invitation.visibility = View.VISIBLE
         } else {
-            noData.visibility = View.GONE
+            noData_Invitation.visibility = View.GONE
             recyclerAdapter.invitationsList = list.toInvitationList()
         }
     }

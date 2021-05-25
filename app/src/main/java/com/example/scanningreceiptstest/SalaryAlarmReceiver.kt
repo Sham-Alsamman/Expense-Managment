@@ -10,9 +10,12 @@ import androidx.core.content.getSystemService
 import com.example.scanningreceiptstest.Model.Income
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import com.example.scanningreceiptstest.database.FirebaseDatabase
+import com.example.scanningreceiptstest.database.IDatabase
 import java.util.*
 
 class SalaryAlarmReceiver : BroadcastReceiver() {
+
+    private val database: IDatabase = FirebaseDatabase
 
     companion object {
         const val SALARY_ALARM_REQUEST_CODE = 0
@@ -24,11 +27,11 @@ class SalaryAlarmReceiver : BroadcastReceiver() {
 
             //add the new salary to DB:
             val salary = Income(Date(), CURRENT_USER!!.monthlySalary, "Monthly salary")
-            FirebaseDatabase.addNewIncome(CURRENT_USER!!.phoneNumber, salary.toDBIncome())
+            database.addNewIncome(CURRENT_USER!!.phoneNumber, salary.toDBIncome())
             //save the remaining from the last month in the saving wallet and add the new salary:
             CURRENT_USER!!.addSalaryAndCalculateSaving()
 
-            FirebaseDatabase.updateUserInfo(CURRENT_USER!!.toDBPerson())
+            database.updateUserInfo(CURRENT_USER!!.toDBPerson())
 
             if (context != null) {
                 setSalaryAlarmIfNotExist(context)

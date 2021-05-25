@@ -42,9 +42,9 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
 
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
         if (transactionsList.isEmpty()) {
-            noData.visibility = View.VISIBLE
+            noData_transaction.visibility = View.VISIBLE
         }else {
-            noData.visibility = View.GONE
+            noData_transaction.visibility = View.GONE
             //update the adapter list:
             recyclerAdapter.transactionsList = transactionsList
         }
@@ -57,9 +57,9 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         transactionsList = filterByTime(transactionsList, filterSheet.periodFilter)
 
         if (transactionsList.isEmpty()) {
-            noData.visibility = View.VISIBLE
+            noData_transaction.visibility = View.VISIBLE
         }else {
-            noData.visibility = View.GONE
+            noData_transaction.visibility = View.GONE
             //update the adapter list:
             recyclerAdapter.transactionsList = transactionsList
         }

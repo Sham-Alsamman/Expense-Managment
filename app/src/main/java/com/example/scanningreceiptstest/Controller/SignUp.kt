@@ -34,7 +34,7 @@ class SignUp : NavDrawerActivity() {
                 Name.error = "Name Should Contain Only Characters and Numbers"
             } else if (text.isNullOrEmpty()) {
                 Name.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-                Name.error = "Enter Your Name "
+                Name.error = "Enter Your Name"
             } else {
                 Name.setEndIconDrawable(0)
                 Name.error = null
@@ -43,7 +43,7 @@ class SignUp : NavDrawerActivity() {
         PhoneSignUp.editText?.doOnTextChanged { text, start, before, count ->
             if (text.isNullOrEmpty()) {
                 PhoneSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-                PhoneSignUp.error = "Enter Your Phone Number "
+                PhoneSignUp.error = "Enter Your Phone Number"
             } else if (!text.startsWith("+")) {
                 PhoneSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
                 PhoneSignUp.error = "Enter Country code also along with the phone number"
@@ -85,23 +85,6 @@ class SignUp : NavDrawerActivity() {
     fun SignInTextView(view: View) {
         val i = Intent(applicationContext, Login::class.java)
         startActivity(i)
-    }
-
-    private fun checkIfPartnerExist(phoneNum: String) {
-        //check if the phone number exists in the database
-        database.checkIfUserExist(phoneNum, ::onDBResult)
-    }
-
-    private fun onDBResult(exist: Boolean) {
-        if (exist) {
-            phoneNumExist = true
-            PhoneETSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
-            PhoneETSignUp.error = "This phone number already registered in the app"
-        } else {
-            phoneNumExist = false
-            PasswordETSignUp.setEndIconDrawable(0)
-            PhoneETSignUp.error = null
-        }
     }
 
     fun goToVerification(view: View) {
@@ -150,6 +133,24 @@ class SignUp : NavDrawerActivity() {
         }
 
     }
+
+    private fun checkIfPartnerExist(phoneNum: String) {
+        //check if the phone number exists in the database
+        database.checkIfUserExist(phoneNum, ::onDBResult)
+    }
+
+    private fun onDBResult(exist: Boolean) {
+        if (exist) {
+            phoneNumExist = true
+            PhoneETSignUp.setEndIconDrawable(R.drawable.ic_baseline_error_24)
+            PhoneETSignUp.error = "This phone number already registered in the app"
+        } else {
+            phoneNumExist = false
+            PasswordETSignUp.setEndIconDrawable(0)
+            PhoneETSignUp.error = null
+        }
+    }
+
 
 }
 

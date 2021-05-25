@@ -1,6 +1,5 @@
 package com.example.scanningreceiptstest
 
-import android.util.Log
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.scanningreceiptstest.database.*
 
@@ -37,9 +36,7 @@ class FakeDatabase : IDatabase{
         }
 
         if (user != null) {
-            /***************************/
-            val result = BCrypt.verifyer().verify(pass.toCharArray(), user.password)
-            onDataRetrieved(result.verified)
+            onDataRetrieved(true)
         }else
             onDataRetrieved(false)
     }
@@ -53,6 +50,28 @@ class FakeDatabase : IDatabase{
             onDataRetrieved(true)
         else
             onDataRetrieved(false)
+    }
+
+    override fun sendInvitation(invitation: DBInvitation) {
+        val inviteList = invitations[invitation.receiverPhoneNum]
+        if (inviteList != null) {
+            inviteList.add(invitation)
+        }else {
+            invitations[invitation.receiverPhoneNum] = mutableListOf(invitation)
+        }
+        //println("invite invetation retrieved ${invitations[invitation.receiverPhoneNum]?.size}")
+    }
+
+    override fun getAllInvitations(
+        phoneNum: String,
+        onDataRetrievedFun: (list: List<DBInvitation>) -> Unit
+    ) {
+        if (invitations[phoneNum] != null)
+            onDataRetrievedFun(invitations[phoneNum]!!)
+        else
+            onDataRetrievedFun(listOf())
+
+        //println("invite invetation retrieved ${invitations[phoneNum]?.size}")
     }
 
     override fun addNewUser(user: DBPerson, onAddedSuccessfully: (Boolean) -> Unit) {
@@ -71,15 +90,6 @@ class FakeDatabase : IDatabase{
         TODO("Not yet implemented")
     }
 
-    override fun sendInvitation(invitation: DBInvitation) {
-        val inviteList = invitations[invitation.receiverPhoneNum]
-        if (inviteList != null) {
-            val added = inviteList.add(invitation)
-        }else {
-            invitations[invitation.receiverPhoneNum] = mutableListOf(invitation)
-        }
-    }
-
     override fun getAllExpenses(
         phoneNum: String,
         onDataRetrievedFun: (list: List<DBExpense>) -> Unit
@@ -92,13 +102,6 @@ class FakeDatabase : IDatabase{
         onDataRetrievedFun: (list: List<DBIncome>) -> Unit
     ) {
         TODO("Not yet implemented")
-    }
-
-    override fun getAllInvitations(
-        phoneNum: String,
-        onDataRetrievedFun: (list: List<DBInvitation>) -> Unit
-    ) {
-        invitations[phoneNum]?.let { onDataRetrievedFun(it) }
     }
 
     override fun updateUserInfo(user: DBPerson) {

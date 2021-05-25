@@ -44,8 +44,6 @@ class BottomSheet_Filter(val currentActivity: IFilterSheet) : BottomSheetDialogF
                 4 -> periodFilter = PeriodTransactionFilter.OneYear
             }
 
-            Toast.makeText(context, "$groupFilter & $periodFilter", Toast.LENGTH_SHORT).show()
-
             dismiss()
             currentActivity.applyFilterChanges()
 

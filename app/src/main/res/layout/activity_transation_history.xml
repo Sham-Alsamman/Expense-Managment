@@ -63,7 +63,7 @@
                 tools:listitem="@layout/transaction_history_list_item"/>
 
             <TextView
-                android:id="@+id/noData"
+                android:id="@+id/noData_transaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No Data Found"
