@@ -3,8 +3,7 @@ package com.example.scanningreceiptstest
 import android.view.Gravity
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.pressBack
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.NavigationViewActions
@@ -36,24 +35,30 @@ class AppNavigationTest {
     @Test
     fun signUp_login_NavigationTest() {
         //start from the welcome page
-        ActivityScenario.launch(welcomPage2::class.java)
+        var scenario = ActivityScenario.launch(welcomPage2::class.java)
 
         //open sign up page from welcome page
         onView(withId(R.id.signUPbutton)).perform(click())
         Intents.intended(hasComponent(SignUp::class.java.name))
+        scenario.close()
 
         //open log in page from welcome page
-        onView(isRoot()).perform(pressBack())
+        scenario = ActivityScenario.launch(welcomPage2::class.java)
         onView(withId(R.id.SignINbutton)).perform(click())
         Intents.intended(hasComponent(Login::class.java.name))
+        scenario.close()
 
         Intents.release()
         Intents.init()
         //open sign up page from log in page
+        val scenario2 = ActivityScenario.launch(Login::class.java)
         onView(withId(R.id.signUp_login)).perform(click())
         Intents.intended(hasComponent(SignUp::class.java.name))
+        scenario.close()
 
         //open log in page from sign up page
+        val scenario3 = ActivityScenario.launch(SignUp::class.java)
+        onView(withId(R.id.name_inner)).perform(closeSoftKeyboard())
         onView(withId(R.id.SignInTextView)).perform(click())
         Intents.intended(hasComponent(Login::class.java.name))
     }
@@ -64,20 +69,24 @@ class AppNavigationTest {
         CURRENT_USER = Person("Sham", "+16505553434", "123456")
         CURRENT_GROUP = ExpenseGroup("123", mutableListOf(CURRENT_USER!!.phoneNumber))
 
-        ActivityScenario.launch(Home::class.java)
+        var scenario = ActivityScenario.launch(Home::class.java)
+        //scenario.close()
 
         //open add income page:
         onView(withId(R.id.addincome)).perform(click())
         Intents.intended(hasComponent(AddIncome::class.java.name))
+        scenario.close()
+
 
         //open add expense manually:
-        onView(isRoot()).perform(pressBack())
+        scenario = ActivityScenario.launch(Home::class.java)
         onView(withId(R.id.add_fab)).perform(click())
         onView(withId(R.id.manually_fab)).perform(click())
         Intents.intended(hasComponent(AddManually::class.java.name))
+        scenario.close()
 
         //open add expense by scanning:
-        onView(isRoot()).perform(pressBack())
+        scenario = ActivityScenario.launch(Home::class.java)
         onView(withId(R.id.add_fab)).perform(click())
         onView(withId(R.id.scan_fab)).perform(click())
         Intents.intended(hasComponent(Scan::class.java.name))
