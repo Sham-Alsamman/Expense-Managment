@@ -16,19 +16,21 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/main_layout_2_style"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <!--tools:context=".Report"-->
+            android:layout_height="match_parent"
+            android:paddingBottom = "10dp"
+            android:paddingEnd = "30dp"
+            android:paddingStart = "30dp"
+            android:paddingTop = "100dp">
 
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/piechart"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/avg">
+                app:layout_constraintTop_toBottomOf="@+id/filter_btn">
 
             </com.github.mikephil.charting.charts.PieChart>
 
@@ -36,12 +38,11 @@
                 android:id="@+id/filter_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
                 android:background="@drawable/box"
                 android:text="filter"
+                android:layout_marginTop="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/piechart"/>
+                app:layout_constraintTop_toBottomOf="@+id/avg" />
 
 
             <TextView

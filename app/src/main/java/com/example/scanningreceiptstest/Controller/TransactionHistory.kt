@@ -79,7 +79,6 @@ class TransactionHistory : NavDrawerActivity(), IFilterSheet {
         getTransactions()
     }
 
-
     private fun checkIfGroupIsUpToDate() {
         if (!groupUpdated) {
             database.getExpenseGroup(CURRENT_USER!!.groupId, ::onExpenseGroupResult)
