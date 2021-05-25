@@ -1,20 +1,15 @@
 package com.example.scanningreceiptstest.database
 
 import com.example.scanningreceiptstest.Model.Expense
-import com.example.scanningreceiptstest.Model.Income
-import com.example.scanningreceiptstest.Model.recEnum
-import java.lang.Exception
 import java.util.*
-import kotlin.math.exp
 
 data class DBExpense(
     val date: Date,
     val amount: Double,
     val category: String,
-    val vendorName: String,
-    val recurrent: recEnum
+    val vendorName: String
 ) {
-    constructor() : this(Date(), 0.0, "", "", recEnum.None)
+    constructor() : this(Date(), 0.0, "", "")
 }
 
 fun DBExpense.toExpense(): Expense {
@@ -22,8 +17,7 @@ fun DBExpense.toExpense(): Expense {
         date,
         amount,
         category,
-        vendorName,
-        recurrent
+        vendorName
     )
 }
 

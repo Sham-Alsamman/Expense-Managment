@@ -32,7 +32,7 @@
                     <RelativeLayout
                         android:id="@+id/relativeLayout1"
                         android:layout_width="wrap_content"
-                        android:layout_height="600dp"
+                        android:layout_height="450dp"
                         android:background="@drawable/rounded_panel"
                         android:paddingStart="30dp"
                         android:paddingEnd="30dp"
@@ -148,96 +148,11 @@
                             android:layout_width="300dp"
                             android:layout_height="50dp"
                             android:layout_marginTop="380dp"
+                            android:entries="@array/Category"
                             android:background="@drawable/spinn"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <Spinner
-                            android:id="@+id/spinner"
-                            android:layout_width="300dp"
-                            android:layout_height="50dp"
-                            android:layout_marginTop="500dp"
-                            android:background="@drawable/spinn"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textView13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="460dp"
-                            android:text="Recurrent" />
-
-                        <!-- <com.google.android.material.textfield.TextInputLayout
-                         android:id="@+id/outCat"
-                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                         android:layout_width="200dp"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentEnd="true"
-                         android:layout_marginTop="310dp"
-                         android:hint="Category">
-
-
-                         <com.google.android.material.textfield.TextInputEditText
-                             android:layout_width="200dp"
-                             android:layout_height="wrap_content" />
-            -->
-                        <!--         <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/outDate1"
-                                    android:layout_width="270dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="35dp"
-                                    android:layout_marginTop="150dp"
-                                    android:background="@color/white"
-                                    android:hint="Date"
-                                    android:onClick="clickDataPicker"
-                                    app:endIconDrawable="@drawable/ic_baseline_calendar_today_24"
-                                    app:endIconMode="custom">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/dateIn"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
-
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-
-                                    <com.google.android.material.textfield.TextInputLayout
-                                        android:id="@+id/outTotal"
-                                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                                        android:layout_width="200dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_marginTop="400dp"
-                                        android:hint="Total">
-
-                                        <com.google.android.material.textfield.TextInputEditText
-                                            android:layout_width="200dp"
-                                            android:layout_height="wrap_content" />
-
-                                    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-                            <Button
-                                android:id="@+id/saveExpense"
-                                style="@style/light_button_style"
-                                android:layout_width="130dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="140dp"
-                                android:layout_marginTop="30dp"
-                                android:layout_marginEnd="140dp"
-                                android:text="Save"
-                                android:textSize="18dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="1.0"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                        -->
                     </RelativeLayout>
 
                     <!--

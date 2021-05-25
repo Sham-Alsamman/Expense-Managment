@@ -6,14 +6,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import com.example.scanningreceiptstest.Model.Expense
-import com.example.scanningreceiptstest.Model.recEnum
 import com.example.scanningreceiptstest.R
 import com.example.scanningreceiptstest.database.CURRENT_USER
 import kotlinx.android.synthetic.main.activity_add_manually.*
@@ -33,81 +28,26 @@ class AddManually : NavDrawerActivity() {
             amountIn.setText(totalFromScan.toString())
         }
 
-
-        val categoryItems = resources.getStringArray(R.array.Category)
-
-        val spinnerRecurrent = findViewById<Spinner>(R.id.spinner)
-        if (spinnerRecurrent != null) {
-            val adapter = ArrayAdapter(
-                this,
-                android.R.layout.simple_list_item_1, recEnum.values()
-            )
-            spinnerRecurrent.adapter = adapter
-
-
-            spinnerRecurrent.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>,
-                    view: View?, position: Int, id: Long
-                ) {
-                    //Toast.makeText(this@AddManually, getString(R.string.selected_item) + " " +
-                    //       "" +spinner.selectedItem.toString(), Toast.LENGTH_SHORT
-                    // ).show()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    spinner.setSelection(adapter.getPosition(recEnum.valueOf("None")));
-                }
-            }
-
-
-            val spinnerCategory = findViewById<Spinner>(R.id.spinnerCat)
-            if (spinnerCategory != null) {
-                val adapter2 = ArrayAdapter(
-                    this,
-                    android.R.layout.simple_spinner_item, categoryItems
-                )
-                spinnerCategory.adapter = adapter2
-
-
-                spinnerCategory.onItemSelectedListener = object :
-                    AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>,
-                        view: View, position: Int, id: Long
-                    ) {
-                        //Toast.makeText(this@AddManually, getString(R.string.selected_item) + " " +
-                        //       "" +spinner.selectedItem.toString(), Toast.LENGTH_SHORT
-                        // ).show()
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        spinnerCategory.setSelection(0)
-                    }
-                }
-            }
-
-            outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
-                outlinedTextField.error = null
-            }
-
-            outDate1.editText?.doOnTextChanged { text, start, before, count ->
-                outDate1.error = null
-            }
-
-            outAmountManually.editText?.doOnTextChanged { text, start, before, count ->
-                outAmountManually.error = null
-            }
-
-            outDate1.setEndIconOnClickListener {
-                showDatePicker()
-            }
-
-            saveExpense.setOnClickListener {
-                getExpenseDataAndSave()
-            }
+        outlinedTextField.editText?.doOnTextChanged { text, start, before, count ->
+            outlinedTextField.error = null
         }
+
+        outDate1.editText?.doOnTextChanged { text, start, before, count ->
+            outDate1.error = null
+        }
+
+        outAmountManually.editText?.doOnTextChanged { text, start, before, count ->
+            outAmountManually.error = null
+        }
+
+        outDate1.setEndIconOnClickListener {
+            showDatePicker()
+        }
+
+        saveExpense.setOnClickListener {
+            getExpenseDataAndSave()
+        }
+
     }
 
     private fun getExpenseDataAndSave() {
@@ -142,7 +82,7 @@ class AddManually : NavDrawerActivity() {
                 dayInt = date[0].toInt()
                 monthInt = date[1].toInt()
                 yearInt = date[2].toInt()
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 outDate1.error = "Incorrect date"
                 flag = false
             }
@@ -153,12 +93,11 @@ class AddManually : NavDrawerActivity() {
             flag = false
         }
 
-        val recSelected: recEnum = spinner.selectedItem as recEnum
         val catSelected: String = spinnerCat.selectedItem as String
 
         if (flag) {
             val newExpense =
-                Expense(dateExp, amountExpense.toDouble(), catSelected, name, recSelected)
+                Expense(dateExp, amountExpense.toDouble(), catSelected, name)
 
             saveNewExpense(newExpense)
         }
