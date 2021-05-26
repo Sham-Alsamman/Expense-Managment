@@ -74,19 +74,35 @@ class Profile : NavDrawerActivity() {
 
     private fun saveInfo() {
 
-        if (changePass.text!!.isEmpty())
+       /* if (changePass.text!!.isEmpty())
             Toast.makeText(applicationContext, "Please New Password field ", Toast.LENGTH_LONG)
                 .show()
         else if (ConfirmPass.text!!.isEmpty())
             Toast.makeText(applicationContext, "Please Confirm Password field ", Toast.LENGTH_LONG)
-                .show()
-        else if (changePass.error != null)
+                .show()*/
+         if (changePass.error != null)
             Toast.makeText(applicationContext, changePass.error, Toast.LENGTH_LONG).show()
         else if (ConfirmPass.error != null)
             Toast.makeText(applicationContext, ConfirmPass.error, Toast.LENGTH_LONG).show()
+        else if (Profile.error != null)
+         {
+             Toast.makeText(applicationContext, Profile.error, Toast.LENGTH_LONG).show()
+         }
+        else if (changePass.text!!.isNullOrEmpty() && ConfirmPass.text!!.isNullOrEmpty())
+         {
+             var newUserName = findViewById<EditText>(R.id.nameProfile).text.toString()
+
+             CURRENT_USER!!.name = newUserName
+             database.updateUserInfo(CURRENT_USER!!.toDBPerson())
+
+             Toast.makeText(applicationContext, "Update Successful", Toast.LENGTH_LONG).show()
+             var newIntent = Intent(this, Home::class.java)
+             startActivity(newIntent)
+         }
         else {
-            var newUserName = findViewById<EditText>(R.id.invitePhoneNumInnerET).text.toString()
+            var newUserName = findViewById<EditText>(R.id.nameProfile).text.toString()
             var newPass = findViewById<EditText>(R.id.changePass).text.toString()
+
 
             CURRENT_USER!!.name = newUserName
             CURRENT_USER!!.password = BCrypt.withDefaults().hashToString(12, newPass.toCharArray())
