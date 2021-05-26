@@ -105,7 +105,9 @@ class AddManually : NavDrawerActivity() {
 
     private fun saveNewExpense(newExpense: Expense) {
 
-        if (CURRENT_USER!!.addExpenseIfPossible(newExpense.amount)) {
+        if (newExpense.amount <= 0)
+            Toast.makeText(this, "The amount should be greater than zero", Toast.LENGTH_SHORT).show()
+        else if (CURRENT_USER!!.addExpenseIfPossible(newExpense.amount)) {
             addExpenseToDB(newExpense)
         } else if (CURRENT_USER!!.canWithdrawFromSavings(newExpense.amount)) {
             AlertDialog.Builder(this)
