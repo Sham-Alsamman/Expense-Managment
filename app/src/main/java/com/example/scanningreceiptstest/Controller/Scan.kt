@@ -51,8 +51,12 @@ class Scan : NavDrawerActivity() {
 
         val bitmap = bundle?.get("data") as Bitmap?
 
-        if (bitmap == null)
+        if (bitmap == null) {
+            val intent = Intent(this@Scan, Home::class.java)
+            startActivity(intent)
+            finish()
             return
+        }
 
         val visionImage = FirebaseVisionImage.fromBitmap(bitmap)
 
@@ -79,6 +83,7 @@ class Scan : NavDrawerActivity() {
             intent.putExtra("venName", stringSplits[0])
             intent.putExtra("Total", total)
             startActivity(intent)
+            finish()
         }
 
         task.addOnFailureListener { p0 ->
@@ -87,6 +92,9 @@ class Scan : NavDrawerActivity() {
                 "failure ): " + p0.toString(),
                 Toast.LENGTH_SHORT
             ).show()
+            val intent = Intent(this@Scan, Home::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
