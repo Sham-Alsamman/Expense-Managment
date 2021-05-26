@@ -148,53 +148,63 @@ class Report : NavDrawerActivity(), IFilterSheet {
         val totalPrices =
             Food.toFloat() + Shopping.toFloat() + Medical_and_Health.toFloat() + Education.toFloat() + Housing.toFloat() + Entertainment.toFloat() + Transposition.toFloat() + Other.toFloat()
 
-        var p = PieEntry((Food.toFloat() / totalPrices), "Food")
-        if (Food != 0.0)
-            valuesList.add(PieEntry((((Food / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Food"))
-        if (Shopping != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Shopping / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Shopping"
-                )
-            )
-        if (Medical_and_Health != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Medical_and_Health / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Medical and Health"
-                )
-            )
-        if (Education != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Education / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Education"
-                )
-            )
-        if (Housing != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Housing / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Housing"
-                )
-            )
-        if (Entertainment != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Entertainment / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Entertainment"
-                )
-            )
-        if (Transposition != 0.0)
-            valuesList.add(
-                PieEntry(
-                    (((Transposition / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(),
-                    "Transposition"
-                )
-            )
-        if (Other != 0.0)
-            valuesList.add(PieEntry((((Other / totalPrices) * 10.0).roundToInt() / 10.0).toFloat(), "Other"))
+        var f = 0.0f
+
+        if (Food > 0.0) {
+            f = (((Food / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Food"))
+        }
+
+        if (Shopping > 0.0) {
+            f = (((Shopping / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Shopping"))
+        }
+
+        if (Medical_and_Health > 0.0) {
+            f = (((Medical_and_Health / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if (f > 0.0)
+                valuesList.add(PieEntry(f, "Medical and Health"))
+        }
+
+        if (Education > 0.0) {
+            f = (((Education / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Education"))
+        }
+
+        if (Housing > 0.0) {
+            f = (((Housing / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Housing"))
+        }
+
+        if (Entertainment > 0.0) {
+            f = (((Entertainment / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Entertainment"))
+        }
+
+        if (Transposition > 0.0) {
+            f = (((Transposition / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Transposition"))
+        }
+
+        if (Other > 0.0) {
+            f = (((Other / totalPrices) * 10.0).roundToInt() / 10.0).toFloat()
+
+            if(f > 0.0)
+                valuesList.add(PieEntry(f, "Other"))
+        }
 
         println("list len at the end of addValues = " + valuesList.size)
     }
